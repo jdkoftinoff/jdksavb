@@ -35,6 +35,69 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
+
+
+/** \addtogroup acmp_talker ACMP Listener State Machine */
+/*@{*/
+
+#ifndef JDKSAVB_ACMP_LISTENER_MAX_STREAMS
+#define JDKSAVB_ACMP_LISTENER_MAX_STREAMS (8)
+#endif
+
+struct jdksavb_acmp_listener_context {
+    enum {
+        JDKSAVB_ACMP_LISTENER_STATE_DISABLED=0,
+        JDKSAVB_ACMP_LISTENER_STATE_DISCONNECTED,
+        JDKSAVB_ACMP_LISTENER_STATE_FAST_CONNECTION_IN_PROGRESS,
+        JDKSAVB_ACMP_LISTENER_STATE_CONNECTION_IN_PROGRESS,
+        JDKSAVB_ACMP_LISTENER_STATE_CONNECTED,
+        JDKSAVB_ACMP_LISTENER_STATE_DISCONNECTION_IN_PROGRESS,
+    } state;
+
+    struct jdksavdecc_eui48 destination_mac_address;
+    struct jdksavdecc_eui64 stream_id;
+    struct jdksavdecc_eui64 talker_entity_id;
+    uint16_t talker_unique_id;
+    uint16_t flags;
+    uint16_t stream_vlan_id;
+    void *context;
+};
+
+struct jdksavb_acmp_listener {
+    struct jdksavdecc_state_machine *base;
+    struct jdksavdecc_entity *entity;
+    uint16_t listener_stream_sinks;
+    struct jdksavb_acmp_listener_context listener_sink[JDKSAVB_ACMP_LISTENER_MAX_STREAMS];
+
+};
+
+
+bool jdksavb_acmp_listener_init(
+        struct jdksavb_acmp_listener *self,
+        struct jdksavdecc_entity *entity,
+        struct jdksavb_frame_sender *frame_sender,
+        uint32_t tag,
+        void *additional);
+
+/// Destroy any resources that the jdksavb_acmp_listener uses
+void jdksavb_acmp_listener_destroy(struct jdksavdecc_state_machine *self );
+
+/// Receive an ACMPDU and process it
+bool jdksavb_acmp_listener_rx_frame(
+    struct jdksavdecc_state_machine *self,
+    struct jdksavb_frame *rx_frame,
+    size_t pos
+    );
+
+/// Notify the state machine that time has passed. Call asap if early_tick is true.
+void jdksavb_acmp_listener_tick(
+    struct jdksavdecc_state_machine *self,
+    jdksavdecc_timestamp_in_microseconds timestamp);
+
+
+/*@}*/
+
+
 #ifdef __cplusplus
 }
 #endif

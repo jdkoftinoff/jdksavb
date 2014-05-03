@@ -29,9 +29,62 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "jdksavb_world.h"
+#include "jdksavb_statemachine.h"
 
+void jdksavb_state_machine_init(struct jdksavb_state_machine *self,
+                                   struct jdksavb_frame_sender *frame_sender,
+                                   uint32_t tag,
+                                   void *additional) {
+    self->additional = 0;
+    self->tag = 0;
+    self->destroy = jdksavb_state_machine_destroy;
+    self->tick = jdksavb_state_machine_tick;
+    self->rx_frame = jdksavb_state_machine_rx_frame;
+    self->tx_frame = jdksavb_state_machine_tx_frame;
+    self->frame_sender = frame_sender;
+    self->terminated = 0;
+    self->tag = tag;
+    self->additional = additional;
+    self->do_early_tick = 0;
+}
 
-#ifndef TODO
-const char *jdksavb_statemachine_file = "jdksavb_statemachine.c";
-#endif
+void jdksavb_state_machine_destroy(struct jdksavb_state_machine *self) {
+    // zero all fields
+    memset(self, 0, sizeof(*self));
+}
 
+void jdksavb_state_machine_terminate(struct jdksavb_state_machine *self) { self->terminated = 1; }
+
+int jdksavb_state_machine_tick(struct jdksavb_state_machine *self, jdksavdecc_timestamp_in_microseconds timestamp) {
+    int r = 0;
+
+    // default is to ignore ticks
+    (void)timestamp;
+
+    // Reset the flag to trigger an early tick
+    self->do_early_tick = 0;
+
+    // A terminated state machine causes us to return -1
+    if (self->terminated) {
+        r = -1;
+    } else {
+        r = 0;
+    }
+    return r;
+}
+
+ssize_t
+jdksavb_state_machine_rx_frame(struct jdksavb_state_machine *self, struct jdksavb_frame *rx_frame, size_t pos) {
+    // Nothing to do - default is to ignore rx_frame
+    (void)self;
+    (void)rx_frame;
+    (void)pos;
+    return 0;
+}
+
+void jdksavb_state_machine_tx_frame(struct jdksavb_state_machine *self, struct jdksavb_frame const *frame) {
+    /* Default is to give the frame to the frame_sender if there is one */
+    if (self->frame_sender) {
+        self->frame_sender->send(self->frame_sender, frame);
+    }
+}

@@ -30,7 +30,6 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
-#include "jdksavdecc.h"
 #include "jdksavb_acmp_controller.h"
 #include "jdksavb_acmp_listener.h"
 #include "jdksavb_acmp_talker.h"

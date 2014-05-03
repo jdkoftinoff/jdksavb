@@ -30,10 +30,87 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
+#include "jdksavb_statemachine.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+struct jdksavb_acmp_controller_stream_source;
+
+
+/** \addtogroup acmp_controller ACMP Controller State Machine */
+/*@{*/
+
+struct jdksavb_acmp_controller_stream_source {
+    struct jdksavdecc_eui64 talker_entity_id;
+    uint16_t talker_unique_id;
+    struct jdksavdecc_eui48 destination_mac_address;
+    struct jdksavdecc_eui64 stream_id;
+    uint16_t flags;
+    uint8_t status;
+    uint16_t connection_count;
+    uint16_t stream_vlan_id;
+};
+
+struct jdksavb_acmp_controller_stream_sink {
+    struct jdksavdecc_eui64 listener_entity_id;
+    uint16_t listener_unique_id;
+    uint16_t flags;
+    uint8_t status;
+};
+
+struct jdksavb_acmp_controller_connection {
+    enum {
+        JDKSAVB_ACMP_CONTROLLER_STREAM_SINK_STATE_DISABLED=0,
+        JDKSAVB_ACMP_CONTROLLER_STREAM_SINK_STATE_DISCONNECTED,
+        JDKSAVB_ACMP_CONTROLLER_STREAM_SINK_STATE_CONNECTING,
+        JDKSAVB_ACMP_CONTROLLER_STREAM_SINK_STATE_CONNECTED,
+        JDKSAVB_ACMP_CONTROLLER_STREAM_SINK_STATE_DISCONNECTING,
+        JDKSAVB_ACMP_CONTROLLER_STREAM_SINK_STATE_ERROR
+    } state;
+    struct jdksavdecc_eui64 talker_entity_id;
+    uint16_t talker_unique_id;
+    struct jdksavdecc_eui64 listener_entity_id;
+    uint16_t listener_unique_id;
+};
+
+struct jdksavb_acmp_controller {
+    struct jdksavb_state_machine base;
+    struct jdksavdecc_controller_manager *controller_manager;
+    int max_stream_sources;
+    struct jdksavb_acmp_controller_stream_source *stream_sources;
+    int max_stream_sinks;
+    struct jdksavb_acmp_controller_stream_source *stream_sinks;
+    int max_connections;
+    struct jdksavb_acmp_controller_connection *stream_connections;
+};
+
+bool jdksavb_acmp_controller_init(
+        struct jdksavb_acmp_controller *self,
+        struct jdksavdecc_controller_manager *controller_manager,
+        struct jdksavb_frame_sender *frame_sender,
+        uint32_t tag,
+        void *additional);
+
+/// Destroy any resources that the jdksavb_acmp_controller uses
+void jdksavb_acmp_controller_destroy(struct jdksavb_state_machine *self );
+
+/// Receive an ACMPDU and process it
+bool jdksavb_acmp_controller_rx_frame(
+    struct jdksavb_state_machine *self,
+    struct jdksavb_frame *rx_frame,
+    size_t pos
+    );
+
+/// Notify the state machine that time has passed. Call asap if early_tick is true.
+void jdksavb_acmp_controller_tick(
+    struct jdksavb_state_machine *self,
+    jdksavdecc_timestamp_in_microseconds timestamp);
+
+/*@}*/
+
+/*@}*/
 
 #ifdef __cplusplus
 }

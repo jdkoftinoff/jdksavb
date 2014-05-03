@@ -30,8 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "jdksavb_world.h"
 
-
 #ifndef TODO
-const char *jdksavb_controller_file = "jdksavb_controller.c";
+const char *jdksavdecc_controller_manager_file = __FILE__;
 #endif
 

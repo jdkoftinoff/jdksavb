@@ -29,3 +29,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "jdksavb_world.h"
+#include "jdksavb_aps.h"
+
+
+#ifndef TODO
+const char *jdksavb_aps_file = "jdksavb_aps.c";
+#endif
+

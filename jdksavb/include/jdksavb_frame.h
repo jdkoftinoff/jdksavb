@@ -29,65 +29,68 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
 #include "jdksavb_world.h"
-#include "jdksavb_statemachine.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/** \addtogroup maap MAAP - Multicast Address Allocation Protocol
-  * See IEEE Std 1722-2011 Annex B.2
-  */
+/** \addtogroup util Utilities */
 /*@{*/
 
-/** \addtogroup maap MAAP State Machines */
+/** \addtogroup frame raw ethernet frame */
 /*@{*/
 
+#define JDKSAVB_FRAME_HEADER_DA_OFFSET (0)
+#define JDKSAVB_FRAME_HEADER_SA_OFFSET (6)
+#define JDKSAVB_FRAME_HEADER_ETHERTYPE_OFFSET (12)
+#define JDKSAVB_FRAME_HEADER_LEN (14)
 
-struct jdksavb_maap {
-    /// Inherit from state_machine
-    struct jdksavb_state_machine base;
+#ifndef JDKSAVB_FRAME_MAX_PAYLOAD_SIZE
+#define JDKSAVB_FRAME_MAX_PAYLOAD_SIZE (1500)
+#endif
 
-    /// The system time in milliseconds that the last message was sent
-    jdksavdecc_timestamp_in_milliseconds last_time_in_ms;
-
+struct jdksavb_frame {
+    jdksavdecc_timestamp_in_microseconds time;
+    struct jdksavdecc_eui48 dest_address;
+    struct jdksavdecc_eui48 src_address;
+    uint16_t ethertype;
+    uint16_t tpid;
+    uint16_t pcp : 3;
+    uint16_t dei : 1;
+    uint16_t vid : 12;
+    uint16_t length;
+    uint8_t payload[JDKSAVB_FRAME_MAX_PAYLOAD_SIZE];
 };
 
-/// Initialize an jdksavdecc_adp_manager with the specified context and frame_send function and
-/// received_entity_available_or_departing function
-bool jdksavb_maap_init(
-    struct jdksavb_maap *self,
-    void *context,
-    void (*frame_send)(
-        struct jdksavb_maap *self,
-        void *context,
-        uint8_t const *buf,
-        uint16_t len )
-    );
+static inline void jdksavb_frame_init(struct jdksavb_frame *p) {
+    p->time = 0;
+    jdksavdecc_eui48_init(&p->dest_address);
+    jdksavdecc_eui48_init(&p->src_address);
+    p->ethertype = 0;
+    p->length = 0;
+    p->tpid = 0;
+    p->pcp = 0;
+    p->dei = 0;
+    p->vid = 0;
+    memset(p->payload, 0, sizeof(p->payload));
+}
 
-/// Destroy any resources that the jdksavdecc_adp_manager uses
-void jdksavb_maap_destroy(struct jdksavb_maap *self );
-
-/// Receive a MAAPDU and process it
-bool jdksavb_maap_receive(
-    struct jdksavb_maap *self,
-    jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
-    void const *source_address,
-    int source_address_len,
-    uint8_t const *buf,
-    uint16_t len );
-
-/// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_maap_tick(
-    struct jdksavb_state_machine *self,
-    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms );
-
+ssize_t jdksavb_frame_read(struct jdksavb_frame *p, void const *base, ssize_t pos, size_t len);
+ssize_t jdksavb_frame_write(struct jdksavb_frame const *p, void *base, ssize_t pos, size_t len);
+void jdksavb_frame_print(struct jdksavdecc_printer *self, struct jdksavb_frame const *p, int dump_payload);
 
 /*@}*/
 
-/*@}*/
+/** frame sender class */
+struct jdksavb_frame_sender {
+    void (*destroy)(struct jdksavb_frame_sender *);
+    void (*send)(struct jdksavb_frame_sender *, struct jdksavb_frame const *frame);
+};
 
+
+/*@}*/
 
 #ifdef __cplusplus
 }
