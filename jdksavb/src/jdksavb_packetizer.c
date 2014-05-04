@@ -30,8 +30,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "jdksavb_world.h"
 
-
 #ifndef TODO
 const char *jdksavb_packetizer_file = "jdksavb_packetizer.c";
 #endif
-

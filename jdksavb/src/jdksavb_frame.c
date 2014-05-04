@@ -105,7 +105,6 @@ ssize_t jdksavb_frame_write(struct jdksavb_frame const *p, void *base, ssize_t p
     return r;
 }
 
-
 void jdksavb_frame_print(struct jdksavdecc_printer *self, struct jdksavb_frame const *p, int dump_payload) {
     jdksavdecc_printer_print_label(self, "time (seconds)");
 
@@ -151,5 +150,3 @@ void jdksavb_frame_print(struct jdksavdecc_printer *self, struct jdksavb_frame c
         jdksavdecc_printer_print_block(self, p->payload, p->length, 0, p->length);
     }
 }
-
-

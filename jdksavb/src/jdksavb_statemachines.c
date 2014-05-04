@@ -33,10 +33,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_statemachines.h"
 
 int jdksavb_state_machines_init(struct jdksavb_state_machines *self,
-                                   int max_state_machines,
-                                   struct jdksavb_frame_sender *frame_sender,
-                                   uint32_t tag,
-                                   void *additional) {
+                                int max_state_machines,
+                                struct jdksavb_frame_sender *frame_sender,
+                                uint32_t tag,
+                                void *additional) {
     jdksavb_state_machine_init(&self->base, frame_sender, tag, additional);
     self->base.destroy = jdksavb_state_machines_destroy;
     self->base.tick = jdksavb_state_machines_tick;
@@ -113,8 +113,7 @@ int jdksavb_state_machines_tick(struct jdksavb_state_machine *self_, jdksavdecc_
     return r;
 }
 
-ssize_t
-jdksavb_state_machines_rx_frame(struct jdksavb_state_machine *self_, struct jdksavb_frame *rx_frame, size_t pos) {
+ssize_t jdksavb_state_machines_rx_frame(struct jdksavb_state_machine *self_, struct jdksavb_frame *rx_frame, size_t pos) {
     struct jdksavb_state_machines *self = (struct jdksavb_state_machines *)self_;
     int i;
     ssize_t max_r = -1;

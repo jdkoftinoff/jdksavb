@@ -32,9 +32,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_statemachine.h"
 
 void jdksavb_state_machine_init(struct jdksavb_state_machine *self,
-                                   struct jdksavb_frame_sender *frame_sender,
-                                   uint32_t tag,
-                                   void *additional) {
+                                struct jdksavb_frame_sender *frame_sender,
+                                uint32_t tag,
+                                void *additional) {
     self->additional = 0;
     self->tag = 0;
     self->destroy = jdksavb_state_machine_destroy;
@@ -73,8 +73,7 @@ int jdksavb_state_machine_tick(struct jdksavb_state_machine *self, jdksavdecc_ti
     return r;
 }
 
-ssize_t
-jdksavb_state_machine_rx_frame(struct jdksavb_state_machine *self, struct jdksavb_frame *rx_frame, size_t pos) {
+ssize_t jdksavb_state_machine_rx_frame(struct jdksavb_state_machine *self, struct jdksavb_frame *rx_frame, size_t pos) {
     // Nothing to do - default is to ignore rx_frame
     (void)self;
     (void)rx_frame;

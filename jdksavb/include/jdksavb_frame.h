@@ -89,7 +89,6 @@ struct jdksavb_frame_sender {
     void (*send)(struct jdksavb_frame_sender *, struct jdksavb_frame const *frame);
 };
 
-
 /*@}*/
 
 #ifdef __cplusplus

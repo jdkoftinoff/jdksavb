@@ -68,7 +68,7 @@ extern "C" {
 
 #define jdksavb_new(ALLOCATOR, T) (T *)((ALLOCATOR)->alloc((ALLOCATOR), (int32_t)sizeof(T), 1))
 
-#define jdksavb_delete(ALLOCATOR, PTR)                                                                                      \
+#define jdksavb_delete(ALLOCATOR, PTR)                                                                                         \
     do {                                                                                                                       \
         if ((ALLOCATOR) != 0 && (PTR) != 0)                                                                                    \
             (ALLOCATOR)->free((ALLOCATOR), (PTR));                                                                             \
@@ -182,8 +182,7 @@ void jdksavb_malloc_allocator_destroy(struct jdksavb_allocator *self);
 
 void *jdksavb_malloc_allocator_alloc(struct jdksavb_allocator *self, int32_t length, int32_t count);
 
-void *
-    jdksavb_malloc_allocator_realloc(struct jdksavb_allocator *self, const void *orig_ptr, int32_t length, int32_t count);
+void *jdksavb_malloc_allocator_realloc(struct jdksavb_allocator *self, const void *orig_ptr, int32_t length, int32_t count);
 
 void jdksavb_malloc_allocator_free(struct jdksavb_allocator *self, const void *ptr);
 

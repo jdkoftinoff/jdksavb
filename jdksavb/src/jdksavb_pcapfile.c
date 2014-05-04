@@ -58,14 +58,14 @@ struct jdksavb_pcapfile_record_header {
 };
 
 int jdksavb_pcapfile_reader_dispatch_with_no_file(struct jdksavb_pcapfile_reader *self,
-                                                     struct jdksavb_state_machine *dispatcher);
+                                                  struct jdksavb_state_machine *dispatcher);
 
 int jdksavb_pcapfile_reader_dispatch_frames_with_file(struct jdksavb_pcapfile_reader *self,
-                                                         struct jdksavb_state_machine *dispatcher);
+                                                      struct jdksavb_state_machine *dispatcher);
 
 void jdksavb_pcapfile_reader_init(struct jdksavb_pcapfile_reader *self,
-                                     jdksavdecc_timestamp_in_microseconds minimum_time_to_synthesize,
-                                     jdksavdecc_timestamp_in_microseconds time_step_in_microseconds) {
+                                  jdksavdecc_timestamp_in_microseconds minimum_time_to_synthesize,
+                                  jdksavdecc_timestamp_in_microseconds time_step_in_microseconds) {
     self->f = 0;
     self->swapped = 0;
     self->nano = 0;
@@ -187,8 +187,7 @@ int jdksavb_pcapfile_reader_read_frame(struct jdksavb_pcapfile_reader *self, str
     return r;
 }
 
-int jdksavb_pcapfile_reader_dispatch_frames(struct jdksavb_pcapfile_reader *self,
-                                               struct jdksavb_state_machine *dispatcher) {
+int jdksavb_pcapfile_reader_dispatch_frames(struct jdksavb_pcapfile_reader *self, struct jdksavb_state_machine *dispatcher) {
     if (self->f) {
         return jdksavb_pcapfile_reader_dispatch_frames_with_file(self, dispatcher);
     } else {
@@ -197,7 +196,7 @@ int jdksavb_pcapfile_reader_dispatch_frames(struct jdksavb_pcapfile_reader *self
 }
 
 int jdksavb_pcapfile_reader_dispatch_with_no_file(struct jdksavb_pcapfile_reader *self,
-                                                     struct jdksavb_state_machine *dispatcher) {
+                                                  struct jdksavb_state_machine *dispatcher) {
     int r = 0;
     jdksavdecc_timestamp_in_microseconds cur_time = 0;
 
@@ -219,7 +218,7 @@ int jdksavb_pcapfile_reader_dispatch_with_no_file(struct jdksavb_pcapfile_reader
 }
 
 int jdksavb_pcapfile_reader_dispatch_frames_with_file(struct jdksavb_pcapfile_reader *self,
-                                                         struct jdksavb_state_machine *dispatcher) {
+                                                      struct jdksavb_state_machine *dispatcher) {
     int r = 0;
     jdksavdecc_timestamp_in_microseconds cur_time = 0;
     jdksavdecc_timestamp_in_microseconds next_time = self->minimum_time_to_synthesize;
@@ -360,4 +359,3 @@ void jdksavb_pcapfile_writer_send(struct jdksavb_frame_sender *self_, struct jdk
 #else
 const char *jdksavb_pcapfile_file = __FILE__;
 #endif
-

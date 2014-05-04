@@ -58,15 +58,14 @@ struct jdksavb_pcapfile_reader {
 };
 
 void jdksavb_pcapfile_reader_init(struct jdksavb_pcapfile_reader *self,
-                                     jdksavdecc_timestamp_in_microseconds minimum_time_to_synthesize,
-                                     jdksavdecc_timestamp_in_microseconds time_step_in_microseconds);
+                                  jdksavdecc_timestamp_in_microseconds minimum_time_to_synthesize,
+                                  jdksavdecc_timestamp_in_microseconds time_step_in_microseconds);
 
 void jdksavb_pcapfile_reader_destroy(struct jdksavb_pcapfile_reader *self);
 int jdksavb_pcapfile_reader_open(struct jdksavb_pcapfile_reader *self, char const *fname);
 void jdksavb_pcapfile_reader_close(struct jdksavb_pcapfile_reader *self);
 int jdksavb_pcapfile_reader_read_frame(struct jdksavb_pcapfile_reader *self, struct jdksavb_frame *frame);
-int jdksavb_pcapfile_reader_dispatch_frames(struct jdksavb_pcapfile_reader *self,
-                                               struct jdksavb_state_machine *dispatcher);
+int jdksavb_pcapfile_reader_dispatch_frames(struct jdksavb_pcapfile_reader *self, struct jdksavb_state_machine *dispatcher);
 
 struct jdksavb_pcapfile_writer {
     struct jdksavb_frame_sender inherited;

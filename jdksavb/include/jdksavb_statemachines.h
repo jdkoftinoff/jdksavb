@@ -61,10 +61,10 @@ struct jdksavb_state_machines {
 
 /// Initialize the state machine list.
 int jdksavb_state_machines_init(struct jdksavb_state_machines *self,
-                                   int max_state_machines,
-                                   struct jdksavb_frame_sender *frame_sender,
-                                   uint32_t tag,
-                                   void *additional);
+                                int max_state_machines,
+                                struct jdksavb_frame_sender *frame_sender,
+                                uint32_t tag,
+                                void *additional);
 
 /// Destroy the state machine list and deallocate the list
 void jdksavb_state_machines_destroy(struct jdksavb_state_machine *self);
@@ -78,8 +78,7 @@ int jdksavb_state_machines_tick(struct jdksavb_state_machine *self, jdksavdecc_t
 
 /// Dispatch the rx_frame to all state machines.
 /// Returns the largest parsed octet count that the state machines returned
-ssize_t
-    jdksavb_state_machines_rx_frame(struct jdksavb_state_machine *self, struct jdksavb_frame *rx_frame, size_t pos);
+ssize_t jdksavb_state_machines_rx_frame(struct jdksavb_state_machine *self, struct jdksavb_frame *rx_frame, size_t pos);
 
 /// Add a state machine to the list.
 /// Returns 0 on success, <0 if there is no room

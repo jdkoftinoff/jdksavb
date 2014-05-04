@@ -33,4 +33,3 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef TODO
 const char *jdksavdecc_controller_manager_file = __FILE__;
 #endif
-

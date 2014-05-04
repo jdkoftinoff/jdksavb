@@ -30,8 +30,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "jdksavb_world.h"
 
-
 #ifndef TODO
 const char *jdksavb_gptp_file = "jdksavb_gptp.c";
 #endif
-

@@ -31,8 +31,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_world.h"
 #include "jdksavb_adp_discover.h"
 
-
 #ifndef TODO
 const char *jdksavb_adp_discover_file = "jdksavb_adp_discover.c";
 #endif
-

@@ -31,8 +31,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_world.h"
 #include "jdksavb.h"
 
-
 #ifndef TODO
 const char *jdksavb_file = "jdksavb.c";
 #endif
-

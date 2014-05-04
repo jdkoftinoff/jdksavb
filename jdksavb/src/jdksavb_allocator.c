@@ -63,8 +63,7 @@ void *jdksavb_simple_allocator_alloc(struct jdksavb_allocator *self_, int32_t le
     return result;
 }
 
-void *
-jdksavb_simple_allocator_realloc(struct jdksavb_allocator *self_, const void *orig_ptr, int32_t length, int32_t count) {
+void *jdksavb_simple_allocator_realloc(struct jdksavb_allocator *self_, const void *orig_ptr, int32_t length, int32_t count) {
     void *new_ptr = self_->alloc(self_, length, count);
     if (new_ptr) {
         memcpy(new_ptr, orig_ptr, jdksavb_round_size(length * count));

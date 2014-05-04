@@ -75,9 +75,9 @@ struct jdksavb_state_machine {
 
 /// Initialize state machine
 void jdksavb_state_machine_init(struct jdksavb_state_machine *self,
-                                   struct jdksavb_frame_sender *frame_sender,
-                                   uint32_t tag,
-                                   void *additional);
+                                struct jdksavb_frame_sender *frame_sender,
+                                uint32_t tag,
+                                void *additional);
 
 /// Destroy state machine
 void jdksavb_state_machine_destroy(struct jdksavb_state_machine *self);
