@@ -54,9 +54,7 @@ struct jdksavb_maap {
 
 /// Initialize an jdksavdecc_adp_manager with the specified context and frame_send function and
 /// received_entity_available_or_departing function
-bool jdksavb_maap_init(struct jdksavb_maap *self,
-                       void *context,
-                       void (*frame_send)(struct jdksavb_maap *self, void *context, uint8_t const *buf, uint16_t len));
+bool jdksavb_maap_init(struct jdksavb_maap *self, struct jdksavb_frame_sender *frame_sender, uint32_t tag, void *additional);
 
 /// Destroy any resources that the jdksavdecc_adp_manager uses
 void jdksavb_maap_destroy(struct jdksavb_maap *self);
