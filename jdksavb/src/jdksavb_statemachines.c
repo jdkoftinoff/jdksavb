@@ -30,7 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "jdksavb_world.h"
 
-#include "jdksavb_statemachines.h"
+#include "jdksavb_state_machines.h"
 
 int jdksavb_state_machines_init(struct jdksavb_state_machines *self,
                                 int max_state_machines,

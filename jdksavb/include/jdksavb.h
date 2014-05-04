@@ -46,5 +46,5 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_mvrp.h"
 #include "jdksavb_network_port.h"
 #include "jdksavb_packetizer.h"
-#include "jdksavb_statemachine.h"
-#include "jdksavb_statemachines.h"
+#include "jdksavb_state_machine.h"
+#include "jdksavb_state_machines.h"

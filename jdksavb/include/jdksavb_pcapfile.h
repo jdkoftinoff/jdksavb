@@ -31,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "jdksavb_world.h"
-#include "jdksavb_statemachine.h"
+#include "jdksavb_state_machine.h"
 
 #ifdef __cplusplus
 extern "C" {

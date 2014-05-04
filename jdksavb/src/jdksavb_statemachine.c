@@ -29,7 +29,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "jdksavb_world.h"
-#include "jdksavb_statemachine.h"
+#include "jdksavb_state_machine.h"
 
 void jdksavb_state_machine_init(struct jdksavb_state_machine *self,
                                 struct jdksavb_frame_sender *frame_sender,
