@@ -30,6 +30,7 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
+#include "jdksavb_frame.h"
 #include "jdksavb_adp_advertiser_signals.h"
 #include "jdksavb_adp_advertiser_slots.h"
 
@@ -52,6 +53,11 @@ struct jdksavb_adp_advertiser {
     struct jdksavb_adp_advertiser_slots slots;
 
     struct jdksavb_adp_advertiser_signals *signals;
+
+    bool stopped;
+    bool early_tick;
+    void *context;
+    struct jdksavb_frame_sender *frame_send;
 
     /// The current ADPDU that is sent
     struct jdksavdecc_adpdu adpdu;

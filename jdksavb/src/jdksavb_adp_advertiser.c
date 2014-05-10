@@ -41,7 +41,7 @@ static void jdksavb_adp_send_entity_departing(struct jdksavb_adp_advertiser *sel
 static void jdksavb_adp_send_entity_discover(struct jdksavb_adp_advertiser *self);
 
 #ifdef TODO
-bool jdksavb_adp_init(struct jdksavb_adp *self,
+bool jdksavb_adp_init(struct jdksavb_adp_advertiser *self,
                       void (*frame_send)(struct jdksavb_adp_advertiser *self, void *context, uint8_t const *buf, uint16_t len),
                       void (*received_entity_available_or_departing)(struct jdksavb_adp_advertiser *self,
                                                                      void *context,
@@ -66,9 +66,9 @@ bool jdksavb_adp_init(struct jdksavb_adp *self,
     return true;
 }
 
-void jdksavb_adp_destroy(struct jdksavb_adp *self) { (void)self; }
+void jdksavb_adp_destroy(struct jdksavb_adp_advertiser *self) { (void)self; }
 
-bool jdksavb_adp_receive(struct jdksavb_adp *self,
+bool jdksavb_adp_receive(struct jdksavb_adp_advertiser *self,
                          jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
                          void const *source_address,
                          int source_address_len,
@@ -112,7 +112,7 @@ bool jdksavb_adp_receive(struct jdksavb_adp *self,
     return r;
 }
 
-void jdksavb_adp_tick(struct jdksavb_adp *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms) {
+void jdksavb_adp_tick(struct jdksavb_adp_advertiser *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms) {
 
     // calculate the time since the last send
     jdksavdecc_timestamp_in_milliseconds difftime = cur_time_in_ms - self->last_time_in_ms;
@@ -194,49 +194,48 @@ void jdksavb_adp_tick(struct jdksavb_adp *self, jdksavdecc_timestamp_in_millisec
     }
 }
 
-void jdksavb_adp_trigger_send_discover(struct jdksavb_adp *self) {
+void jdksavb_adp_trigger_send_discover(struct jdksavb_adp_advertiser *self) {
 
     self->early_tick = true;
     self->do_send_entity_discover = true;
 }
 
-void jdksavb_adp_trigger_send_available(struct jdksavb_adp *self) {
+void jdksavb_adp_trigger_send_available(struct jdksavb_adp_advertiser *self) {
     self->early_tick = true;
     self->do_send_entity_available = true;
     self->stopped = false;
 }
 
-void jdksavb_adp_trigger_send_departing(struct jdksavb_adp *self) {
+void jdksavb_adp_trigger_send_departing(struct jdksavb_adp_advertiser *self) {
     self->early_tick = true;
     self->do_send_entity_departing = true;
 }
 
-static void jdksavb_adp_send_entity_available(struct jdksavb_adp *self) {
-    uint8_t buf[128];
-    ssize_t len;
+static void jdksavb_adp_send_entity_available(struct jdksavb_adp_advertiser *self) {
+    struct jdksavb_frame f;
     self->adpdu.header.message_type = JDKSAVDECC_ADP_MESSAGE_TYPE_ENTITY_AVAILABLE;
-    len = jdksavdecc_adpdu_write(&self->adpdu, buf, 0, sizeof(buf));
+    f.length = jdksavdecc_adpdu_write(&self->adpdu, &f.payload, 0, sizeof(f.payload) );
 
-    if (len > 0) {
-        self->frame_send(self, self->context, buf, (uint16_t)len);
+    if (f.length > 0) {
+        self->frame_send->send(self->frame_send, &f);
         self->adpdu.available_index++;
     }
 }
 
-static void jdksavb_adp_send_entity_departing(struct jdksavb_adp *self) {
-    uint8_t buf[128];
-    ssize_t len;
+static void jdksavb_adp_send_entity_departing(struct jdksavb_adp_advertiser *self) {
+    struct jdksavb_frame f;
     self->adpdu.header.message_type = JDKSAVDECC_ADP_MESSAGE_TYPE_ENTITY_DEPARTING;
-    len = jdksavdecc_adpdu_write(&self->adpdu, buf, 0, sizeof(buf));
+    f.length = jdksavdecc_adpdu_write(&self->adpdu, &f.payload, 0, sizeof(f.payload) );
 
-    if (len > 0) {
-        self->frame_send(self, self->context, buf, (uint16_t)len);
+    if (f.length > 0) {
+        self->frame_send->send(self->frame_send, &f);
+        self->adpdu.available_index=0;
     }
+
 }
 
-static void jdksavb_adp_send_entity_discover(struct jdksavb_adp *self) {
-    uint8_t buf[128];
-    ssize_t len;
+static void jdksavb_adp_send_entity_discover(struct jdksavb_adp_advertiser *self) {
+    struct jdksavb_frame f;
     struct jdksavdecc_adpdu adpdu;
     memset(&adpdu, 0, sizeof(adpdu));
     adpdu.header.cd = 1;
@@ -248,12 +247,13 @@ static void jdksavb_adp_send_entity_discover(struct jdksavb_adp *self) {
     adpdu.header.valid_time = 0;
     jdksavdecc_eui64_init_from_uint64(&adpdu.header.entity_id, 0);
 
-    len = jdksavdecc_adpdu_write(&adpdu, buf, 0, sizeof(buf));
+    f.length = jdksavdecc_adpdu_write(&self->adpdu, &f.payload, 0, sizeof(f.payload) );
 
-    if (len > 0) {
-        self->frame_send(self, self->context, buf, (uint16_t)len);
+    if (f.length > 0) {
+        self->frame_send->send(self->frame_send, &f);
         self->adpdu.available_index++;
     }
+
 }
 
 #endif
