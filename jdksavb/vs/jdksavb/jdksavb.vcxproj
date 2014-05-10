@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_acmp.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_acmp_print.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_adp.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_adp_print.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aecp.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aecp_aa.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aecp_aem.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aecp_avc.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aecp_hdcp_apm.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aecp_print.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aecp_vendor.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aem_command.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aem_descriptor.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_aem_print.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_app.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_app_print.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_avr.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_control.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_descriptor_storage.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_descriptor_storage_gen.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_entity_model.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_jdks.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_maap.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_maap_print.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_ms.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_msinttypes.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_msstdint.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_pdu.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_pdu_print.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_print.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_util.h" />
+    <ClInclude Include="..\..\..\jdksavdecc-c\include\jdksavdecc_world.h" />
+    <ClInclude Include="..\..\include\jdksavb.h" />
+    <ClInclude Include="..\..\include\jdksavb_acmp_controller.h" />
+    <ClInclude Include="..\..\include\jdksavb_acmp_controller_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_acmp_controller_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_acmp_listener.h" />
+    <ClInclude Include="..\..\include\jdksavb_acmp_listener_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_acmp_listener_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_acmp_talker.h" />
+    <ClInclude Include="..\..\include\jdksavb_acmp_talker_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_acmp_talker_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_adp_advertiser.h" />
+    <ClInclude Include="..\..\include\jdksavb_adp_advertiser_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_adp_advertiser_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_adp_discover.h" />
+    <ClInclude Include="..\..\include\jdksavb_adp_discover_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_adp_discover_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_allocator.h" />
+    <ClInclude Include="..\..\include\jdksavb_apc.h" />
+    <ClInclude Include="..\..\include\jdksavb_apc_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_apc_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_aps.h" />
+    <ClInclude Include="..\..\include\jdksavb_aps_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_aps_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_controller.h" />
+    <ClInclude Include="..\..\include\jdksavb_controller_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_controller_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_depacketizer.h" />
+    <ClInclude Include="..\..\include\jdksavb_depacketizer_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_depacketizer_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_entity.h" />
+    <ClInclude Include="..\..\include\jdksavb_entity_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_entity_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_frame.h" />
+    <ClInclude Include="..\..\include\jdksavb_gptp.h" />
+    <ClInclude Include="..\..\include\jdksavb_gptp_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_gptp_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_hardware_control.h" />
+    <ClInclude Include="..\..\include\jdksavb_inflight.h" />
+    <ClInclude Include="..\..\include\jdksavb_maap.h" />
+    <ClInclude Include="..\..\include\jdksavb_maap_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_maap_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_manager.h" />
+    <ClInclude Include="..\..\include\jdksavb_manager_attributes.h" />
+    <ClInclude Include="..\..\include\jdksavb_manager_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_manager_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_msrp.h" />
+    <ClInclude Include="..\..\include\jdksavb_msrp_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_msrp_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_mvrp.h" />
+    <ClInclude Include="..\..\include\jdksavb_mvrp_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_mvrp_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_network_port.h" />
+    <ClInclude Include="..\..\include\jdksavb_packetizer.h" />
+    <ClInclude Include="..\..\include\jdksavb_packetizer_signals.h" />
+    <ClInclude Include="..\..\include\jdksavb_packetizer_slots.h" />
+    <ClInclude Include="..\..\include\jdksavb_pcapfile.h" />
+    <ClInclude Include="..\..\include\jdksavb_srp_info.h" />
+    <ClInclude Include="..\..\include\jdksavb_world.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\jdksavb.c" />
+    <ClCompile Include="..\..\src\jdksavb_acmp_controller.c" />
+    <ClCompile Include="..\..\src\jdksavb_acmp_listener.c" />
+    <ClCompile Include="..\..\src\jdksavb_acmp_talker.c" />
+    <ClCompile Include="..\..\src\jdksavb_adp_advertiser.c" />
+    <ClCompile Include="..\..\src\jdksavb_adp_discover.c" />
+    <ClCompile Include="..\..\src\jdksavb_allocator.c" />
+    <ClCompile Include="..\..\src\jdksavb_apc.c" />
+    <ClCompile Include="..\..\src\jdksavb_aps.c" />
+    <ClCompile Include="..\..\src\jdksavb_controller.c" />
+    <ClCompile Include="..\..\src\jdksavb_depacketizer.c" />
+    <ClCompile Include="..\..\src\jdksavb_entity.c" />
+    <ClCompile Include="..\..\src\jdksavb_frame.c" />
+    <ClCompile Include="..\..\src\jdksavb_gptp.c" />
+    <ClCompile Include="..\..\src\jdksavb_hardware_control.c" />
+    <ClCompile Include="..\..\src\jdksavb_inflight.c" />
+    <ClCompile Include="..\..\src\jdksavb_maap.c" />
+    <ClCompile Include="..\..\src\jdksavb_manager.c" />
+    <ClCompile Include="..\..\src\jdksavb_msrp.c" />
+    <ClCompile Include="..\..\src\jdksavb_mvrp.c" />
+    <ClCompile Include="..\..\src\jdksavb_network_port.c" />
+    <ClCompile Include="..\..\src\jdksavb_packetizer.c" />
+    <ClCompile Include="..\..\src\jdksavb_pcapfile.c" />
+    <ClCompile Include="..\..\src\jdksavb_world.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{35266057-6654-494D-8FCA-3C547F9A088A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>jdksavb</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\jdksavdecc-c\include;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\jdksavdecc-c\include;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
