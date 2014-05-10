@@ -37,18 +37,16 @@ bool jdksavb_entity_init(struct jdksavb_entity *self,
                          struct jdksavdecc_entity_model *entity_model,
                          int symbol_dispatch_table_num_entries,
                          struct jdksavb_symbol_dispatch *symbol_dispatch_table,
-                         void *context,
-                         struct jdksavb_frame_sender *frame_sender) {
+                         ) {
     memset(self, 0, sizeof(*self));
-    jdksavb_state_machine_init(&self->base, frame_sender, 0, context);
     self->entity_model = entity_model;
     self->symbol_dispatch_table_num_entries = symbol_dispatch_table_num_entries;
     self->symbol_dispatch_table = symbol_dispatch_table;
     self->context = context;
 
-    self->base.destroy = jdksavb_entity_destroy;
-    self->base.tick = jdksavb_entity_tick;
-    self->base.rx_frame = jdksavb_entity_receive;
+    self->slots.destroy = jdksavb_entity_destroy;
+    self->slots.tick = jdksavb_entity_tick;
+    self->slots.rx_frame = jdksavb_entity_receive;
 
     self->command_timed_out = jdksavb_entity_command_timed_out;
     self->validate_permissions = jdksavb_entity_validate_permissions;
