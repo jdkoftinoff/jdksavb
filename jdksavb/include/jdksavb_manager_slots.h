@@ -31,9 +31,32 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
 
+#include "jdksavb_acmp_controller_signals.h"
+#include "jdksavb_acmp_listener_signals.h"
+#include "jdksavb_acmp_talker_signals.h"
+#include "jdksavb_adp_advertiser_signals.h"
+#include "jdksavb_adp_discover_signals.h"
+#include "jdksavb_aps_signals.h"
+#include "jdksavb_apc_signals.h"
+#include "jdksavb_controller_signals.h"
+#include "jdksavb_depacketizer_signals.h"
+#include "jdksavb_packetizer_signals.h"
+#include "jdksavb_maap_signals.h"
+#include "jdksavb_msrp_signals.h"
+#include "jdksavb_mvrp_signals.h"
+#include "jdksavb_gptp_signals.h"
+#include "jdksavb_entity_signals.h"
+#include "jdksavb_network_port_signals.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
+struct jdksavdecc_manager_slots {
+    struct jdksavb_acmp_listener_signals *acmp_listener;
+
+};
 
 #ifdef __cplusplus
 }

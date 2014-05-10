@@ -31,6 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_world.h"
 #include "jdksavb_pcapfile.h"
 
+#if 0
 #if defined(FOPEN_MAX)
 
 #define jdksavb_pcapfile_HEADER_MAGIC_NATIVE (0xa1b2c3d4UL)
@@ -359,3 +360,6 @@ void jdksavb_pcapfile_writer_send(struct jdksavb_frame_sender *self_, struct jdk
 #else
 const char *jdksavb_pcapfile_file = __FILE__;
 #endif
+#endif
+
+

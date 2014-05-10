@@ -30,10 +30,20 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
+#include "jdksavb_srp_info.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/** These are the the messages that an acmp listener state machine can receive */
+struct jdksavb_acmp_listener_slots {
+    void (*start)(void *self, int listener_stream_sinks );
+    void (*stop)(void *self);
+    void (*handle_acmpdu)(void *self, struct jdksavb_frame *acmpdu);
+    void (*tick)(void *self, jdksavdecc_timestamp_in_milliseconds current_time );
+    void (*srp_talker_info_received)(void *self, const struct jdksavb_srp_info_talker *stream_info);
+};
 
 #ifdef __cplusplus
 }

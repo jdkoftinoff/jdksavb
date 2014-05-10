@@ -30,7 +30,9 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
-#include "jdksavb_state_machine.h"
+#include "jdksavb_frame.h"
+#include "jdksavb_acmp_controller_signals.h"
+#include "jdksavb_acmp_controller_slots.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -75,8 +77,9 @@ struct jdksavb_acmp_controller_connection {
 };
 
 struct jdksavb_acmp_controller {
-    struct jdksavb_state_machine base;
-    struct jdksavdecc_controller_manager *controller_manager;
+    struct jdksavb_acmp_controller_slots slots;
+    struct jdksavb_acmp_controller_signals *signals;
+
     int max_stream_sources;
     struct jdksavb_acmp_controller_stream_source *stream_sources;
     int max_stream_sinks;
@@ -86,19 +89,18 @@ struct jdksavb_acmp_controller {
 };
 
 bool jdksavb_acmp_controller_init(struct jdksavb_acmp_controller *self,
-                                  struct jdksavdecc_controller_manager *controller_manager,
                                   struct jdksavb_frame_sender *frame_sender,
                                   uint32_t tag,
                                   void *additional);
 
 /// Destroy any resources that the jdksavb_acmp_controller uses
-void jdksavb_acmp_controller_destroy(struct jdksavb_state_machine *self);
+void jdksavb_acmp_controller_destroy(void *self);
 
 /// Receive an ACMPDU and process it
-bool jdksavb_acmp_controller_rx_frame(struct jdksavb_state_machine *self, struct jdksavb_frame *rx_frame, size_t pos);
+bool jdksavb_acmp_controller_rx_frame(void *self, struct jdksavb_frame *rx_frame, size_t pos);
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_acmp_controller_tick(struct jdksavb_state_machine *self, jdksavdecc_timestamp_in_microseconds timestamp);
+void jdksavb_acmp_controller_tick(void *self, jdksavdecc_timestamp_in_microseconds timestamp);
 
 /*@}*/
 

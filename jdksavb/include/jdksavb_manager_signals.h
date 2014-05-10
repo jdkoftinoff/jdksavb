@@ -30,10 +30,32 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
+#include "jdksavb_acmp_controller_slots.h"
+#include "jdksavb_acmp_listener_slots.h"
+#include "jdksavb_acmp_talker_slots.h"
+#include "jdksavb_adp_advertiser_slots.h"
+#include "jdksavb_adp_discover_slots.h"
+#include "jdksavb_aps_slots.h"
+#include "jdksavb_apc_slots.h"
+#include "jdksavb_controller_slots.h"
+#include "jdksavb_depacketizer_slots.h"
+#include "jdksavb_packetizer_slots.h"
+#include "jdksavb_maap_slots.h"
+#include "jdksavb_msrp_slots.h"
+#include "jdksavb_mvrp_slots.h"
+#include "jdksavb_gptp_slots.h"
+#include "jdksavb_entity_slots.h"
+#include "jdksavb_network_port_slots.h"
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+struct jdksavdecc_manager_signals {
+    struct jdksavb_acmp_listener_slots *acmp_listener;
+};
+
 
 #ifdef __cplusplus
 }

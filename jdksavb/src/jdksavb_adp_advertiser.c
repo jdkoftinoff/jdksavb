@@ -32,18 +32,18 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_adp_advertiser.h"
 
 /// Form the entity available message and send it
-static void jdksavb_adp_send_entity_available(struct jdksavb_adp *self);
+static void jdksavb_adp_send_entity_available(struct jdksavb_adp_advertiser *self);
 
 /// Form the entity departing message and send it
-static void jdksavb_adp_send_entity_departing(struct jdksavb_adp *self);
+static void jdksavb_adp_send_entity_departing(struct jdksavb_adp_advertiser *self);
 
 /// Form the entity discover message and send it
-static void jdksavb_adp_send_entity_discover(struct jdksavb_adp *self);
+static void jdksavb_adp_send_entity_discover(struct jdksavb_adp_advertiser *self);
 
 #ifdef TODO
 bool jdksavb_adp_init(struct jdksavb_adp *self,
-                      void (*frame_send)(struct jdksavb_adp *self, void *context, uint8_t const *buf, uint16_t len),
-                      void (*received_entity_available_or_departing)(struct jdksavb_adp *self,
+                      void (*frame_send)(struct jdksavb_adp_advertiser *self, void *context, uint8_t const *buf, uint16_t len),
+                      void (*received_entity_available_or_departing)(struct jdksavb_adp_advertiser *self,
                                                                      void *context,
                                                                      void const *source_address,
                                                                      int source_address_len,

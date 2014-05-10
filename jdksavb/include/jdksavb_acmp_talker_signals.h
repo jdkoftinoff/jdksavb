@@ -30,10 +30,13 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
+#include "jdksavb_srp_info.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+struct jdksavb_acmp_talker_signals {};
 
 #ifdef __cplusplus
 }

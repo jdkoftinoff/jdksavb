@@ -35,7 +35,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavb_acmp_controller_signals {};
+struct jdksavdecc_manager_attributes {
+    
+};
 
 #ifdef __cplusplus
 }

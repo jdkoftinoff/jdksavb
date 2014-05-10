@@ -30,7 +30,9 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
-#include "jdksavb_state_machine.h"
+#include "jdksavb_frame.h"
+#include "jdksavb_acmp_talker_signals.h"
+#include "jdksavb_acmp_talker_slots.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -156,26 +158,26 @@ bool jdksavb_acmp_talker_stream_source_remove_listener(struct jdksavb_acmp_talke
                                                        uint16_t listener_unique_id);
 
 struct jdksavb_acmp_talker {
-    struct jdksavb_state_machine base;
-    struct jdksavdecc_entity *entity;
+    struct jdksavb_acmp_talker_slots slots;
+    struct jdksavb_acmp_talker_signals *signals;
+
     uint16_t talker_stream_sources;
     struct jdksavb_acmp_talker_stream_source talker_source[JDKSAVB_ACMP_TALKER_MAX_STREAMS];
 };
 
 bool jdksavb_acmp_talker_init(struct jdksavb_acmp_talker *self,
-                              struct jdksavdecc_entity *entity,
                               struct jdksavb_frame_sender *frame_sender,
                               uint32_t tag,
                               void *additional);
 
 /// Destroy any resources that the jdksavb_acmp_talker uses
-void jdksavb_acmp_talker_destroy(struct jdksavb_state_machine *self);
+void jdksavb_acmp_talker_destroy(struct jdksavb_acmp_talker *self);
 
 /// Receive an ACMPDU and process it
-bool jdksavb_acmp_talker_rx_frame(struct jdksavb_state_machine *self, struct jdksavb_frame *rx_frame, size_t pos);
+bool jdksavb_acmp_talker_rx_frame(struct jdksavb_acmp_talker *self, struct jdksavb_frame *rx_frame, size_t pos);
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_acmp_talker_tick(struct jdksavb_state_machine *self, jdksavdecc_timestamp_in_microseconds timestamp);
+void jdksavb_acmp_talker_tick(struct jdksavb_acmp_talker *self, jdksavdecc_timestamp_in_microseconds timestamp);
 
 /*@}*/
 

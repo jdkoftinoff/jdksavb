@@ -30,7 +30,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
-#include "jdksavb_state_machine.h"
+#include "jdksavb_maap_signals.h"
+#include "jdksavb_maap_slots.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,8 +46,9 @@ extern "C" {
 /*@{*/
 
 struct jdksavb_maap {
-    /// Inherit from state_machine
-    struct jdksavb_state_machine base;
+    /// Inherit from slots
+    struct jdksavb_maap_slots slots;
+    struct jdksavb_maap_signals *signals;
 
     /// The system time in milliseconds that the last message was sent
     jdksavdecc_timestamp_in_milliseconds last_time_in_ms;
@@ -68,7 +70,7 @@ bool jdksavb_maap_receive(struct jdksavb_maap *self,
                           uint16_t len);
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_maap_tick(struct jdksavb_state_machine *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms);
+void jdksavb_maap_tick(void *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms);
 
 /*@}*/
 

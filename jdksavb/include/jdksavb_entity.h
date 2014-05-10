@@ -30,8 +30,10 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
+#include "jdksavb_entity_signals.h"
+#include "jdksavb_entity_slots.h"
+
 #include "jdksavb_frame.h"
-#include "jdksavb_state_machine.h"
 #include "jdksavb_inflight.h"
 
 #ifdef __cplusplus
@@ -82,23 +84,26 @@ struct jdksavb_symbol_dispatch {
                                    uint16_t len);
 };
 
-#ifndef jdksavb_entity_MAX_CONFIGURATIONS
-#define jdksavb_entity_MAX_CONFIGURATIONS (1)
+#ifndef JDKSAVB_ENTITY_MAX_CONFIGURATIONS
+#define JDKSAVB_ENTITY_MAX_CONFIGURATIONS (1)
 #endif
 
-#ifndef jdksavb_entity_MAX_SYMBOLS_PER_CONFIGURATION
-#define jdksavb_entity_MAX_SYMBOLS_PER_CONFIGURATION (32)
+#ifndef JDKSAVB_ENTITY_MAX_SYMBOLS_PER_CONFIGURATION
+#define JDKSAVB_ENTITY_MAX_SYMBOLS_PER_CONFIGURATION (32)
 #endif
 
-#ifndef jdksavb_entity_MAX_REGISTERED_CONTROLLERS
-#define jdksavb_entity_MAX_REGISTERED_CONTROLLERS (8)
+#ifndef JDKSAVB_ENTITY_MAX_REGISTERED_CONTROLLERS
+#define JDKSAVB_ENTITY_MAX_REGISTERED_CONTROLLERS (8)
 #endif
 
 /// jdksavb_entity is a base class for an AEM entity
 struct jdksavb_entity {
 
-    /// Inherit from state_machine
-    struct jdksavb_state_machine base;
+    /// Inherit from slots
+    struct jdksavb_entity_slots slots;
+
+    /// The signals
+    struct jdksavb_entity_signals signals;
 
     /// The entity model
     struct jdksavdecc_entity_model *entity_model;
@@ -147,10 +152,10 @@ struct jdksavb_entity {
     /// This contains the unordered list of controller entity id's that are currently registered
     /// via the register for unsolicited notifications command. The entity id is FF:FF:FF:FF:FF:FF:FF:FF
     /// If the the slot is not in use
-    struct jdksavdecc_eui64 registered_controllers_entity_id[jdksavb_entity_MAX_REGISTERED_CONTROLLERS];
+    struct jdksavdecc_eui64 registered_controllers_entity_id[JDKSAVB_ENTITY_MAX_REGISTERED_CONTROLLERS];
 
     /// This contains the associated MAC address of the controller's that are currently registered
-    struct jdksavdecc_eui48 registered_controllers_mac_address[jdksavb_entity_MAX_REGISTERED_CONTROLLERS];
+    struct jdksavdecc_eui48 registered_controllers_mac_address[JDKSAVB_ENTITY_MAX_REGISTERED_CONTROLLERS];
 
     /// The map of inflight commands
     struct jdksavb_inflight_commands inflight_commands;

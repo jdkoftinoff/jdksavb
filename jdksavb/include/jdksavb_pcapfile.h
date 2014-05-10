@@ -31,6 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "jdksavb_world.h"
+#if 0
 #include "jdksavb_state_machine.h"
 
 #ifdef __cplusplus
@@ -90,3 +91,6 @@ void jdksavb_pcapfile_writer_send(struct jdksavb_frame_sender *self, struct jdks
 #ifdef __cplusplus
 }
 #endif
+
+#endif
+

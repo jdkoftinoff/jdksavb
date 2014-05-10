@@ -31,9 +31,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
 
+#include "jdksavb_srp_info.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/** These are the signals that can come from an acmp_listener state machine */
+struct jdksavb_acmp_listener_signals {
+    void (*acmp_rx_started)(void *self);
+    void (*acmp_rx_stopped)(void *self);
+    void (*acmp_rx_srp_info_request)(void *self, struct jdksavdecc_eui64 *talker_stream_id);
+    void (*acmp_rx_talker_added)(void *self,
+                                 struct jdksavdecc_eui64 *talker_stream_id,
+                                 struct jdksavdecc_eui48 *talker_mac,
+                                 uint16_t talker_vid);
+    void (*acmp_rx_talker_removed)(void *self);
+    void (*acmp_rx_send_acmpdu)(void *self, struct jdksavb_frame const *acmpdu);
+};
+
+
 
 #ifdef __cplusplus
 }
