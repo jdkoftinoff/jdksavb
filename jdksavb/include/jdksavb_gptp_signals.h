@@ -35,7 +35,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavb_gptp_signals {};
+struct jdksavb_gptp_signals {
+    void (*gptp_as_lock_changed)( void *self, bool locked );
+    void (*gptp_as_capable_changed)( void *self, bool as_capable);
+    void (*gptp_grandmaster_changing)(void *self);
+    void(*gptp_grandmaster_changed)(void *self, struct jdksavdecc_eui64 new_grandmaster);
+};
 
 
 #ifdef __cplusplus
