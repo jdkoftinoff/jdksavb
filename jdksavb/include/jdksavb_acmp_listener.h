@@ -64,9 +64,9 @@ struct jdksavb_acmp_listener_context {
 };
 
 struct jdksavb_acmp_listener {
-    struct jdksavb_acmp_listener_slots slots;
+    struct jdksavb_acmp_listener_slots incoming_slots;
+    struct jdksavb_acmp_listener_signals outgoing_signals;
     void (*destroy)( struct jdksavb_acmp_listener *self );
-    struct jdksavb_acmp_listener_signals *signals;
 
     uint16_t listener_stream_sinks;
     struct jdksavb_acmp_listener_context listener_sink[JDKSAVB_ACMP_LISTENER_MAX_STREAMS];

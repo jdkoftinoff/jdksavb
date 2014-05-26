@@ -37,17 +37,39 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
+struct jdksavb_acmp_listener_slots;
+
 /** These are the signals that can come from an acmp_listener state machine */
 struct jdksavb_acmp_listener_signals {
-    void (*acmp_rx_started)(void *self);
-    void (*acmp_rx_stopped)(void *self);
-    void (*acmp_rx_srp_info_request)(void *self, struct jdksavdecc_eui64 *talker_stream_id);
-    void (*acmp_rx_talker_added)(void *self,
-                                 struct jdksavdecc_eui64 *talker_stream_id,
-                                 struct jdksavdecc_eui48 *talker_mac,
-                                 uint16_t talker_vid);
-    void (*acmp_rx_talker_removed)(void *self);
-    void (*acmp_rx_send_acmpdu)(void *self, struct jdksavb_frame const *acmpdu);
+
+    void (*acmp_listener_started)(
+        struct jdksavb_acmp_listener_signals *self,
+        struct jdksavb_acmp_listener_slots *source);
+
+    void (*acmp_listener_stopped)(
+        struct jdksavb_acmp_listener_signals *self,
+        struct jdksavb_acmp_listener_slots *source);
+
+    void (*acmp_listener_srp_info_request)(
+        struct jdksavb_acmp_listener_signals *self,
+        struct jdksavb_acmp_listener_slots *source,
+        struct jdksavdecc_eui64 talker_stream_id);
+
+    void (*acmp_listener_talker_added)(
+        struct jdksavb_acmp_listener_signals *self,
+        struct jdksavb_acmp_listener_slots *source,
+        struct jdksavdecc_eui64 talker_stream_id,
+        struct jdksavdecc_eui48 talker_mac,
+        uint16_t talker_vid);
+
+    void (*acmp_listener_talker_removed)(
+        struct jdksavb_acmp_listener_signals *self,
+        struct jdksavb_acmp_listener_slots *source);
+
+    void (*acmp_listener_send_pdu)(
+        void *self,
+        struct jdksavb_frame *acmpdu);
+
 };
 
 

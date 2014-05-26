@@ -36,7 +36,34 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavb_acmp_talker_slots {};
+struct jdksavb_acmp_talker_signals;
+
+struct jdksavb_acmp_talker_slots {
+
+    void (*start)(
+        struct jdksavb_acmp_talker_slots *self,
+        struct jdksavb_acmp_talker_signals *sender );
+
+    void (*stop)(
+        struct jdksavb_acmp_talker_slots *self,
+        struct jdksavb_acmp_talker_signals *sender );
+
+    void (*handle_pdu)(
+        struct jdksavb_acmp_talker_slots *self,
+        struct jdksavb_acmp_talker_signals *sender,
+        struct jdksavb_frame *frame );
+
+    void (*tick)(
+        struct jdksavb_acmp_talker_slots *self,
+        struct jdksavb_acmp_talker_signals *sender,
+        jdksavdecc_timestamp_in_milliseconds current_time );
+
+    void (*acmp_talker_stream_info_assigned)(
+        struct jdksavb_acmp_talker_slots *self,
+        struct jdksavb_acmp_talker_signals *sender,
+        struct jdksavb_srp_info_talker *srp_info );
+
+};
 
 
 #ifdef __cplusplus

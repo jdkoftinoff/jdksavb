@@ -33,19 +33,32 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 void jdksavb_inflight_command_info_init(struct jdksavb_inflight_command_info *self) {}
 
-int jdksavb_inflight_command_info_compare(void const *lhs, void const *rhs) {}
+int jdksavb_inflight_command_info_compare(void const *lhs, void const *rhs) {
+    /* TODO */
+    return 0;
+}
 
 void jdksavb_inflight_commands_init(struct jdksavb_inflight_commands *self) {}
 
-bool jdksacdecc_entity_manager_inflight_commands_full(struct jdksavb_inflight_commands *self) {}
+bool jdksacdecc_entity_manager_inflight_commands_full(struct jdksavb_inflight_commands *self) {
+    /* TODO */
+    return false;
+}
 
 void jdksavb_inflight_commands_sort(struct jdksavb_inflight_commands *self) {}
 
-bool jdksavb_inflight_commands_add(struct jdksavb_inflight_commands *self, struct jdksavb_inflight_command_info const *info) {}
+bool jdksavb_inflight_commands_add(struct jdksavb_inflight_commands *self, struct jdksavb_inflight_command_info const *info) {
+    /* TODO */
+    return false;
+
+}
 
 int jdksavb_inflight_commands_find(struct jdksavb_inflight_commands *self,
                                    struct jdksavdecc_eui64 const *target_entity_id,
-                                   uint16_t sequence_id) {}
+                                   uint16_t sequence_id) {
+    /* TODO */
+    return -1;
+}
 
 void jdksavb_inflight_commands_tick(struct jdksavb_inflight_commands *self,
                                     jdksavdecc_timestamp_in_milliseconds cur_time,

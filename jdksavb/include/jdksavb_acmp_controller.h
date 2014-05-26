@@ -77,8 +77,8 @@ struct jdksavb_acmp_controller_connection {
 };
 
 struct jdksavb_acmp_controller {
-    struct jdksavb_acmp_controller_slots slots;
-    struct jdksavb_acmp_controller_signals *signals;
+    struct jdksavb_acmp_controller_slots incoming_slots;
+    struct jdksavb_acmp_controller_signals outgoing_signals;
 
     int max_stream_sources;
     struct jdksavb_acmp_controller_stream_source *stream_sources;

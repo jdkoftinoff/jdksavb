@@ -35,7 +35,34 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavb_acmp_controller_slots {};
+struct jdksavb_acmp_controller_signals;
+
+struct jdksavb_acmp_controller_slots {
+    void (*destroy)(
+            struct jdksavb_acmp_controller_slots *self);
+
+    void (*connect_signals)(
+            struct jdksavb_acmp_controller_slots *self,
+            struct jdksavb_acmp_controller_signals *destination_signals);
+
+    void (*disconnect_signals)(
+            struct jdksavb_acmp_controller_slots *self,
+            struct jdksavb_acmp_controller_signals *destination_signals);
+
+    void (*start)(
+        struct jdksavb_acmp_controller_slots *self);
+
+    void (*stop)(
+        struct jdksavb_acmp_controller_slots *self);
+
+    void (*handle_pdu)(
+        struct jdksavb_acmp_controller_slots *self,
+        struct jdksavb_frame *frame );
+
+    void (*tick)(
+        struct jdksavb_acmp_controller_slots *self,
+        jdksavdecc_timestamp_in_milliseconds current_time );
+};
 
 #ifdef __cplusplus
 }

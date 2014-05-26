@@ -158,17 +158,15 @@ bool jdksavb_acmp_talker_stream_source_remove_listener(struct jdksavb_acmp_talke
                                                        uint16_t listener_unique_id);
 
 struct jdksavb_acmp_talker {
-    struct jdksavb_acmp_talker_slots slots;
-    struct jdksavb_acmp_talker_signals *signals;
+    struct jdksavb_acmp_talker_signals outgoing_signals;
+    struct jdksavb_acmp_talker_slots incoming_slots;
 
     uint16_t talker_stream_sources;
     struct jdksavb_acmp_talker_stream_source talker_source[JDKSAVB_ACMP_TALKER_MAX_STREAMS];
 };
 
 bool jdksavb_acmp_talker_init(struct jdksavb_acmp_talker *self,
-                              struct jdksavb_frame_sender *frame_sender,
-                              uint32_t tag,
-                              void *additional);
+                              struct jdksavb_acmp_talker_signals const *outgoing_signals);
 
 /// Destroy any resources that the jdksavb_acmp_talker uses
 void jdksavb_acmp_talker_destroy(struct jdksavb_acmp_talker *self);

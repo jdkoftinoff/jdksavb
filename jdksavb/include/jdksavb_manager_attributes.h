@@ -36,7 +36,8 @@ extern "C" {
 #endif
 
 struct jdksavdecc_manager_attributes {
-    
+    struct jdksavdecc_eui64 entity_id;
+    struct jdksavdecc_eui48 port_mac_address;    
 };
 
 #ifdef __cplusplus

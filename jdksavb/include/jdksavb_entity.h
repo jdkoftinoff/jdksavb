@@ -471,13 +471,11 @@ struct jdksavb_entity {
                                   uint8_t const *request);
 };
 
-/// Initialize an entity manager with the context and frame sender procedure
+/// Initialize an entity manager
 bool jdksavb_entity_init(struct jdksavb_entity *self,
                          struct jdksavdecc_entity_model *entity_model,
-                         int num_entries,
-                         struct jdksavb_symbol_dispatch *dispatch_table,
-                         void *context,
-                         void (*frame_send)(struct jdksavb_entity *self, void *context, uint8_t const *buf, uint16_t len));
+                         int symbol_dispatch_table_num_entries,
+                         struct jdksavb_symbol_dispatch *symbol_dispatch_table);
 
 /// Destroy any resources that the jdksavdecc_adp_manager uses
 void jdksavb_entity_destroy(struct jdksavb_entity *self);

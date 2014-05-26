@@ -36,7 +36,42 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavb_acmp_talker_signals {};
+struct jdksavb_acmp_talker_slots;
+
+struct jdksavb_acmp_talker_signals {
+
+    void (*acmp_talker_started)(
+        struct jdksavb_acmp_talker_signals *self,
+        struct jdksavb_acmp_talker_slots *source );
+
+    void (*acmp_talker_stopped)(
+        struct jdksavb_acmp_talker_signals *self,
+        struct jdksavb_acmp_talker_slots *source );
+
+    void (*acmp_talker_send_pdu)(
+        struct jdksavb_acmp_talker_signals *self,
+        struct jdksavb_acmp_talker_slots *source,
+        struct jdksavb_frame *pdu);
+
+    void (*acmp_talker_start_request)(
+        struct jdksavb_acmp_talker_signals *self,
+        struct jdksavb_acmp_talker_slots *source,
+        struct jdksavb_srp_info_talker *srp_info);
+
+    void (*acmp_talker_listener_added)(
+        struct jdksavb_acmp_talker_signals *self,
+        struct jdksavb_acmp_talker_slots *source,
+        struct jdksavdecc_eui64 listener_entity_id,
+        uint16_t listener_unique_id,
+        uint16_t current_connection_count);
+
+    void (*acmp_talker_listener_removed)(
+        struct jdksavb_acmp_talker_signals *self,
+        struct jdksavb_acmp_talker_slots *source,
+        struct jdksavdecc_eui64 listener_entity_id,
+        uint16_t listener_unique_id,
+        uint16_t current_connection_count);
+};
 
 #ifdef __cplusplus
 }

@@ -30,6 +30,7 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
+#include "jdksavb_frame.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,7 +40,8 @@ struct jdksavb_gptp_signals {
     void (*gptp_as_lock_changed)( void *self, bool locked );
     void (*gptp_as_capable_changed)( void *self, bool as_capable);
     void (*gptp_grandmaster_changing)(void *self);
-    void(*gptp_grandmaster_changed)(void *self, struct jdksavdecc_eui64 new_grandmaster);
+    void (*gptp_grandmaster_changed)(void *self, struct jdksavdecc_eui64 new_grandmaster);
+    void (*gptp_send_pdu)(void *self, struct jdksavb_frame *pdu, bool do_timestamp );
 };
 
 

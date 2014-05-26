@@ -36,17 +36,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 bool jdksavb_entity_init(struct jdksavb_entity *self,
                          struct jdksavdecc_entity_model *entity_model,
                          int symbol_dispatch_table_num_entries,
-                         struct jdksavb_symbol_dispatch *symbol_dispatch_table,
+                         struct jdksavb_symbol_dispatch *symbol_dispatch_table
                          ) {
     memset(self, 0, sizeof(*self));
     self->entity_model = entity_model;
     self->symbol_dispatch_table_num_entries = symbol_dispatch_table_num_entries;
     self->symbol_dispatch_table = symbol_dispatch_table;
-    self->context = context;
-
-    self->slots.destroy = jdksavb_entity_destroy;
-    self->slots.tick = jdksavb_entity_tick;
-    self->slots.rx_frame = jdksavb_entity_receive;
 
     self->command_timed_out = jdksavb_entity_command_timed_out;
     self->validate_permissions = jdksavb_entity_validate_permissions;
@@ -91,6 +86,7 @@ void jdksavb_entity_destroy(struct jdksavb_entity *self) { (void)self; }
 
 struct jdksavb_symbol_dispatch *
 jdksavb_entity_find_symbol(struct jdksavb_entity *self, uint16_t configuration_number, uint32_t symbol) {
+    // TODO
     return 0;
 }
 
@@ -102,6 +98,7 @@ uint8_t jdksavb_entity_dispatch_symbol_receive_read_descriptor_command(struct jd
                                                                        jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
                                                                        uint8_t *buf,
                                                                        uint16_t len) {
+    // TODO
     return JDKSAVDECC_AECP_STATUS_NOT_IMPLEMENTED;
 }
 
@@ -115,6 +112,7 @@ uint8_t jdksavb_entity_dispatch_symbol_set_command(struct jdksavb_entity *self,
                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
                                                    uint8_t *buf,
                                                    uint16_t len) {
+    // TODO
     return JDKSAVDECC_AECP_STATUS_NOT_IMPLEMENTED;
 }
 
@@ -127,6 +125,7 @@ uint8_t jdksavb_entity_dispatch_symbol_receive_get_command(struct jdksavb_entity
                                                            jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
                                                            uint8_t *buf,
                                                            uint16_t len) {
+    // TODO
     return JDKSAVDECC_AECP_STATUS_NOT_IMPLEMENTED;
 }
 

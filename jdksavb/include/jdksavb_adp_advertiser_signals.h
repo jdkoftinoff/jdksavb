@@ -35,7 +35,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavb_adp_advertiser_signals {};
+struct jdksavb_adp_advertiser_slots;
+
+struct jdksavb_adp_advertiser_signals {
+
+    void (*adp_advertiser_started)(
+        struct jdksavb_adp_advertiser_signals *self,
+        struct jdksavb_adp_advertiser_slots *source);
+
+    void (*adp_advertiser_stopped)(
+        struct jdksavb_adp_advertiser_signals *self,
+        struct jdksavb_adp_advertiser_slots *source);
+
+    void (*adp_advertiser_send_pdu)(
+        struct jdksavb_adp_advertiser_signals *self,
+        struct jdksavb_adp_advertiser_slots *source,
+        struct jdksavb_frame *pdu );
+
+};
 
 #ifdef __cplusplus
 }
