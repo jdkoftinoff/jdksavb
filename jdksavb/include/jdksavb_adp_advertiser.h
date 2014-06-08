@@ -49,7 +49,8 @@ extern "C" {
 
 /// jdksavb_adp object manages scheduling and sending adp entity available messages
 /// and responding to adp entity discover messages.
-struct jdksavb_adp_advertiser {
+struct jdksavb_adp_advertiser
+{
     struct jdksavb_adp_advertiser_slots slots;
 
     struct jdksavb_adp_advertiser_signals *signals;
@@ -76,48 +77,49 @@ struct jdksavb_adp_advertiser {
 
     /// The function that the jdksavb_adp calls if it received an entity available or entity available
     /// for some other entity on the network.  May be set to 0 if the user does not care.
-    void (*received_entity_available_or_departing)(struct jdksavb_adp_advertiser *self,
-                                                   void *context,
-                                                   void const *source_address,
-                                                   int source_address_len,
-                                                   struct jdksavdecc_adpdu *adpdu);
+    void ( *received_entity_available_or_departing )( struct jdksavb_adp_advertiser *self,
+                                                      void *context,
+                                                      void const *source_address,
+                                                      int source_address_len,
+                                                      struct jdksavdecc_adpdu *adpdu );
 };
 
 /// Initialize an jdksavb_adp with the specified context and frame_send function and
 /// received_entity_available_or_departing function
-bool jdksavb_adp_advertiserinit(struct jdksavb_adp_advertiser *self,
-                      void *context,
-                      void (*frame_send)(struct jdksavb_adp_advertiser *self, void *context, uint8_t const *buf, uint16_t len),
-                      void (*received_entity_available_or_departing)(struct jdksavb_adp_advertiser *self,
-                                                                     void *context,
-                                                                     void const *source_address,
-                                                                     int source_address_len,
-                                                                     struct jdksavdecc_adpdu *adpdu));
+bool jdksavb_adp_advertiserinit(
+    struct jdksavb_adp_advertiser *self,
+    void *context,
+    void ( *frame_send )( struct jdksavb_adp_advertiser *self, void *context, uint8_t const *buf, uint16_t len ),
+    void ( *received_entity_available_or_departing )( struct jdksavb_adp_advertiser *self,
+                                                      void *context,
+                                                      void const *source_address,
+                                                      int source_address_len,
+                                                      struct jdksavdecc_adpdu *adpdu ) );
 
 /// Destroy any resources that the jdksavb_adp uses
-void jdksavb_adp_advertiserdestroy(struct jdksavb_adp_advertiser *self);
+void jdksavb_adp_advertiserdestroy( struct jdksavb_adp_advertiser *self );
 
 /// Receive an ADPU and process it
-bool jdksavb_adp_receive(struct jdksavb_adp_advertiser *self,
-                         jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
-                         void const *source_address,
-                         int source_address_len,
-                         uint8_t const *buf,
-                         uint16_t len);
+bool jdksavb_adp_receive( struct jdksavb_adp_advertiser *self,
+                          jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
+                          void const *source_address,
+                          int source_address_len,
+                          uint8_t const *buf,
+                          uint16_t len );
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_adp_tick(struct jdksavb_adp_advertiser *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms);
+void jdksavb_adp_tick( struct jdksavb_adp_advertiser *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms );
 
 /// Request the state machine to send an entity discover message on the next tick.
-void jdksavb_adp_trigger_send_discover(struct jdksavb_adp_advertiser *self);
+void jdksavb_adp_trigger_send_discover( struct jdksavb_adp_advertiser *self );
 
 /// Request the state machine to send an entity available message on the next tick.
 /// Starts the state machine if is was stopped.
-void jdksavb_adp_trigger_send_available(struct jdksavb_adp_advertiser *self);
+void jdksavb_adp_trigger_send_available( struct jdksavb_adp_advertiser *self );
 
 /// Request the state machine to send an entity departing message on the next tick and
 /// then transition to stopped mode and reset available_index to 0
-void jdksavb_adp_trigger_send_departing(struct jdksavb_adp_advertiser *self);
+void jdksavb_adp_trigger_send_departing( struct jdksavb_adp_advertiser *self );
 
 /*@}*/
 

@@ -47,15 +47,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_entity_slots.h"
 #include "jdksavb_network_port_slots.h"
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-struct jdksavdecc_manager_signals {
+struct jdksavdecc_manager_signals
+{
     struct jdksavb_acmp_listener_slots *acmp_listener;
 };
-
 
 #ifdef __cplusplus
 }

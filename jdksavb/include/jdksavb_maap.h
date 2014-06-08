@@ -45,7 +45,8 @@ extern "C" {
 /** \addtogroup maap MAAP State Machines */
 /*@{*/
 
-struct jdksavb_maap {
+struct jdksavb_maap
+{
     /// Inherit from slots
     struct jdksavb_maap_slots slots;
     struct jdksavb_maap_signals *signals;
@@ -56,21 +57,21 @@ struct jdksavb_maap {
 
 /// Initialize an jdksavdecc_adp_manager with the specified context and frame_send function and
 /// received_entity_available_or_departing function
-bool jdksavb_maap_init(struct jdksavb_maap *self, struct jdksavb_frame_sender *frame_sender, uint32_t tag, void *additional);
+bool jdksavb_maap_init( struct jdksavb_maap *self, struct jdksavb_frame_sender *frame_sender, uint32_t tag, void *additional );
 
 /// Destroy any resources that the jdksavdecc_adp_manager uses
-void jdksavb_maap_destroy(struct jdksavb_maap *self);
+void jdksavb_maap_destroy( struct jdksavb_maap *self );
 
 /// Receive a MAAPDU and process it
-bool jdksavb_maap_receive(struct jdksavb_maap *self,
-                          jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
-                          void const *source_address,
-                          int source_address_len,
-                          uint8_t const *buf,
-                          uint16_t len);
+bool jdksavb_maap_receive( struct jdksavb_maap *self,
+                           jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
+                           void const *source_address,
+                           int source_address_len,
+                           uint8_t const *buf,
+                           uint16_t len );
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_maap_tick(void *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms);
+void jdksavb_maap_tick( void *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms );
 
 /*@}*/
 

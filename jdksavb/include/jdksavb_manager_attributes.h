@@ -35,9 +35,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavdecc_manager_attributes {
+struct jdksavdecc_manager_attributes
+{
     struct jdksavdecc_eui64 entity_id;
-    struct jdksavdecc_eui48 port_mac_address;    
+    struct jdksavdecc_eui48 port_mac_address;
 };
 
 #ifdef __cplusplus

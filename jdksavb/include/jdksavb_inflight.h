@@ -40,10 +40,11 @@ extern "C" {
 /*@{*/
 
 #ifndef JDKSAVB_INFLIGHT_MAX_COMMANDS
-#define JDKSAVB_INFLIGHT_MAX_COMMANDS (8)
+#define JDKSAVB_INFLIGHT_MAX_COMMANDS ( 8 )
 #endif
 
-struct jdksavb_inflight_command_info {
+struct jdksavb_inflight_command_info
+{
     /// This is the timestamp of the last command that we sent to another entity
     jdksavdecc_timestamp_in_milliseconds sent_time;
 
@@ -60,38 +61,39 @@ struct jdksavb_inflight_command_info {
     uint16_t sequence_id;
 
     /// This is the pointer to the function to call when the command timed out
-    void (*timed_out)(struct jdksavb_inflight_command_info *self, void *context);
+    void ( *timed_out )( struct jdksavb_inflight_command_info *self, void *context );
 };
 
-void jdksavb_inflight_command_info_init(struct jdksavb_inflight_command_info *self);
+void jdksavb_inflight_command_info_init( struct jdksavb_inflight_command_info *self );
 
-int jdksavb_inflight_command_info_compare(void const *lhs, void const *rhs);
+int jdksavb_inflight_command_info_compare( void const *lhs, void const *rhs );
 
-struct jdksavb_inflight_commands {
+struct jdksavb_inflight_commands
+{
     int num_inflight_commands;
     struct jdksavb_inflight_command_info inflight_commands[JDKSAVB_INFLIGHT_MAX_COMMANDS];
 };
 
-void jdksavb_inflight_commands_init(struct jdksavb_inflight_commands *self);
+void jdksavb_inflight_commands_init( struct jdksavb_inflight_commands *self );
 
-bool jdksacdecc_entity_manager_inflight_commands_full(struct jdksavb_inflight_commands *self);
+bool jdksacdecc_entity_manager_inflight_commands_full( struct jdksavb_inflight_commands *self );
 
-void jdksavb_inflight_commands_sort(struct jdksavb_inflight_commands *self);
+void jdksavb_inflight_commands_sort( struct jdksavb_inflight_commands *self );
 
-bool jdksavb_inflight_commands_add(struct jdksavb_inflight_commands *self, struct jdksavb_inflight_command_info const *info);
+bool jdksavb_inflight_commands_add( struct jdksavb_inflight_commands *self, struct jdksavb_inflight_command_info const *info );
 
-int jdksavb_inflight_commands_find(struct jdksavb_inflight_commands *self,
-                                   struct jdksavdecc_eui64 const *target_entity_id,
-                                   uint16_t sequence_id);
+int jdksavb_inflight_commands_find( struct jdksavb_inflight_commands *self,
+                                    struct jdksavdecc_eui64 const *target_entity_id,
+                                    uint16_t sequence_id );
 
-void jdksavb_inflight_commands_tick(struct jdksavb_inflight_commands *self,
-                                    jdksavdecc_timestamp_in_milliseconds cur_time,
-                                    void *context);
+void jdksavb_inflight_commands_tick( struct jdksavb_inflight_commands *self,
+                                     jdksavdecc_timestamp_in_milliseconds cur_time,
+                                     void *context );
 
-void jdksavb_inflight_commands_remove(struct jdksavb_inflight_commands *self, int num);
+void jdksavb_inflight_commands_remove( struct jdksavb_inflight_commands *self, int num );
 
-void jdksavb_inflight_commands_remove_target(struct jdksavb_inflight_commands *self,
-                                             struct jdksavdecc_eui64 const *target_entity_id);
+void jdksavb_inflight_commands_remove_target( struct jdksavb_inflight_commands *self,
+                                              struct jdksavdecc_eui64 const *target_entity_id );
 
 /*@}*/
 

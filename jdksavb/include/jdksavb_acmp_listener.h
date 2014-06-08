@@ -41,11 +41,13 @@ extern "C" {
 /*@{*/
 
 #ifndef JDKSAVB_ACMP_LISTENER_MAX_STREAMS
-#define JDKSAVB_ACMP_LISTENER_MAX_STREAMS (8)
+#define JDKSAVB_ACMP_LISTENER_MAX_STREAMS ( 8 )
 #endif
 
-struct jdksavb_acmp_listener_context {
-    enum {
+struct jdksavb_acmp_listener_context
+{
+    enum
+    {
         JDKSAVB_ACMP_LISTENER_STATE_DISABLED = 0,
         JDKSAVB_ACMP_LISTENER_STATE_DISCONNECTED,
         JDKSAVB_ACMP_LISTENER_STATE_FAST_CONNECTION_IN_PROGRESS,
@@ -63,32 +65,32 @@ struct jdksavb_acmp_listener_context {
     void *context;
 };
 
-struct jdksavb_acmp_listener {
+struct jdksavb_acmp_listener
+{
     struct jdksavb_acmp_listener_slots incoming_slots;
     struct jdksavb_acmp_listener_signals outgoing_signals;
-    void (*destroy)( struct jdksavb_acmp_listener *self );
+    void ( *destroy )( struct jdksavb_acmp_listener *self );
 
     uint16_t listener_stream_sinks;
     struct jdksavb_acmp_listener_context listener_sink[JDKSAVB_ACMP_LISTENER_MAX_STREAMS];
 };
 
-bool jdksavb_acmp_listener_init(struct jdksavb_acmp_listener *self);
+bool jdksavb_acmp_listener_init( struct jdksavb_acmp_listener *self );
 
 /// Destroy any resources that the jdksavb_acmp_listener uses
-void jdksavb_acmp_listener_destroy(struct jdksavb_acmp_listener *self);
+void jdksavb_acmp_listener_destroy( struct jdksavb_acmp_listener *self );
 
-void (*start)(void *self, uint16_t listener_stream_sinks );
-void (*stop)(void *self);
-void (*handle_acmpdu)(void *self, const struct jdksavb_frame *acmpdu);
-void (*tick)(void *self, jdksavdecc_timestamp_in_milliseconds current_time );
-void (*srp_talker_info_received)(void *self, const struct jdksavb_srp_info_talker *stream_info);
-
+void ( *start )( void *self, uint16_t listener_stream_sinks );
+void ( *stop )( void *self );
+void ( *handle_acmpdu )( void *self, const struct jdksavb_frame *acmpdu );
+void ( *tick )( void *self, jdksavdecc_timestamp_in_milliseconds current_time );
+void ( *srp_talker_info_received )( void *self, const struct jdksavb_srp_info_talker *stream_info );
 
 /// Receive an ACMPDU and process it
-bool jdksavb_acmp_listener_rx_frame(void *self, struct jdksavb_frame *rx_frame, size_t pos);
+bool jdksavb_acmp_listener_rx_frame( void *self, struct jdksavb_frame *rx_frame, size_t pos );
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_acmp_listener_tick(void *self, jdksavdecc_timestamp_in_microseconds timestamp);
+void jdksavb_acmp_listener_tick( void *self, jdksavdecc_timestamp_in_microseconds timestamp );
 
 /*@}*/
 

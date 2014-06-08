@@ -52,10 +52,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-
-struct jdksavdecc_manager_slots {
+struct jdksavdecc_manager_slots
+{
     struct jdksavb_acmp_listener_signals *acmp_listener;
-
 };
 
 #ifdef __cplusplus

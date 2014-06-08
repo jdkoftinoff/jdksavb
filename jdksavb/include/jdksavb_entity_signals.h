@@ -35,7 +35,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavb_entity_signals {};
+struct jdksavb_entity_signals
+{
+};
 
 #ifdef __cplusplus
 }

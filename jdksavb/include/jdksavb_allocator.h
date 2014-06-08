@@ -66,13 +66,14 @@ extern "C" {
     No initializers of the objects are called.
 */
 
-#define jdksavb_new(ALLOCATOR, T) (T *)((ALLOCATOR)->alloc((ALLOCATOR), (int32_t)sizeof(T), 1))
+#define jdksavb_new( ALLOCATOR, T ) ( T * )( ( ALLOCATOR )->alloc( ( ALLOCATOR ), (int32_t)sizeof( T ), 1 ) )
 
-#define jdksavb_delete(ALLOCATOR, PTR)                                                                                         \
-    do {                                                                                                                       \
-        if ((ALLOCATOR) != 0 && (PTR) != 0)                                                                                    \
-            (ALLOCATOR)->free((ALLOCATOR), (PTR));                                                                             \
-    } while (false)
+#define jdksavb_delete( ALLOCATOR, PTR )                                                                                       \
+    do                                                                                                                         \
+    {                                                                                                                          \
+        if ( ( ALLOCATOR ) != 0 && ( PTR ) != 0 )                                                                              \
+            ( ALLOCATOR )->free( ( ALLOCATOR ), ( PTR ) );                                                                     \
+    } while ( false )
 
 /** jdksavb_new_array
 
@@ -80,35 +81,39 @@ extern "C" {
     allocator to allocate from.
 */
 
-#define jdksavb_new_array(ALLOCATOR, T, COUNT) (T *)((ALLOCATOR)->alloc((ALLOCATOR), (int32_t)sizeof(T), (int32_t)(COUNT)))
+#define jdksavb_new_array( ALLOCATOR, T, COUNT )                                                                               \
+    ( T * )( ( ALLOCATOR )->alloc( ( ALLOCATOR ), (int32_t)sizeof( T ), ( int32_t )( COUNT ) ) )
 
 /** jdksavb_round_size
 
     Calculate size in bytes rounded up to the nearest 32bit word size.
 */
-#define jdksavb_round_size(VALUE) (((VALUE) + (uint32_t)(sizeof(uint32_t)) - 1) & (uint32_t) ~(sizeof(uint32_t) - 1))
+#define jdksavb_round_size( VALUE )                                                                                            \
+    ( ( ( VALUE ) + ( uint32_t )( sizeof( uint32_t ) ) - 1 ) & ( uint32_t ) ~( sizeof( uint32_t ) - 1 ) )
 
 /** jdksavb_allocator
 
     The jdksavb_allocator implements a
     simple growing stack of allocations within a fixed buffer size
 */
-struct jdksavb_allocator {
+struct jdksavb_allocator
+{
     /**
        Destroy the allocator.
     */
 
-    void (*destroy)(struct jdksavb_allocator *self);
+    void ( *destroy )( struct jdksavb_allocator *self );
 
     /**
        Allocate memory from the allocator.
     */
-    void *(*alloc)(struct jdksavb_allocator *self, int32_t length, int32_t count);
+    void *( *alloc )( struct jdksavb_allocator *self, int32_t length, int32_t count );
 
-    void (*free)(struct jdksavb_allocator *self, const void *ptr);
+    void ( *free )( struct jdksavb_allocator *self, const void *ptr );
 };
 
-struct jdksavb_simple_allocator {
+struct jdksavb_simple_allocator
+{
     struct jdksavb_allocator base;
     /** pointer to the raw memory pool to allocate from */
     void *raw_memory;
@@ -133,16 +138,16 @@ struct jdksavb_simple_allocator {
 */
 
 struct jdksavb_allocator *
-    jdksavb_simple_allocator_init(struct jdksavb_simple_allocator *self, void *raw_memory, int32_t raw_memory_length);
+    jdksavb_simple_allocator_init( struct jdksavb_simple_allocator *self, void *raw_memory, int32_t raw_memory_length );
 
-void jdksavb_simple_allocator_reset(struct jdksavb_simple_allocator *self);
+void jdksavb_simple_allocator_reset( struct jdksavb_simple_allocator *self );
 
 /** jdksavb_simple_allocator_destroy
     simple allocators are allocated from raw memory and have no need to
     do anything to destroy the pool of memory
 */
 
-void jdksavb_simple_allocator_destroy(struct jdksavb_allocator *self);
+void jdksavb_simple_allocator_destroy( struct jdksavb_allocator *self );
 
 /** jdksavb_simple_allocator_alloc
 
@@ -153,13 +158,14 @@ void jdksavb_simple_allocator_destroy(struct jdksavb_allocator *self);
     @param count count of objects to allocate
     @returns memory void * or NULL if error
 */
-void *jdksavb_simple_allocator_alloc(struct jdksavb_allocator *self, int32_t length, int32_t count);
+void *jdksavb_simple_allocator_alloc( struct jdksavb_allocator *self, int32_t length, int32_t count );
 
-void jdksavb_simple_allocator_free(struct jdksavb_allocator *self, const void *ptr);
+void jdksavb_simple_allocator_free( struct jdksavb_allocator *self, const void *ptr );
 
 #if JDKSAVB_ENABLE_MALLOC
 
-struct jdksavb_malloc_allocator {
+struct jdksavb_malloc_allocator
+{
     struct jdksavb_allocator base;
 };
 
@@ -171,20 +177,20 @@ struct jdksavb_malloc_allocator {
    @returns pointer initialized object
 */
 
-struct jdksavb_allocator *jdksavb_malloc_allocator_init(struct jdksavb_malloc_allocator *self);
+struct jdksavb_allocator *jdksavb_malloc_allocator_init( struct jdksavb_malloc_allocator *self );
 
 /** jdksavb_malloc_allocator_destroy
     simple allocators are allocated from raw memory and have no need to
     do anything to destroy the pool of memory
 */
 
-void jdksavb_malloc_allocator_destroy(struct jdksavb_allocator *self);
+void jdksavb_malloc_allocator_destroy( struct jdksavb_allocator *self );
 
-void *jdksavb_malloc_allocator_alloc(struct jdksavb_allocator *self, int32_t length, int32_t count);
+void *jdksavb_malloc_allocator_alloc( struct jdksavb_allocator *self, int32_t length, int32_t count );
 
-void *jdksavb_malloc_allocator_realloc(struct jdksavb_allocator *self, const void *orig_ptr, int32_t length, int32_t count);
+void *jdksavb_malloc_allocator_realloc( struct jdksavb_allocator *self, const void *orig_ptr, int32_t length, int32_t count );
 
-void jdksavb_malloc_allocator_free(struct jdksavb_allocator *self, const void *ptr);
+void jdksavb_malloc_allocator_free( struct jdksavb_allocator *self, const void *ptr );
 
 #endif
 

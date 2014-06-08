@@ -33,30 +33,36 @@
 #include "jdksavb_world.h"
 #include "jdksavb_frame.h"
 
-ssize_t jdksavb_frame_read(struct jdksavb_frame *p, void const *base, ssize_t pos, size_t len) {
-    ssize_t r = jdksavdecc_validate_range(pos, len, 14);
-    if (r >= 0) {
+ssize_t jdksavb_frame_read( struct jdksavb_frame *p, void const *base, ssize_t pos, size_t len )
+{
+    ssize_t r = jdksavdecc_validate_range( pos, len, 14 );
+    if ( r >= 0 )
+    {
         size_t payload_offset;
         uint16_t tag;
 
-        p->dest_address = jdksavdecc_eui48_get(base, pos + 0);
-        p->src_address = jdksavdecc_eui48_get(base, pos + 6);
-        tag = jdksavdecc_uint16_get(base, pos + 12);
+        p->dest_address = jdksavdecc_eui48_get( base, pos + 0 );
+        p->src_address = jdksavdecc_eui48_get( base, pos + 6 );
+        tag = jdksavdecc_uint16_get( base, pos + 12 );
 
-        if (tag == 0x8100) {
+        if ( tag == 0x8100 )
+        {
             payload_offset = 18;
             p->tpid = tag;
-            r = jdksavdecc_validate_range(pos, len, pos + payload_offset);
-            if (r >= 0) {
-                uint16_t tci = jdksavdecc_uint16_get(base, pos + 14);
+            r = jdksavdecc_validate_range( pos, len, pos + payload_offset );
+            if ( r >= 0 )
+            {
+                uint16_t tci = jdksavdecc_uint16_get( base, pos + 14 );
 
-                p->pcp = (tci >> 13) & 0x7;
-                p->dei = (tci >> 12) & 1;
+                p->pcp = ( tci >> 13 ) & 0x7;
+                p->dei = ( tci >> 12 ) & 1;
                 p->vid = tci & 0xfff;
 
-                p->ethertype = jdksavdecc_uint16_get(base, pos + 16);
+                p->ethertype = jdksavdecc_uint16_get( base, pos + 16 );
             }
-        } else {
+        }
+        else
+        {
             payload_offset = 14;
             p->tpid = 0;
             p->dei = 0;
@@ -66,87 +72,97 @@ ssize_t jdksavb_frame_read(struct jdksavb_frame *p, void const *base, ssize_t po
             p->ethertype = tag;
         }
 
-        if (r >= 0) {
-            p->length = (uint16_t)(len - payload_offset);
-            memcpy(p->payload, ((uint8_t *)base) + pos + payload_offset, p->length);
+        if ( r >= 0 )
+        {
+            p->length = ( uint16_t )( len - payload_offset );
+            memcpy( p->payload, ( (uint8_t *)base ) + pos + payload_offset, p->length );
             r = len;
         }
     }
     return r;
 }
 
-ssize_t jdksavb_frame_write(struct jdksavb_frame const *p, void *base, ssize_t pos, size_t len) {
-    ssize_t r = jdksavdecc_validate_range(pos, len, 14);
-    if (r >= 0) {
+ssize_t jdksavb_frame_write( struct jdksavb_frame const *p, void *base, ssize_t pos, size_t len )
+{
+    ssize_t r = jdksavdecc_validate_range( pos, len, 14 );
+    if ( r >= 0 )
+    {
         size_t payload_offset;
 
-        jdksavdecc_eui48_set(p->dest_address, base, pos + 0);
-        jdksavdecc_eui48_set(p->src_address, base, pos + 6);
-        if (p->tpid == 0x8100) {
+        jdksavdecc_eui48_set( p->dest_address, base, pos + 0 );
+        jdksavdecc_eui48_set( p->src_address, base, pos + 6 );
+        if ( p->tpid == 0x8100 )
+        {
             payload_offset = 18;
-            r = jdksavdecc_validate_range(pos, len, payload_offset);
-            if (r >= 0) {
-                uint16_t tci = ((p->pcp & 0x7) << 13) | ((p->dei & 1) << 12) | ((p->vid) & 0xfff);
-                jdksavdecc_uint16_set(p->tpid, base, pos + 12);
-                jdksavdecc_uint16_set(tci, base, pos + 14);
-                jdksavdecc_uint16_set(p->ethertype, base, pos + 16);
+            r = jdksavdecc_validate_range( pos, len, payload_offset );
+            if ( r >= 0 )
+            {
+                uint16_t tci = ( ( p->pcp & 0x7 ) << 13 ) | ( ( p->dei & 1 ) << 12 ) | ( ( p->vid ) & 0xfff );
+                jdksavdecc_uint16_set( p->tpid, base, pos + 12 );
+                jdksavdecc_uint16_set( tci, base, pos + 14 );
+                jdksavdecc_uint16_set( p->ethertype, base, pos + 16 );
             }
-        } else {
+        }
+        else
+        {
             payload_offset = 14;
-            jdksavdecc_uint16_set(p->ethertype, base, pos + 12);
+            jdksavdecc_uint16_set( p->ethertype, base, pos + 12 );
         }
 
-        r = jdksavdecc_validate_range(pos, len, pos + payload_offset + p->length);
-        if (r >= 0) {
-            memcpy(((uint8_t *)base) + pos + payload_offset, p->payload, p->length);
+        r = jdksavdecc_validate_range( pos, len, pos + payload_offset + p->length );
+        if ( r >= 0 )
+        {
+            memcpy( ( (uint8_t *)base ) + pos + payload_offset, p->payload, p->length );
         }
     }
 
     return r;
 }
 
-void jdksavb_frame_print(struct jdksavdecc_printer *self, struct jdksavb_frame const *p, int dump_payload) {
-    jdksavdecc_printer_print_label(self, "time (seconds)");
+void jdksavb_frame_print( struct jdksavdecc_printer *self, struct jdksavb_frame const *p, int dump_payload )
+{
+    jdksavdecc_printer_print_label( self, "time (seconds)" );
 
-    jdksavdecc_printer_print_uint64(self, p->time / 1000000);
-    jdksavdecc_printer_printc(self, '.');
-    jdksavdecc_printer_print_uint64(self, p->time % 1000000);
-    jdksavdecc_printer_print_eol(self);
+    jdksavdecc_printer_print_uint64( self, p->time / 1000000 );
+    jdksavdecc_printer_printc( self, '.' );
+    jdksavdecc_printer_print_uint64( self, p->time % 1000000 );
+    jdksavdecc_printer_print_eol( self );
 
-    jdksavdecc_printer_print_label(self, "dest_address");
-    jdksavdecc_printer_print_eui48(self, p->dest_address);
-    jdksavdecc_printer_print_eol(self);
+    jdksavdecc_printer_print_label( self, "dest_address" );
+    jdksavdecc_printer_print_eui48( self, p->dest_address );
+    jdksavdecc_printer_print_eol( self );
 
-    jdksavdecc_printer_print_label(self, "src_address");
-    jdksavdecc_printer_print_eui48(self, p->src_address);
-    jdksavdecc_printer_print_eol(self);
+    jdksavdecc_printer_print_label( self, "src_address" );
+    jdksavdecc_printer_print_eui48( self, p->src_address );
+    jdksavdecc_printer_print_eol( self );
 
-    jdksavdecc_printer_print_label(self, "ethertype");
-    jdksavdecc_printer_print_uint16(self, p->ethertype);
-    jdksavdecc_printer_print_eol(self);
+    jdksavdecc_printer_print_label( self, "ethertype" );
+    jdksavdecc_printer_print_uint16( self, p->ethertype );
+    jdksavdecc_printer_print_eol( self );
 
-    jdksavdecc_printer_print_label(self, "tpid");
-    jdksavdecc_printer_print_uint16(self, p->tpid);
-    jdksavdecc_printer_print_eol(self);
+    jdksavdecc_printer_print_label( self, "tpid" );
+    jdksavdecc_printer_print_uint16( self, p->tpid );
+    jdksavdecc_printer_print_eol( self );
 
-    jdksavdecc_printer_print_label(self, "pcp");
-    jdksavdecc_printer_print_uint16(self, p->pcp);
-    jdksavdecc_printer_print_eol(self);
+    jdksavdecc_printer_print_label( self, "pcp" );
+    jdksavdecc_printer_print_uint16( self, p->pcp );
+    jdksavdecc_printer_print_eol( self );
 
-    jdksavdecc_printer_print_label(self, "dei");
-    jdksavdecc_printer_print_uint16(self, p->dei);
-    jdksavdecc_printer_print_eol(self);
+    jdksavdecc_printer_print_label( self, "dei" );
+    jdksavdecc_printer_print_uint16( self, p->dei );
+    jdksavdecc_printer_print_eol( self );
 
-    jdksavdecc_printer_print_label(self, "vid");
-    jdksavdecc_printer_print_uint16(self, p->vid);
-    jdksavdecc_printer_print_eol(self);
+    jdksavdecc_printer_print_label( self, "vid" );
+    jdksavdecc_printer_print_uint16( self, p->vid );
+    jdksavdecc_printer_print_eol( self );
 
-    jdksavdecc_printer_print_label(self, "length");
-    jdksavdecc_printer_print_uint16(self, p->length);
-    jdksavdecc_printer_print_eol(self);
+    jdksavdecc_printer_print_label( self, "length" );
+    jdksavdecc_printer_print_uint16( self, p->length );
+    jdksavdecc_printer_print_eol( self );
 
-    if (dump_payload) {
-        jdksavdecc_printer_print_label(self, "payload");
-        jdksavdecc_printer_print_block(self, p->payload, p->length, 0, p->length);
+    if ( dump_payload )
+    {
+        jdksavdecc_printer_print_label( self, "payload" );
+        jdksavdecc_printer_print_block( self, p->payload, p->length, 0, p->length );
     }
 }

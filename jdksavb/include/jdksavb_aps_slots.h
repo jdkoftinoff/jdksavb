@@ -35,7 +35,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavb_aps_slots {};
+struct jdksavb_aps_slots
+{
+};
 
 #ifdef __cplusplus
 }

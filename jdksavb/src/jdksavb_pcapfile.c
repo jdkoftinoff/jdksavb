@@ -32,13 +32,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_pcapfile.h"
 
 #if 0
-#if defined(FOPEN_MAX)
+#if defined( FOPEN_MAX )
 
-#define jdksavb_pcapfile_HEADER_MAGIC_NATIVE (0xa1b2c3d4UL)
-#define jdksavb_pcapfile_HEADER_MAGIC_SWAPPED (0xd4c3b2a1UL)
+#define jdksavb_pcapfile_HEADER_MAGIC_NATIVE ( 0xa1b2c3d4UL )
+#define jdksavb_pcapfile_HEADER_MAGIC_SWAPPED ( 0xd4c3b2a1UL )
 
-#define jdksavb_pcapfile_HEADER_MAGIC_NANO_NATIVE (0xa1b23c4dUL)
-#define jdksavb_pcapfile_HEADER_MAGIC_NANO_SWAPPED (0x4d3cb2a1UL)
+#define jdksavb_pcapfile_HEADER_MAGIC_NANO_NATIVE ( 0xa1b23c4dUL )
+#define jdksavb_pcapfile_HEADER_MAGIC_NANO_SWAPPED ( 0x4d3cb2a1UL )
 
 struct jdksavb_pcapfile_header {
     uint32_t magic_number;  /* magic number */
@@ -361,5 +361,3 @@ void jdksavb_pcapfile_writer_send(struct jdksavb_frame_sender *self_, struct jdk
 const char *jdksavb_pcapfile_file = __FILE__;
 #endif
 #endif
-
-

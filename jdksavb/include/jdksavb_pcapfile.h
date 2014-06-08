@@ -93,4 +93,3 @@ void jdksavb_pcapfile_writer_send(struct jdksavb_frame_sender *self, struct jdks
 #endif
 
 #endif
-

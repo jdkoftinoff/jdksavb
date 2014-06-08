@@ -42,11 +42,11 @@ extern "C" {
 /*@{*/
 
 #ifndef JDKSAVB_ACMP_TALKER_MAX_LISTENERS_PER_STREAM
-#define JDKSAVB_ACMP_TALKER_MAX_LISTENERS_PER_STREAM (16)
+#define JDKSAVB_ACMP_TALKER_MAX_LISTENERS_PER_STREAM ( 16 )
 #endif
 
 #ifndef JDKSAVB_ACMP_TALKER_MAX_STREAMS
-#define JDKSAVB_ACMP_TALKER_MAX_STREAMS (8)
+#define JDKSAVB_ACMP_TALKER_MAX_STREAMS ( 8 )
 #endif
 
 /**
@@ -55,7 +55,8 @@ extern "C" {
  * Contains the current state of a talker stream source and a context for additional
  * Entity specific information
  */
-struct jdksavb_acmp_talker_stream_source {
+struct jdksavb_acmp_talker_stream_source
+{
     /**
      * @brief context The context for entity specific info
      */
@@ -109,9 +110,9 @@ struct jdksavb_acmp_talker_stream_source {
  * @param context void pointer to entity specific data
  * @param talker_unique_id the talker unique ID of this stream source
  */
-void jdksavb_acmp_talker_stream_source_init(struct jdksavb_acmp_talker_stream_source *self,
-                                            void *context,
-                                            uint16_t talker_unique_id);
+void jdksavb_acmp_talker_stream_source_init( struct jdksavb_acmp_talker_stream_source *self,
+                                             void *context,
+                                             uint16_t talker_unique_id );
 
 /**
  * @brief jdksavb_acmp_talker_stream_source_update Update stream ID, destination MAC address and vlan ID.
@@ -120,16 +121,16 @@ void jdksavb_acmp_talker_stream_source_init(struct jdksavb_acmp_talker_stream_so
  * @param new_destination_mac_address
  * @param new_stream_vlan_id
  */
-void jdksavb_acmp_talker_stream_source_update(struct jdksavb_acmp_talker_stream_source *self,
-                                              struct jdksavdecc_eui64 new_stream_id,
-                                              struct jdksavdecc_eui48 new_destination_mac_address,
-                                              uint16_t new_stream_vlan_id);
+void jdksavb_acmp_talker_stream_source_update( struct jdksavb_acmp_talker_stream_source *self,
+                                               struct jdksavdecc_eui64 new_stream_id,
+                                               struct jdksavdecc_eui48 new_destination_mac_address,
+                                               uint16_t new_stream_vlan_id );
 
 /**
  * @brief jdksavb_acmp_talker_stream_source_clear_listeners clears the list of active listeners for a stream source
  * @param self
  */
-void jdksavb_acmp_talker_stream_source_clear_listeners(struct jdksavb_acmp_talker_stream_source *self);
+void jdksavb_acmp_talker_stream_source_clear_listeners( struct jdksavb_acmp_talker_stream_source *self );
 
 /**
  * @brief jdksavb_acmp_talker_stream_source_add_listener adds a listener to the list of active listeners for a stream source
@@ -138,9 +139,9 @@ void jdksavb_acmp_talker_stream_source_clear_listeners(struct jdksavb_acmp_talke
  * @param listener_unique_id
  * @return true on success, false if there is no room to add it
  */
-bool jdksavb_acmp_talker_stream_source_add_listener(struct jdksavb_acmp_talker_stream_source *self,
-                                                    struct jdksavdecc_eui64 listener_entity_id,
-                                                    uint16_t listener_unique_id);
+bool jdksavb_acmp_talker_stream_source_add_listener( struct jdksavb_acmp_talker_stream_source *self,
+                                                     struct jdksavdecc_eui64 listener_entity_id,
+                                                     uint16_t listener_unique_id );
 
 /**
  * @brief jdksavb_acmp_talker_stream_source_remove_listener removes the listener from the list of active listeners for a stream
@@ -153,11 +154,12 @@ bool jdksavb_acmp_talker_stream_source_add_listener(struct jdksavb_acmp_talker_s
  * @param listener_unique_id
  * @return true on success, false if the listener was not in the list
  */
-bool jdksavb_acmp_talker_stream_source_remove_listener(struct jdksavb_acmp_talker_stream_source *self,
-                                                       struct jdksavdecc_eui64 listener_entity_id,
-                                                       uint16_t listener_unique_id);
+bool jdksavb_acmp_talker_stream_source_remove_listener( struct jdksavb_acmp_talker_stream_source *self,
+                                                        struct jdksavdecc_eui64 listener_entity_id,
+                                                        uint16_t listener_unique_id );
 
-struct jdksavb_acmp_talker {
+struct jdksavb_acmp_talker
+{
     struct jdksavb_acmp_talker_signals outgoing_signals;
     struct jdksavb_acmp_talker_slots incoming_slots;
 
@@ -165,17 +167,16 @@ struct jdksavb_acmp_talker {
     struct jdksavb_acmp_talker_stream_source talker_source[JDKSAVB_ACMP_TALKER_MAX_STREAMS];
 };
 
-bool jdksavb_acmp_talker_init(struct jdksavb_acmp_talker *self,
-                              struct jdksavb_acmp_talker_signals const *outgoing_signals);
+bool jdksavb_acmp_talker_init( struct jdksavb_acmp_talker *self, struct jdksavb_acmp_talker_signals const *outgoing_signals );
 
 /// Destroy any resources that the jdksavb_acmp_talker uses
-void jdksavb_acmp_talker_destroy(struct jdksavb_acmp_talker *self);
+void jdksavb_acmp_talker_destroy( struct jdksavb_acmp_talker *self );
 
 /// Receive an ACMPDU and process it
-bool jdksavb_acmp_talker_rx_frame(struct jdksavb_acmp_talker *self, struct jdksavb_frame *rx_frame, size_t pos);
+bool jdksavb_acmp_talker_rx_frame( struct jdksavb_acmp_talker *self, struct jdksavb_frame *rx_frame, size_t pos );
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_acmp_talker_tick(struct jdksavb_acmp_talker *self, jdksavdecc_timestamp_in_microseconds timestamp);
+void jdksavb_acmp_talker_tick( struct jdksavb_acmp_talker *self, jdksavdecc_timestamp_in_microseconds timestamp );
 
 /*@}*/
 

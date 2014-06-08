@@ -37,25 +37,19 @@ extern "C" {
 
 struct jdksavb_acmp_controller_slots;
 
-struct jdksavb_acmp_controller_signals {
+struct jdksavb_acmp_controller_signals
+{
 
-    void (*acmp_controller_connected)(
-        struct jdksavb_acmp_controller_signals *self,
-        struct jdksavb_acmp_controller_slots *acmp_controller_slots );
+    void ( *acmp_controller_connected )( struct jdksavb_acmp_controller_signals *self,
+                                         struct jdksavb_acmp_controller_slots *acmp_controller_slots );
 
-    void (*acmp_controller_disconnected)(
-        struct jdksavb_acmp_controller_signals *self );
+    void ( *acmp_controller_disconnected )( struct jdksavb_acmp_controller_signals *self );
 
-    void (*acmp_controller_started)(
-        struct jdksavb_acmp_controller_signals *self );
+    void ( *acmp_controller_started )( struct jdksavb_acmp_controller_signals *self );
 
-    void (*acmp_controller_stopped)(
-        struct jdksavb_acmp_controller_signals *self );
+    void ( *acmp_controller_stopped )( struct jdksavb_acmp_controller_signals *self );
 
-    void (*acmp_controller_send_pdu)(
-        struct jdksavb_acmp_controller_signals *self,
-        struct jdksavb_frame *acmpdu);
-
+    void ( *acmp_controller_send_pdu )( struct jdksavb_acmp_controller_signals *self, struct jdksavb_frame *acmpdu );
 };
 
 #ifdef __cplusplus

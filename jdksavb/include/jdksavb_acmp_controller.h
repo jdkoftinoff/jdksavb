@@ -43,7 +43,8 @@ struct jdksavb_acmp_controller_stream_source;
 /** \addtogroup acmp_controller ACMP Controller State Machine */
 /*@{*/
 
-struct jdksavb_acmp_controller_stream_source {
+struct jdksavb_acmp_controller_stream_source
+{
     struct jdksavdecc_eui64 talker_entity_id;
     uint16_t talker_unique_id;
     struct jdksavdecc_eui48 destination_mac_address;
@@ -54,15 +55,18 @@ struct jdksavb_acmp_controller_stream_source {
     uint16_t stream_vlan_id;
 };
 
-struct jdksavb_acmp_controller_stream_sink {
+struct jdksavb_acmp_controller_stream_sink
+{
     struct jdksavdecc_eui64 listener_entity_id;
     uint16_t listener_unique_id;
     uint16_t flags;
     uint8_t status;
 };
 
-struct jdksavb_acmp_controller_connection {
-    enum {
+struct jdksavb_acmp_controller_connection
+{
+    enum
+    {
         JDKSAVB_ACMP_CONTROLLER_STREAM_SINK_STATE_DISABLED = 0,
         JDKSAVB_ACMP_CONTROLLER_STREAM_SINK_STATE_DISCONNECTED,
         JDKSAVB_ACMP_CONTROLLER_STREAM_SINK_STATE_CONNECTING,
@@ -76,7 +80,8 @@ struct jdksavb_acmp_controller_connection {
     uint16_t listener_unique_id;
 };
 
-struct jdksavb_acmp_controller {
+struct jdksavb_acmp_controller
+{
     struct jdksavb_acmp_controller_slots incoming_slots;
     struct jdksavb_acmp_controller_signals outgoing_signals;
 
@@ -88,19 +93,19 @@ struct jdksavb_acmp_controller {
     struct jdksavb_acmp_controller_connection *stream_connections;
 };
 
-bool jdksavb_acmp_controller_init(struct jdksavb_acmp_controller *self,
-                                  struct jdksavb_frame_sender *frame_sender,
-                                  uint32_t tag,
-                                  void *additional);
+bool jdksavb_acmp_controller_init( struct jdksavb_acmp_controller *self,
+                                   struct jdksavb_frame_sender *frame_sender,
+                                   uint32_t tag,
+                                   void *additional );
 
 /// Destroy any resources that the jdksavb_acmp_controller uses
-void jdksavb_acmp_controller_destroy(void *self);
+void jdksavb_acmp_controller_destroy( void *self );
 
 /// Receive an ACMPDU and process it
-bool jdksavb_acmp_controller_rx_frame(void *self, struct jdksavb_frame *rx_frame, size_t pos);
+bool jdksavb_acmp_controller_rx_frame( void *self, struct jdksavb_frame *rx_frame, size_t pos );
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_acmp_controller_tick(void *self, jdksavdecc_timestamp_in_microseconds timestamp);
+void jdksavb_acmp_controller_tick( void *self, jdksavdecc_timestamp_in_microseconds timestamp );
 
 /*@}*/
 

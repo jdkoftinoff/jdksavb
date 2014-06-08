@@ -42,16 +42,17 @@ extern "C" {
 /** \addtogroup frame raw ethernet frame */
 /*@{*/
 
-#define JDKSAVB_FRAME_HEADER_DA_OFFSET (0)
-#define JDKSAVB_FRAME_HEADER_SA_OFFSET (6)
-#define JDKSAVB_FRAME_HEADER_ETHERTYPE_OFFSET (12)
-#define JDKSAVB_FRAME_HEADER_LEN (14)
+#define JDKSAVB_FRAME_HEADER_DA_OFFSET ( 0 )
+#define JDKSAVB_FRAME_HEADER_SA_OFFSET ( 6 )
+#define JDKSAVB_FRAME_HEADER_ETHERTYPE_OFFSET ( 12 )
+#define JDKSAVB_FRAME_HEADER_LEN ( 14 )
 
 #ifndef JDKSAVB_FRAME_MAX_PAYLOAD_SIZE
-#define JDKSAVB_FRAME_MAX_PAYLOAD_SIZE (1500)
+#define JDKSAVB_FRAME_MAX_PAYLOAD_SIZE ( 1500 )
 #endif
 
-struct jdksavb_frame {
+struct jdksavb_frame
+{
     jdksavdecc_timestamp_in_microseconds time;
     struct jdksavdecc_eui48 dest_address;
     struct jdksavdecc_eui48 src_address;
@@ -64,29 +65,31 @@ struct jdksavb_frame {
     uint8_t payload[JDKSAVB_FRAME_MAX_PAYLOAD_SIZE];
 };
 
-static inline void jdksavb_frame_init(struct jdksavb_frame *p) {
+static inline void jdksavb_frame_init( struct jdksavb_frame *p )
+{
     p->time = 0;
-    jdksavdecc_eui48_init(&p->dest_address);
-    jdksavdecc_eui48_init(&p->src_address);
+    jdksavdecc_eui48_init( &p->dest_address );
+    jdksavdecc_eui48_init( &p->src_address );
     p->ethertype = 0;
     p->length = 0;
     p->tpid = 0;
     p->pcp = 0;
     p->dei = 0;
     p->vid = 0;
-    memset(p->payload, 0, sizeof(p->payload));
+    memset( p->payload, 0, sizeof( p->payload ) );
 }
 
-ssize_t jdksavb_frame_read(struct jdksavb_frame *p, void const *base, ssize_t pos, size_t len);
-ssize_t jdksavb_frame_write(struct jdksavb_frame const *p, void *base, ssize_t pos, size_t len);
-void jdksavb_frame_print(struct jdksavdecc_printer *self, struct jdksavb_frame const *p, int dump_payload);
+ssize_t jdksavb_frame_read( struct jdksavb_frame *p, void const *base, ssize_t pos, size_t len );
+ssize_t jdksavb_frame_write( struct jdksavb_frame const *p, void *base, ssize_t pos, size_t len );
+void jdksavb_frame_print( struct jdksavdecc_printer *self, struct jdksavb_frame const *p, int dump_payload );
 
 /*@}*/
 
 /** frame sender class */
-struct jdksavb_frame_sender {
-    void (*destroy)(struct jdksavb_frame_sender *);
-    void (*send)(struct jdksavb_frame_sender *, struct jdksavb_frame const *frame);
+struct jdksavb_frame_sender
+{
+    void ( *destroy )( struct jdksavb_frame_sender * );
+    void ( *send )( struct jdksavb_frame_sender *, struct jdksavb_frame const *frame );
 };
 
 /*@}*/

@@ -40,39 +40,28 @@ extern "C" {
 struct jdksavb_acmp_listener_slots;
 
 /** These are the signals that can come from an acmp_listener state machine */
-struct jdksavb_acmp_listener_signals {
+struct jdksavb_acmp_listener_signals
+{
 
-    void (*acmp_listener_started)(
-        struct jdksavb_acmp_listener_signals *self,
-        struct jdksavb_acmp_listener_slots *source);
+    void ( *acmp_listener_started )( struct jdksavb_acmp_listener_signals *self, struct jdksavb_acmp_listener_slots *source );
 
-    void (*acmp_listener_stopped)(
-        struct jdksavb_acmp_listener_signals *self,
-        struct jdksavb_acmp_listener_slots *source);
+    void ( *acmp_listener_stopped )( struct jdksavb_acmp_listener_signals *self, struct jdksavb_acmp_listener_slots *source );
 
-    void (*acmp_listener_srp_info_request)(
-        struct jdksavb_acmp_listener_signals *self,
-        struct jdksavb_acmp_listener_slots *source,
-        struct jdksavdecc_eui64 talker_stream_id);
+    void ( *acmp_listener_srp_info_request )( struct jdksavb_acmp_listener_signals *self,
+                                              struct jdksavb_acmp_listener_slots *source,
+                                              struct jdksavdecc_eui64 talker_stream_id );
 
-    void (*acmp_listener_talker_added)(
-        struct jdksavb_acmp_listener_signals *self,
-        struct jdksavb_acmp_listener_slots *source,
-        struct jdksavdecc_eui64 talker_stream_id,
-        struct jdksavdecc_eui48 talker_mac,
-        uint16_t talker_vid);
+    void ( *acmp_listener_talker_added )( struct jdksavb_acmp_listener_signals *self,
+                                          struct jdksavb_acmp_listener_slots *source,
+                                          struct jdksavdecc_eui64 talker_stream_id,
+                                          struct jdksavdecc_eui48 talker_mac,
+                                          uint16_t talker_vid );
 
-    void (*acmp_listener_talker_removed)(
-        struct jdksavb_acmp_listener_signals *self,
-        struct jdksavb_acmp_listener_slots *source);
+    void ( *acmp_listener_talker_removed )( struct jdksavb_acmp_listener_signals *self,
+                                            struct jdksavb_acmp_listener_slots *source );
 
-    void (*acmp_listener_send_pdu)(
-        void *self,
-        struct jdksavb_frame *acmpdu);
-
+    void ( *acmp_listener_send_pdu )( void *self, struct jdksavb_frame *acmpdu );
 };
-
-
 
 #ifdef __cplusplus
 }

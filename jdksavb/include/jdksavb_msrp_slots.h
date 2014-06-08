@@ -35,8 +35,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct jdksavb_msrp_slots {};
-
+struct jdksavb_msrp_slots
+{
+};
 
 #ifdef __cplusplus
 }
