@@ -99,10 +99,10 @@ extern "C" {
 struct jdksavb_allocator
 {
     /**
-       Destroy the allocator.
+       terminate the allocator.
     */
 
-    void ( *destroy )( struct jdksavb_allocator *self );
+    void ( *terminate )( struct jdksavb_allocator *self );
 
     /**
        Allocate memory from the allocator.
@@ -142,12 +142,12 @@ struct jdksavb_allocator *
 
 void jdksavb_simple_allocator_reset( struct jdksavb_simple_allocator *self );
 
-/** jdksavb_simple_allocator_destroy
+/** jdksavb_simple_allocator_terminate
     simple allocators are allocated from raw memory and have no need to
-    do anything to destroy the pool of memory
+    do anything to terminate the pool of memory
 */
 
-void jdksavb_simple_allocator_destroy( struct jdksavb_allocator *self );
+void jdksavb_simple_allocator_terminate( struct jdksavb_allocator *self );
 
 /** jdksavb_simple_allocator_alloc
 
@@ -179,12 +179,12 @@ struct jdksavb_malloc_allocator
 
 struct jdksavb_allocator *jdksavb_malloc_allocator_init( struct jdksavb_malloc_allocator *self );
 
-/** jdksavb_malloc_allocator_destroy
+/** jdksavb_malloc_allocator_terminate
     simple allocators are allocated from raw memory and have no need to
-    do anything to destroy the pool of memory
+    do anything to terminate the pool of memory
 */
 
-void jdksavb_malloc_allocator_destroy( struct jdksavb_allocator *self );
+void jdksavb_malloc_allocator_terminate( struct jdksavb_allocator *self );
 
 void *jdksavb_malloc_allocator_alloc( struct jdksavb_allocator *self, int32_t length, int32_t count );
 

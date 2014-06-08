@@ -60,7 +60,7 @@ struct jdksavb_maap
 bool jdksavb_maap_init( struct jdksavb_maap *self, struct jdksavb_frame_sender *frame_sender, uint32_t tag, void *additional );
 
 /// Destroy any resources that the jdksavdecc_adp_manager uses
-void jdksavb_maap_destroy( struct jdksavb_maap *self );
+void jdksavb_maap_terminate( struct jdksavb_maap *self );
 
 /// Receive a MAAPDU and process it
 bool jdksavb_maap_receive( struct jdksavb_maap *self,

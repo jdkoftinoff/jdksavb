@@ -86,7 +86,7 @@ struct jdksavb_adp_advertiser
 
 /// Initialize an jdksavb_adp with the specified context and frame_send function and
 /// received_entity_available_or_departing function
-bool jdksavb_adp_advertiserinit(
+bool jdksavb_adp_advertiser_init(
     struct jdksavb_adp_advertiser *self,
     void *context,
     void ( *frame_send )( struct jdksavb_adp_advertiser *self, void *context, uint8_t const *buf, uint16_t len ),
@@ -97,7 +97,7 @@ bool jdksavb_adp_advertiserinit(
                                                       struct jdksavdecc_adpdu *adpdu ) );
 
 /// Destroy any resources that the jdksavb_adp uses
-void jdksavb_adp_advertiserdestroy( struct jdksavb_adp_advertiser *self );
+void jdksavb_adp_advertiser_terminate( struct jdksavb_adp_advertiser *self );
 
 /// Receive an ADPU and process it
 bool jdksavb_adp_receive( struct jdksavb_adp_advertiser *self,

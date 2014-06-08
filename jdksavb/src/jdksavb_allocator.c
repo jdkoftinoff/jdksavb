@@ -41,13 +41,13 @@ struct jdksavb_allocator *
     self->raw_memory = raw_memory;
     self->raw_memory_length = raw_memory_length;
     self->current_position = 0;
-    self->base.destroy = jdksavb_simple_allocator_destroy;
+    self->base.terminate = jdksavb_simple_allocator_terminate;
     self->base.alloc = jdksavb_simple_allocator_alloc;
     self->base.free = jdksavb_simple_allocator_free;
     return &self->base;
 }
 
-void jdksavb_simple_allocator_destroy( struct jdksavb_allocator *self )
+void jdksavb_simple_allocator_terminate( struct jdksavb_allocator *self )
 {
     /* Do Nothing */
     (void)self;
@@ -94,16 +94,16 @@ void jdksavb_simple_allocator_reset( struct jdksavb_simple_allocator *self )
 
 struct jdksavb_allocator *jdksavb_malloc_allocator_init( struct jdksavb_malloc_allocator *self )
 {
-    self->base.destroy = jdksavb_malloc_allocator_destroy;
+    self->base.terminate = jdksavb_malloc_allocator_terminate;
     self->base.alloc = jdksavb_malloc_allocator_alloc;
     self->base.free = jdksavb_malloc_allocator_free;
     return &self->base;
 }
 
-void jdksavb_malloc_allocator_destroy( struct jdksavb_allocator *self_ )
+void jdksavb_malloc_allocator_terminate( struct jdksavb_allocator *self_ )
 {
     (void)self_;
-    /* nothing to destroy, we do not keep track of all mallocs and frees */
+    /* nothing to terminate, we do not keep track of all mallocs and frees */
 }
 
 void *jdksavb_malloc_allocator_alloc( struct jdksavb_allocator *self, int32_t length, int32_t count )

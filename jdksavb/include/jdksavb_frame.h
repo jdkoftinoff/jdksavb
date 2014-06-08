@@ -88,7 +88,7 @@ void jdksavb_frame_print( struct jdksavdecc_printer *self, struct jdksavb_frame 
 /** frame sender class */
 struct jdksavb_frame_sender
 {
-    void ( *destroy )( struct jdksavb_frame_sender * );
+    void ( *terminate )( struct jdksavb_frame_sender * );
     void ( *send )( struct jdksavb_frame_sender *, struct jdksavb_frame const *frame );
 };
 

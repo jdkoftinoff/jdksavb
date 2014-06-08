@@ -480,7 +480,7 @@ bool jdksavb_entity_init( struct jdksavb_entity *self,
                           struct jdksavb_symbol_dispatch *symbol_dispatch_table );
 
 /// Destroy any resources that the jdksavdecc_adp_manager uses
-void jdksavb_entity_destroy( struct jdksavb_entity *self );
+void jdksavb_entity_terminate( struct jdksavb_entity *self );
 
 struct jdksavb_symbol_dispatch *
     jdksavb_entity_find_symbol( struct jdksavb_entity *self, uint16_t configuration_number, uint32_t symbol );

@@ -39,7 +39,7 @@ struct jdksavb_acmp_controller_signals;
 
 struct jdksavb_acmp_controller_slots
 {
-    void ( *destroy )( struct jdksavb_acmp_controller_slots *self );
+    void ( *terminate )( struct jdksavb_acmp_controller_slots *self );
 
     void ( *connect_signals )( struct jdksavb_acmp_controller_slots *self,
                                struct jdksavb_acmp_controller_signals *destination_signals );

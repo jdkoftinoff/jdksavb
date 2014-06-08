@@ -170,7 +170,7 @@ struct jdksavb_acmp_talker
 bool jdksavb_acmp_talker_init( struct jdksavb_acmp_talker *self, struct jdksavb_acmp_talker_signals const *outgoing_signals );
 
 /// Destroy any resources that the jdksavb_acmp_talker uses
-void jdksavb_acmp_talker_destroy( struct jdksavb_acmp_talker *self );
+void jdksavb_acmp_talker_terminate( struct jdksavb_acmp_talker *self );
 
 /// Receive an ACMPDU and process it
 bool jdksavb_acmp_talker_rx_frame( struct jdksavb_acmp_talker *self, struct jdksavb_frame *rx_frame, size_t pos );

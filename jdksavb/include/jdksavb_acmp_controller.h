@@ -99,7 +99,7 @@ bool jdksavb_acmp_controller_init( struct jdksavb_acmp_controller *self,
                                    void *additional );
 
 /// Destroy any resources that the jdksavb_acmp_controller uses
-void jdksavb_acmp_controller_destroy( void *self );
+void jdksavb_acmp_controller_terminate( void *self );
 
 /// Receive an ACMPDU and process it
 bool jdksavb_acmp_controller_rx_frame( void *self, struct jdksavb_frame *rx_frame, size_t pos );

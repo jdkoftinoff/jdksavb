@@ -72,7 +72,7 @@ void jdksavb_pcapfile_reader_init(struct jdksavb_pcapfile_reader *self,
     self->nano = 0;
     self->minimum_time_to_synthesize = minimum_time_to_synthesize;
     self->time_step_in_microseconds = time_step_in_microseconds;
-    self->destroy = jdksavb_pcapfile_reader_destroy;
+    self->terminate = jdksavb_pcapfile_reader_terminate;
     self->open = jdksavb_pcapfile_reader_open;
     self->close = jdksavb_pcapfile_reader_close;
     self->read_frame = jdksavb_pcapfile_reader_read_frame;
@@ -80,7 +80,7 @@ void jdksavb_pcapfile_reader_init(struct jdksavb_pcapfile_reader *self,
     self->tick = 0;
 }
 
-void jdksavb_pcapfile_reader_destroy(struct jdksavb_pcapfile_reader *self) { self->close(self); }
+void jdksavb_pcapfile_reader_terminate(struct jdksavb_pcapfile_reader *self) { self->close(self); }
 
 int jdksavb_pcapfile_reader_open(struct jdksavb_pcapfile_reader *self, char const *fname) {
     int r = 0;
@@ -282,14 +282,14 @@ int jdksavb_pcapfile_reader_dispatch_frames_with_file(struct jdksavb_pcapfile_re
 
 void jdksavb_pcapfile_writer_init(struct jdksavb_pcapfile_writer *self) {
     self->f = 0;
-    self->destroy = jdksavb_pcapfile_writer_destroy;
+    self->terminate = jdksavb_pcapfile_writer_terminate;
     self->open = jdksavb_pcapfile_writer_open;
     self->close = jdksavb_pcapfile_writer_close;
     self->swapped = 0;
     self->inherited.send = jdksavb_pcapfile_writer_send;
 }
 
-void jdksavb_pcapfile_writer_destroy(struct jdksavb_pcapfile_writer *self) { self->close(self); }
+void jdksavb_pcapfile_writer_terminate(struct jdksavb_pcapfile_writer *self) { self->close(self); }
 
 int jdksavb_pcapfile_writer_open(struct jdksavb_pcapfile_writer *self, char const *fname) {
     int r = 0;

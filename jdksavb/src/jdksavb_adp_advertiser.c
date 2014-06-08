@@ -68,7 +68,7 @@ bool jdksavb_adp_init(
     return true;
 }
 
-void jdksavb_adp_destroy( struct jdksavb_adp_advertiser *self )
+void jdksavb_adp_terminate( struct jdksavb_adp_advertiser *self )
 {
     (void)self;
 }

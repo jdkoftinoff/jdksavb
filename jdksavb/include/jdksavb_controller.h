@@ -191,7 +191,7 @@ bool jdksavb_controller_init(
     void ( *frame_send )( struct jdksavb_entity *self, void *context, uint8_t const *buf, uint16_t len ) );
 
 /// Destroy any resources that the jdksavdecc_adp uses
-void jdksavb_controller_destroy( struct jdksavb_entity *self );
+void jdksavb_controller_terminate( struct jdksavb_entity *self );
 
 bool jdksavb_controller_received_aa_response( struct jdksavb_entity *self,
                                               struct jdksavdecc_aecp_aa const *aa,

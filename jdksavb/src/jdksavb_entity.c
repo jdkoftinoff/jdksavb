@@ -82,7 +82,7 @@ bool jdksavb_entity_init( struct jdksavb_entity *self,
 #endif
 
 /// Destroy an entity manager
-void jdksavb_entity_destroy( struct jdksavb_entity *self )
+void jdksavb_entity_terminate( struct jdksavb_entity *self )
 {
     (void)self;
 }
