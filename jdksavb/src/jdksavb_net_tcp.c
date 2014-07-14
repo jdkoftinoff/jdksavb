@@ -1,5 +1,3 @@
-#pragma once
-
 /*
 Copyright (c) 2014, Jeff Koftinoff
 All rights reserved.
@@ -29,22 +27,10 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
 #include "jdksavb_world.h"
-#include "jdksavb_frame.h"
+#include "jdksavb_net_tcp.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-struct jdksavb_gptp_slots
-{
-    void ( *start )( void *self );
-    void ( *stop )( void *self );
-    void ( *handle_pdu )( void *self, struct jdksavb_frame const *frame, uint64_t hardware_timestamp );
-    void ( *tick )( void *self, jdksavdecc_timestamp_in_milliseconds current_time );
-    void ( *outgoing_packet_timestamped )( void *self, struct jdksavb_frame const *frame, uint64_t hardware_timestamp );
-};
-
-#ifdef __cplusplus
-}
+#ifndef TODO
+const char *jdksavb_net_tcp_file = "jdksavb_net_tcp.c";
 #endif

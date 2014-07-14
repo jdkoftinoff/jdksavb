@@ -1,35 +1,7 @@
-#pragma once
-
-/*
-Copyright (c) 2014, Jeff Koftinoff
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-
-* Neither the name of the {organization} nor the names of its
-  contributors may be used to endorse or promote products derived from
-  this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
-#include "jdksavb_world.h"
+#include "jdksavb_network_port_slots.h"
+#include "jdksavb_net_udp_slots.h"
+#include "jdksavb_net_tcp_slots.h"
+#include "jdksavb_net_raw_slots.h"
 #include "jdksavb_acmp_controller_slots.h"
 #include "jdksavb_acmp_listener_slots.h"
 #include "jdksavb_acmp_talker_slots.h"
@@ -45,6 +17,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_mvrp_slots.h"
 #include "jdksavb_gptp_slots.h"
 #include "jdksavb_entity_slots.h"
+#include "jdksavb_hardware_control_slots.h"
+#include "jdksavb_apc_slots.h"
+#include "jdksavb_aps_slots.h"
+#include "jdksavb_gptp_slots.h"
 #include "jdksavb_network_port_slots.h"
 
 #ifdef __cplusplus
@@ -53,7 +29,25 @@ extern "C" {
 
 struct jdksavdecc_manager_signals
 {
-    struct jdksavb_acmp_listener_slots *acmp_listener;
+    struct jdksavb_entity_slots entity;
+    struct jdksavb_network_port_slots network_port;
+    struct jdksavb_net_raw_slots net_raw;
+    struct jdksavb_net_udp_slots net_udp;
+    struct jdksavb_net_tcp_slots net_tcp;
+    struct jdksavb_apc_slots apc;
+    struct jdksavb_aps_slots aps;
+
+    struct jdksavb_adp_discover_slots adp_discover;
+    struct jdksavb_adp_advertiser_slots adp_advertiser;
+
+    struct jdksavb_gptp_slots gptp;
+    struct jdksavb_maap_slots maap;
+    struct jdksavb_mvrp_slots mvrp;
+    struct jdksavb_msrp_slots msrp;
+    struct jdksavb_acmp_listener_slots acmp_listener;
+    struct jdksavb_acmp_talker_slots acmp_talker;
+    struct jdksavb_acmp_controller_slots acmp_controller;
+
 };
 
 #ifdef __cplusplus

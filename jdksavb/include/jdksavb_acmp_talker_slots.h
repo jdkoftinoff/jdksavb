@@ -31,6 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
 #include "jdksavb_srp_info.h"
+#include "jdksavb_frame.h"
 
 #ifdef __cplusplus
 extern "C" {

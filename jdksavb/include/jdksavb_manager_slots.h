@@ -31,6 +31,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
 
+#include "jdksavb_network_port_signals.h"
+#include "jdksavb_net_udp_signals.h"
+#include "jdksavb_net_tcp_signals.h"
+#include "jdksavb_net_raw_signals.h"
 #include "jdksavb_acmp_controller_signals.h"
 #include "jdksavb_acmp_listener_signals.h"
 #include "jdksavb_acmp_talker_signals.h"
@@ -46,6 +50,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_mvrp_signals.h"
 #include "jdksavb_gptp_signals.h"
 #include "jdksavb_entity_signals.h"
+#include "jdksavb_hardware_control_signals.h"
+#include "jdksavb_apc_signals.h"
+#include "jdksavb_aps_signals.h"
+#include "jdksavb_gptp_signals.h"
 #include "jdksavb_network_port_signals.h"
 
 #ifdef __cplusplus
@@ -54,7 +62,25 @@ extern "C" {
 
 struct jdksavdecc_manager_slots
 {
-    struct jdksavb_acmp_listener_signals *acmp_listener;
+    struct jdksavb_entity_signals entity;
+    struct jdksavb_network_port_signals network_port;
+    struct jdksavb_net_raw_signals net_raw;
+    struct jdksavb_net_udp_signals net_udp;
+    struct jdksavb_net_tcp_signals net_tcp;
+    struct jdksavb_apc_signals apc;
+    struct jdksavb_aps_signals aps;
+
+    struct jdksavb_adp_discover_signals adp_discover;
+    struct jdksavb_adp_advertiser_signals adp_advertiser;
+
+    struct jdksavb_gptp_signals gptp;
+    struct jdksavb_maap_signals maap;
+    struct jdksavb_mvrp_signals mvrp;
+    struct jdksavb_msrp_signals msrp;
+    struct jdksavb_acmp_listener_signals acmp_listener;
+    struct jdksavb_acmp_talker_signals acmp_talker;
+    struct jdksavb_acmp_controller_signals acmp_controller;
+
 };
 
 #ifdef __cplusplus

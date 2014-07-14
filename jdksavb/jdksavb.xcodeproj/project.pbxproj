@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF4BA6EB197481620031E432 /* jdksavb_net_raw.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA6E8197481620031E432 /* jdksavb_net_raw.h */; };
+		BF4BA6EC197481620031E432 /* jdksavb_net_tcp.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA6E9197481620031E432 /* jdksavb_net_tcp.h */; };
+		BF4BA6ED197481620031E432 /* jdksavb_net_udp.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA6EA197481620031E432 /* jdksavb_net_udp.h */; };
+		BF4BA6F7197481B50031E432 /* jdksavb_net_raw.c in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA6F4197481B50031E432 /* jdksavb_net_raw.c */; };
+		BF4BA6F8197481B50031E432 /* jdksavb_net_tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA6F5197481B50031E432 /* jdksavb_net_tcp.c */; };
+		BF4BA6F9197481B50031E432 /* jdksavb_net_udp.c in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA6F6197481B50031E432 /* jdksavb_net_udp.c */; };
+		BF4BA7001974827A0031E432 /* jdksavb_net_raw_signals.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA6FA1974827A0031E432 /* jdksavb_net_raw_signals.h */; };
+		BF4BA7011974827A0031E432 /* jdksavb_net_raw_slots.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA6FB1974827A0031E432 /* jdksavb_net_raw_slots.h */; };
+		BF4BA7021974827A0031E432 /* jdksavb_net_tcp_signals.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA6FC1974827A0031E432 /* jdksavb_net_tcp_signals.h */; };
+		BF4BA7031974827A0031E432 /* jdksavb_net_tcp_slots.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA6FD1974827A0031E432 /* jdksavb_net_tcp_slots.h */; };
+		BF4BA7041974827A0031E432 /* jdksavb_net_udp_signals.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA6FE1974827A0031E432 /* jdksavb_net_udp_signals.h */; };
+		BF4BA7051974827A0031E432 /* jdksavb_net_udp_slots.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA6FF1974827A0031E432 /* jdksavb_net_udp_slots.h */; };
+		BF4BA708197482FB0031E432 /* jdksavb_network_port_signals.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA706197482FB0031E432 /* jdksavb_network_port_signals.h */; };
+		BF4BA709197482FB0031E432 /* jdksavb_network_port_slots.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA707197482FB0031E432 /* jdksavb_network_port_slots.h */; };
+		BF4BA70C197483920031E432 /* jdksavb_hardware_control_signals.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA70A197483910031E432 /* jdksavb_hardware_control_signals.h */; };
+		BF4BA70D197483920031E432 /* jdksavb_hardware_control_slots.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4BA70B197483910031E432 /* jdksavb_hardware_control_slots.h */; };
 		BFD564B4191EEB6000B0D326 /* jdksavb_acmp_controller_signals.h in Headers */ = {isa = PBXBuildFile; fileRef = BFD5647A191EEB6000B0D326 /* jdksavb_acmp_controller_signals.h */; };
 		BFD564B5191EEB6000B0D326 /* jdksavb_acmp_controller_slots.h in Headers */ = {isa = PBXBuildFile; fileRef = BFD5647B191EEB6000B0D326 /* jdksavb_acmp_controller_slots.h */; };
 		BFD564B6191EEB6000B0D326 /* jdksavb_acmp_controller.h in Headers */ = {isa = PBXBuildFile; fileRef = BFD5647C191EEB6000B0D326 /* jdksavb_acmp_controller.h */; };
@@ -140,10 +156,25 @@
 		BFD565C9191EEBAA00B0D326 /* jdksavdecc_pdu.c in Sources */ = {isa = PBXBuildFile; fileRef = BFD565B5191EEBAA00B0D326 /* jdksavdecc_pdu.c */; };
 		BFD565CA191EEBAA00B0D326 /* jdksavdecc_print.c in Sources */ = {isa = PBXBuildFile; fileRef = BFD565B6191EEBAA00B0D326 /* jdksavdecc_print.c */; };
 		BFD565CB191EEBAA00B0D326 /* jdksavdecc.c in Sources */ = {isa = PBXBuildFile; fileRef = BFD565B7191EEBAA00B0D326 /* jdksavdecc.c */; };
-		BFD565CC191EEBAA00B0D326 /* jdksavdecc_test_descriptor_storage.c in Sources */ = {isa = PBXBuildFile; fileRef = BFD565B9191EEBAA00B0D326 /* jdksavdecc_test_descriptor_storage.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF4BA6E8197481620031E432 /* jdksavb_net_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_net_raw.h; path = include/jdksavb_net_raw.h; sourceTree = "<group>"; };
+		BF4BA6E9197481620031E432 /* jdksavb_net_tcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_net_tcp.h; path = include/jdksavb_net_tcp.h; sourceTree = "<group>"; };
+		BF4BA6EA197481620031E432 /* jdksavb_net_udp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_net_udp.h; path = include/jdksavb_net_udp.h; sourceTree = "<group>"; };
+		BF4BA6F4197481B50031E432 /* jdksavb_net_raw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jdksavb_net_raw.c; path = src/jdksavb_net_raw.c; sourceTree = "<group>"; };
+		BF4BA6F5197481B50031E432 /* jdksavb_net_tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jdksavb_net_tcp.c; path = src/jdksavb_net_tcp.c; sourceTree = "<group>"; };
+		BF4BA6F6197481B50031E432 /* jdksavb_net_udp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jdksavb_net_udp.c; path = src/jdksavb_net_udp.c; sourceTree = "<group>"; };
+		BF4BA6FA1974827A0031E432 /* jdksavb_net_raw_signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_net_raw_signals.h; path = include/jdksavb_net_raw_signals.h; sourceTree = "<group>"; };
+		BF4BA6FB1974827A0031E432 /* jdksavb_net_raw_slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_net_raw_slots.h; path = include/jdksavb_net_raw_slots.h; sourceTree = "<group>"; };
+		BF4BA6FC1974827A0031E432 /* jdksavb_net_tcp_signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_net_tcp_signals.h; path = include/jdksavb_net_tcp_signals.h; sourceTree = "<group>"; };
+		BF4BA6FD1974827A0031E432 /* jdksavb_net_tcp_slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_net_tcp_slots.h; path = include/jdksavb_net_tcp_slots.h; sourceTree = "<group>"; };
+		BF4BA6FE1974827A0031E432 /* jdksavb_net_udp_signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_net_udp_signals.h; path = include/jdksavb_net_udp_signals.h; sourceTree = "<group>"; };
+		BF4BA6FF1974827A0031E432 /* jdksavb_net_udp_slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_net_udp_slots.h; path = include/jdksavb_net_udp_slots.h; sourceTree = "<group>"; };
+		BF4BA706197482FB0031E432 /* jdksavb_network_port_signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_network_port_signals.h; path = include/jdksavb_network_port_signals.h; sourceTree = "<group>"; };
+		BF4BA707197482FB0031E432 /* jdksavb_network_port_slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_network_port_slots.h; path = include/jdksavb_network_port_slots.h; sourceTree = "<group>"; };
+		BF4BA70A197483910031E432 /* jdksavb_hardware_control_signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_hardware_control_signals.h; path = include/jdksavb_hardware_control_signals.h; sourceTree = "<group>"; };
+		BF4BA70B197483910031E432 /* jdksavb_hardware_control_slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_hardware_control_slots.h; path = include/jdksavb_hardware_control_slots.h; sourceTree = "<group>"; };
 		BFD56471191EEB1C00B0D326 /* libjdksavb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjdksavb.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD5647A191EEB6000B0D326 /* jdksavb_acmp_controller_signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_acmp_controller_signals.h; path = include/jdksavb_acmp_controller_signals.h; sourceTree = "<group>"; };
 		BFD5647B191EEB6000B0D326 /* jdksavb_acmp_controller_slots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jdksavb_acmp_controller_slots.h; path = include/jdksavb_acmp_controller_slots.h; sourceTree = "<group>"; };
@@ -278,7 +309,6 @@
 		BFD565B5191EEBAA00B0D326 /* jdksavdecc_pdu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jdksavdecc_pdu.c; path = "../jdksavdecc-c/src/jdksavdecc_pdu.c"; sourceTree = "<group>"; };
 		BFD565B6191EEBAA00B0D326 /* jdksavdecc_print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jdksavdecc_print.c; path = "../jdksavdecc-c/src/jdksavdecc_print.c"; sourceTree = "<group>"; };
 		BFD565B7191EEBAA00B0D326 /* jdksavdecc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jdksavdecc.c; path = "../jdksavdecc-c/src/jdksavdecc.c"; sourceTree = "<group>"; };
-		BFD565B9191EEBAA00B0D326 /* jdksavdecc_test_descriptor_storage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdksavdecc_test_descriptor_storage.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,25 +342,7 @@
 		BFD56478191EEB4B00B0D326 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				BFD565A6191EEBAA00B0D326 /* jdksavdecc_acmp_print.c */,
-				BFD565A7191EEBAA00B0D326 /* jdksavdecc_adp_print.c */,
-				BFD565A8191EEBAA00B0D326 /* jdksavdecc_aecp_print.c */,
-				BFD565A9191EEBAA00B0D326 /* jdksavdecc_aem_descriptor.c */,
-				BFD565AA191EEBAA00B0D326 /* jdksavdecc_aem_print.c */,
-				BFD565AB191EEBAA00B0D326 /* jdksavdecc_app_print.c */,
-				BFD565AC191EEBAA00B0D326 /* jdksavdecc_app.c */,
-				BFD565AD191EEBAA00B0D326 /* jdksavdecc_control.c */,
-				BFD565AE191EEBAA00B0D326 /* jdksavdecc_descriptor_storage_gen.c */,
-				BFD565AF191EEBAA00B0D326 /* jdksavdecc_descriptor_storage.c */,
-				BFD565B0191EEBAA00B0D326 /* jdksavdecc_entity_model.c */,
-				BFD565B1191EEBAA00B0D326 /* jdksavdecc_jdks.c */,
-				BFD565B2191EEBAA00B0D326 /* jdksavdecc_maap_print.c */,
-				BFD565B3191EEBAA00B0D326 /* jdksavdecc_maap.c */,
-				BFD565B4191EEBAA00B0D326 /* jdksavdecc_pdu_print.c */,
-				BFD565B5191EEBAA00B0D326 /* jdksavdecc_pdu.c */,
-				BFD565B6191EEBAA00B0D326 /* jdksavdecc_print.c */,
-				BFD565B7191EEBAA00B0D326 /* jdksavdecc.c */,
-				BFD565B8191EEBAA00B0D326 /* test */,
+				BFD5658D191EEB9E00B0D326 /* jdksavb.c */,
 				BFD56576191EEB9E00B0D326 /* jdksavb_acmp_controller.c */,
 				BFD56577191EEB9E00B0D326 /* jdksavb_acmp_listener.c */,
 				BFD56578191EEB9E00B0D326 /* jdksavb_acmp_talker.c */,
@@ -350,11 +362,31 @@
 				BFD56586191EEB9E00B0D326 /* jdksavb_manager.c */,
 				BFD56587191EEB9E00B0D326 /* jdksavb_msrp.c */,
 				BFD56588191EEB9E00B0D326 /* jdksavb_mvrp.c */,
+				BF4BA6F4197481B50031E432 /* jdksavb_net_raw.c */,
+				BF4BA6F5197481B50031E432 /* jdksavb_net_tcp.c */,
+				BF4BA6F6197481B50031E432 /* jdksavb_net_udp.c */,
 				BFD56589191EEB9E00B0D326 /* jdksavb_network_port.c */,
 				BFD5658A191EEB9E00B0D326 /* jdksavb_packetizer.c */,
 				BFD5658B191EEB9E00B0D326 /* jdksavb_pcapfile.c */,
 				BFD5658C191EEB9E00B0D326 /* jdksavb_world.c */,
-				BFD5658D191EEB9E00B0D326 /* jdksavb.c */,
+				BFD565B7191EEBAA00B0D326 /* jdksavdecc.c */,
+				BFD565A6191EEBAA00B0D326 /* jdksavdecc_acmp_print.c */,
+				BFD565A7191EEBAA00B0D326 /* jdksavdecc_adp_print.c */,
+				BFD565A8191EEBAA00B0D326 /* jdksavdecc_aecp_print.c */,
+				BFD565A9191EEBAA00B0D326 /* jdksavdecc_aem_descriptor.c */,
+				BFD565AA191EEBAA00B0D326 /* jdksavdecc_aem_print.c */,
+				BFD565AC191EEBAA00B0D326 /* jdksavdecc_app.c */,
+				BFD565AB191EEBAA00B0D326 /* jdksavdecc_app_print.c */,
+				BFD565AD191EEBAA00B0D326 /* jdksavdecc_control.c */,
+				BFD565AF191EEBAA00B0D326 /* jdksavdecc_descriptor_storage.c */,
+				BFD565AE191EEBAA00B0D326 /* jdksavdecc_descriptor_storage_gen.c */,
+				BFD565B0191EEBAA00B0D326 /* jdksavdecc_entity_model.c */,
+				BFD565B1191EEBAA00B0D326 /* jdksavdecc_jdks.c */,
+				BFD565B3191EEBAA00B0D326 /* jdksavdecc_maap.c */,
+				BFD565B2191EEBAA00B0D326 /* jdksavdecc_maap_print.c */,
+				BFD565B5191EEBAA00B0D326 /* jdksavdecc_pdu.c */,
+				BFD565B4191EEBAA00B0D326 /* jdksavdecc_pdu_print.c */,
+				BFD565B6191EEBAA00B0D326 /* jdksavdecc_print.c */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -399,6 +431,8 @@
 				BFD5649A191EEB6000B0D326 /* jdksavb_gptp_signals.h */,
 				BFD5649B191EEB6000B0D326 /* jdksavb_gptp_slots.h */,
 				BFD5649D191EEB6000B0D326 /* jdksavb_hardware_control.h */,
+				BF4BA70A197483910031E432 /* jdksavb_hardware_control_signals.h */,
+				BF4BA70B197483910031E432 /* jdksavb_hardware_control_slots.h */,
 				BFD5649E191EEB6000B0D326 /* jdksavb_inflight.h */,
 				BFD564A1191EEB6000B0D326 /* jdksavb_maap.h */,
 				BFD5649F191EEB6000B0D326 /* jdksavb_maap_signals.h */,
@@ -413,7 +447,18 @@
 				BFD564AB191EEB6000B0D326 /* jdksavb_mvrp.h */,
 				BFD564A9191EEB6000B0D326 /* jdksavb_mvrp_signals.h */,
 				BFD564AA191EEB6000B0D326 /* jdksavb_mvrp_slots.h */,
+				BF4BA6E8197481620031E432 /* jdksavb_net_raw.h */,
+				BF4BA6FA1974827A0031E432 /* jdksavb_net_raw_signals.h */,
+				BF4BA6FB1974827A0031E432 /* jdksavb_net_raw_slots.h */,
+				BF4BA6E9197481620031E432 /* jdksavb_net_tcp.h */,
+				BF4BA6FC1974827A0031E432 /* jdksavb_net_tcp_signals.h */,
+				BF4BA6FD1974827A0031E432 /* jdksavb_net_tcp_slots.h */,
+				BF4BA6EA197481620031E432 /* jdksavb_net_udp.h */,
+				BF4BA6FE1974827A0031E432 /* jdksavb_net_udp_signals.h */,
+				BF4BA6FF1974827A0031E432 /* jdksavb_net_udp_slots.h */,
 				BFD564AC191EEB6000B0D326 /* jdksavb_network_port.h */,
+				BF4BA706197482FB0031E432 /* jdksavb_network_port_signals.h */,
+				BF4BA707197482FB0031E432 /* jdksavb_network_port_slots.h */,
 				BFD564AF191EEB6000B0D326 /* jdksavb_packetizer.h */,
 				BFD564AD191EEB6000B0D326 /* jdksavb_packetizer_signals.h */,
 				BFD564AE191EEB6000B0D326 /* jdksavb_packetizer_slots.h */,
@@ -457,15 +502,6 @@
 			name = Headers;
 			sourceTree = "<group>";
 		};
-		BFD565B8191EEBAA00B0D326 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				BFD565B9191EEBAA00B0D326 /* jdksavdecc_test_descriptor_storage.c */,
-			);
-			name = test;
-			path = "../jdksavdecc-c/src/test";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -476,7 +512,9 @@
 				BFD564B4191EEB6000B0D326 /* jdksavb_acmp_controller_signals.h in Headers */,
 				BFD564DE191EEB6000B0D326 /* jdksavb_manager_slots.h in Headers */,
 				BFD5655D191EEB8E00B0D326 /* jdksavdecc_aecp_print.h in Headers */,
+				BF4BA6EB197481620031E432 /* jdksavb_net_raw.h in Headers */,
 				BFD564D1191EEB6000B0D326 /* jdksavb_entity_slots.h in Headers */,
+				BF4BA708197482FB0031E432 /* jdksavb_network_port_signals.h in Headers */,
 				BFD564B8191EEB6000B0D326 /* jdksavb_acmp_listener_slots.h in Headers */,
 				BFD564DA191EEB6000B0D326 /* jdksavb_maap_slots.h in Headers */,
 				BFD564D9191EEB6000B0D326 /* jdksavb_maap_signals.h in Headers */,
@@ -496,10 +534,13 @@
 				BFD564DF191EEB6000B0D326 /* jdksavb_manager.h in Headers */,
 				BFD564EB191EEB6000B0D326 /* jdksavb_srp_info.h in Headers */,
 				BFD5656A191EEB8E00B0D326 /* jdksavdecc_jdks.h in Headers */,
+				BF4BA7041974827A0031E432 /* jdksavb_net_udp_signals.h in Headers */,
+				BF4BA7001974827A0031E432 /* jdksavb_net_raw_signals.h in Headers */,
 				BFD56566191EEB8E00B0D326 /* jdksavdecc_control.h in Headers */,
 				BFD56560191EEB8E00B0D326 /* jdksavdecc_aem_command.h in Headers */,
 				BFD564B9191EEB6000B0D326 /* jdksavb_acmp_listener.h in Headers */,
 				BFD5656F191EEB8E00B0D326 /* jdksavdecc_msstdint.h in Headers */,
+				BF4BA6EC197481620031E432 /* jdksavb_net_tcp.h in Headers */,
 				BFD564BB191EEB6000B0D326 /* jdksavb_acmp_talker_slots.h in Headers */,
 				BFD56569191EEB8E00B0D326 /* jdksavdecc_entity_model.h in Headers */,
 				BFD56575191EEB8E00B0D326 /* jdksavdecc.h in Headers */,
@@ -515,14 +556,17 @@
 				BFD564BD191EEB6000B0D326 /* jdksavb_adp_advertiser_signals.h in Headers */,
 				BFD56561191EEB8E00B0D326 /* jdksavdecc_aem_descriptor.h in Headers */,
 				BFD564E7191EEB6000B0D326 /* jdksavb_packetizer_signals.h in Headers */,
+				BF4BA70C197483920031E432 /* jdksavb_hardware_control_signals.h in Headers */,
 				BFD56567191EEB8E00B0D326 /* jdksavdecc_descriptor_storage_gen.h in Headers */,
 				BFD564C1191EEB6000B0D326 /* jdksavb_adp_discover_slots.h in Headers */,
+				BF4BA7051974827A0031E432 /* jdksavb_net_udp_slots.h in Headers */,
 				BFD564CB191EEB6000B0D326 /* jdksavb_controller_slots.h in Headers */,
 				BFD564C5191EEB6000B0D326 /* jdksavb_apc_slots.h in Headers */,
 				BFD5655B191EEB8E00B0D326 /* jdksavdecc_aecp_avc.h in Headers */,
 				BFD564E4191EEB6000B0D326 /* jdksavb_mvrp_slots.h in Headers */,
 				BFD5655E191EEB8E00B0D326 /* jdksavdecc_aecp_vendor.h in Headers */,
 				BFD564BF191EEB6000B0D326 /* jdksavb_adp_advertiser.h in Headers */,
+				BF4BA7011974827A0031E432 /* jdksavb_net_raw_slots.h in Headers */,
 				BFD5655C191EEB8E00B0D326 /* jdksavdecc_aecp_hdcp_apm.h in Headers */,
 				BFD5656C191EEB8E00B0D326 /* jdksavdecc_maap.h in Headers */,
 				BFD564B7191EEB6000B0D326 /* jdksavb_acmp_listener_signals.h in Headers */,
@@ -531,6 +575,7 @@
 				BFD564D2191EEB6000B0D326 /* jdksavb_entity.h in Headers */,
 				BFD564E9191EEB6000B0D326 /* jdksavb_packetizer.h in Headers */,
 				BFD56573191EEB8E00B0D326 /* jdksavdecc_util.h in Headers */,
+				BF4BA7031974827A0031E432 /* jdksavb_net_tcp_slots.h in Headers */,
 				BFD564DC191EEB6000B0D326 /* jdksavb_manager_attributes.h in Headers */,
 				BFD56562191EEB8E00B0D326 /* jdksavdecc_aem_print.h in Headers */,
 				BFD564D3191EEB6000B0D326 /* jdksavb_frame.h in Headers */,
@@ -543,6 +588,8 @@
 				BFD564C0191EEB6000B0D326 /* jdksavb_adp_discover_signals.h in Headers */,
 				BFD564E0191EEB6000B0D326 /* jdksavb_msrp_signals.h in Headers */,
 				BFD564C8191EEB6000B0D326 /* jdksavb_aps_slots.h in Headers */,
+				BF4BA7021974827A0031E432 /* jdksavb_net_tcp_signals.h in Headers */,
+				BF4BA70D197483920031E432 /* jdksavb_hardware_control_slots.h in Headers */,
 				BFD564E5191EEB6000B0D326 /* jdksavb_mvrp.h in Headers */,
 				BFD56559191EEB8E00B0D326 /* jdksavdecc_aecp_aa.h in Headers */,
 				BFD564BA191EEB6000B0D326 /* jdksavb_acmp_talker_signals.h in Headers */,
@@ -555,6 +602,8 @@
 				BFD564D5191EEB6000B0D326 /* jdksavb_gptp_slots.h in Headers */,
 				BFD564E1191EEB6000B0D326 /* jdksavb_msrp_slots.h in Headers */,
 				BFD564D6191EEB6000B0D326 /* jdksavb_gptp.h in Headers */,
+				BF4BA6ED197481620031E432 /* jdksavb_net_udp.h in Headers */,
+				BF4BA709197482FB0031E432 /* jdksavb_network_port_slots.h in Headers */,
 				BFD564C3191EEB6000B0D326 /* jdksavb_allocator.h in Headers */,
 				BFD56570191EEB8E00B0D326 /* jdksavdecc_pdu_print.h in Headers */,
 				BFD564C4191EEB6000B0D326 /* jdksavb_apc_signals.h in Headers */,
@@ -621,14 +670,15 @@
 				BFD56592191EEB9E00B0D326 /* jdksavb_adp_discover.c in Sources */,
 				BFD565A3191EEB9E00B0D326 /* jdksavb_pcapfile.c in Sources */,
 				BFD5659E191EEB9E00B0D326 /* jdksavb_manager.c in Sources */,
+				BF4BA6F7197481B50031E432 /* jdksavb_net_raw.c in Sources */,
 				BFD5659A191EEB9E00B0D326 /* jdksavb_gptp.c in Sources */,
-				BFD565CC191EEBAA00B0D326 /* jdksavdecc_test_descriptor_storage.c in Sources */,
 				BFD565C0191EEBAA00B0D326 /* jdksavdecc_app.c in Sources */,
 				BFD565CB191EEBAA00B0D326 /* jdksavdecc.c in Sources */,
 				BFD5659F191EEB9E00B0D326 /* jdksavb_msrp.c in Sources */,
 				BFD5659D191EEB9E00B0D326 /* jdksavb_maap.c in Sources */,
 				BFD5658F191EEB9E00B0D326 /* jdksavb_acmp_listener.c in Sources */,
 				BFD565BF191EEBAA00B0D326 /* jdksavdecc_app_print.c in Sources */,
+				BF4BA6F8197481B50031E432 /* jdksavb_net_tcp.c in Sources */,
 				BFD565C4191EEBAA00B0D326 /* jdksavdecc_entity_model.c in Sources */,
 				BFD565CA191EEBAA00B0D326 /* jdksavdecc_print.c in Sources */,
 				BFD565BB191EEBAA00B0D326 /* jdksavdecc_adp_print.c in Sources */,
@@ -642,6 +692,7 @@
 				BFD5659B191EEB9E00B0D326 /* jdksavb_hardware_control.c in Sources */,
 				BFD56596191EEB9E00B0D326 /* jdksavb_controller.c in Sources */,
 				BFD56594191EEB9E00B0D326 /* jdksavb_apc.c in Sources */,
+				BF4BA6F9197481B50031E432 /* jdksavb_net_udp.c in Sources */,
 				BFD56593191EEB9E00B0D326 /* jdksavb_allocator.c in Sources */,
 				BFD565A2191EEB9E00B0D326 /* jdksavb_packetizer.c in Sources */,
 				BFD565A0191EEB9E00B0D326 /* jdksavb_mvrp.c in Sources */,
