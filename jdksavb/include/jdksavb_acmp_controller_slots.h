@@ -54,7 +54,7 @@ struct jdksavb_acmp_controller_slots
 
     void ( *handle_pdu )( struct jdksavb_acmp_controller_slots *self, struct jdksavb_frame *frame );
 
-    void ( *tick )( struct jdksavb_acmp_controller_slots *self, jdksavdecc_timestamp_in_milliseconds current_time );
+    void ( *tick )( struct jdksavb_acmp_controller_slots *self, jdksavdecc_timestamp_in_microseconds current_time );
 };
 
 #ifdef __cplusplus

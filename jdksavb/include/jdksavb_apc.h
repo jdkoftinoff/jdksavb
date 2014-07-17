@@ -31,6 +31,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "jdksavdecc.h"
+#include "jdksavb_apc_signals.h"
+#include "jdksavb_apc_slots.h"
+
 
 #ifdef __cplusplus
 extern "C" {

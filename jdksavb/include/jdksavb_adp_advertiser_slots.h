@@ -30,6 +30,7 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
+#include "jdksavb_adp_advertiser_signals.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,6 +38,55 @@ extern "C" {
 
 struct jdksavb_adp_advertiser_slots
 {
+    void ( *terminate )( 
+        struct jdksavb_adp_advertiser_slots *self 
+    );
+    
+    void ( *connect_signals )( 
+        struct jdksavb_adp_advertiser_slots *self,
+        struct jdksavb_adp_advertiser_signals *destination_signals 
+    );
+
+    void ( *disconnect_signals )( 
+        struct jdksavb_adp_advertiser_slots *self,
+        struct jdksavb_adp_advertiser_signals *destination_signals 
+    );
+
+    void ( *set_adpdu )(
+        struct jdksavb_adp_advertiser_slots *self, 
+        struct jdksavdecc_adpdu adpdu_params
+    );
+                
+    void ( *gptp_gm_changed )(
+        struct jdksavb_adp_advertiser_slots *self, 
+        struct jdksavdecc_eui64 new_gtp_gm_id,
+        uint8_t new_gptp_domain_id
+    );
+    
+    void ( *network_port_link_status_changed )( 
+        struct jdksavb_adp_advertiser_slots *self, 
+        struct jdksavdecc_eui48 mac_addr, 
+        bool up 
+        );     
+
+    void ( *start )( 
+        struct jdksavb_adp_advertiser_slots *self 
+    );
+
+    void ( *stop )( 
+        struct jdksavb_adp_advertiser_slots *self 
+    );
+
+    void ( *handle_pdu )( 
+        struct jdksavb_adp_advertiser_slots *self, 
+        struct jdksavb_frame *frame 
+    );
+
+    void ( *tick )( 
+        struct jdksavb_adp_advertiser_slots *self, 
+        jdksavdecc_timestamp_in_microseconds current_time 
+    );
+                
 };
 
 #ifdef __cplusplus

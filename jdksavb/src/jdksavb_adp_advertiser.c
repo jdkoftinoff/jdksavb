@@ -74,7 +74,7 @@ void jdksavb_adp_terminate( struct jdksavb_adp_advertiser *self )
 }
 
 bool jdksavb_adp_receive( struct jdksavb_adp_advertiser *self,
-                          jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
+                          jdksavdecc_timestamp_in_microseconds time_in_microseconds,
                           void const *source_address,
                           int source_address_len,
                           uint8_t const *buf,
@@ -82,7 +82,7 @@ bool jdksavb_adp_receive( struct jdksavb_adp_advertiser *self,
 {
     struct jdksavdecc_adpdu incoming;
     bool r = false;
-    (void)time_in_milliseconds;
+    (void)time_in_microseconds;
     if ( jdksavdecc_adpdu_read( &incoming, buf, 0, len ) > 0 )
     {
         r = true;
@@ -124,15 +124,15 @@ bool jdksavb_adp_receive( struct jdksavb_adp_advertiser *self,
     return r;
 }
 
-void jdksavb_adp_tick( struct jdksavb_adp_advertiser *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms )
+void jdksavb_adp_tick( struct jdksavb_adp_advertiser *self, jdksavdecc_timestamp_in_microseconds cur_time_in_micros )
 {
 
     // calculate the time since the last send
-    jdksavdecc_timestamp_in_milliseconds difftime = cur_time_in_ms - self->last_time_in_ms;
+    jdksavdecc_timestamp_in_microseconds difftime = cur_time_in_micros - self->last_time_in_ms;
 
-    jdksavdecc_timestamp_in_milliseconds valid_time_in_ms = self->adpdu.header.valid_time;
+    jdksavdecc_timestamp_in_microseconds valid_time_in_ms = self->adpdu.header.valid_time;
 
-    // calculate the time in milliseconds between sends.
+    // calculate the time in microseconds between sends.
     // header.valid_time is in 2 second increments. We are to send
     // 4 available messages per valid_time.
     valid_time_in_ms = ( valid_time_in_ms * 1000 ) / 2;
@@ -164,7 +164,7 @@ void jdksavb_adp_tick( struct jdksavb_adp_advertiser *self, jdksavdecc_timestamp
 
         // record the time we send it
 
-        self->last_time_in_ms = cur_time_in_ms;
+        self->last_time_in_ms = cur_time_in_micros;
 
         // send the departing
 
@@ -193,7 +193,7 @@ void jdksavb_adp_tick( struct jdksavb_adp_advertiser *self, jdksavdecc_timestamp
 
             // record the time we send it
 
-            self->last_time_in_ms = cur_time_in_ms;
+            self->last_time_in_ms = cur_time_in_micros;
 
             // send the available
 

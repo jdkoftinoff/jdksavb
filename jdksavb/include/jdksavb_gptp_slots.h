@@ -41,7 +41,7 @@ struct jdksavb_gptp_slots
     void ( *start )( void *self );
     void ( *stop )( void *self );
     void ( *handle_pdu )( void *self, struct jdksavb_frame const *frame, uint64_t hardware_timestamp );
-    void ( *tick )( void *self, jdksavdecc_timestamp_in_milliseconds current_time );
+    void ( *tick )( void *self, jdksavdecc_timestamp_in_microseconds current_time );
     void ( *outgoing_packet_timestamped )( void *self, struct jdksavb_frame const *frame, uint64_t hardware_timestamp );
 };
 

@@ -48,7 +48,7 @@ struct jdksavb_acmp_listener_slots
 
     void ( *handle_pdu )( void *self, struct jdksavb_frame *pdu );
 
-    void ( *tick )( void *self, jdksavdecc_timestamp_in_milliseconds current_time );
+    void ( *tick )( void *self, jdksavdecc_timestamp_in_microseconds current_time );
 
     void ( *srp_talker_info_received )( void *self, const struct jdksavb_srp_info_talker *stream_info );
 };

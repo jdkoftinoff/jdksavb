@@ -52,7 +52,7 @@ struct jdksavb_acmp_talker_slots
 
     void ( *tick )( struct jdksavb_acmp_talker_slots *self,
                     struct jdksavb_acmp_talker_signals *sender,
-                    jdksavdecc_timestamp_in_milliseconds current_time );
+                    jdksavdecc_timestamp_in_microseconds current_time );
 
     void ( *acmp_talker_stream_info_assigned )( struct jdksavb_acmp_talker_slots *self,
                                                 struct jdksavb_acmp_talker_signals *sender,

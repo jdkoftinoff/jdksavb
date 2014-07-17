@@ -46,13 +46,13 @@ struct jdksavb_controller
 
     bool ( *received_aa_response )( struct jdksavb_entity *self,
                                     struct jdksavdecc_aecp_aa const *aa,
-                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                     uint8_t *buf,
                                     uint16_t len );
 
     bool ( *received_aem_response )( struct jdksavb_entity *self,
                                      struct jdksavdecc_aecpdu_aem const *aem,
-                                     jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                     jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                      uint8_t *buf,
                                      uint16_t len );
 
@@ -64,7 +64,7 @@ struct jdksavb_controller
 
     bool ( *receive_acquire_entity_response )( struct jdksavb_entity *self,
                                                struct jdksavdecc_aecpdu_aem const *aem,
-                                               jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                               jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                uint8_t *buf,
                                                uint16_t len );
 
@@ -76,7 +76,7 @@ struct jdksavb_controller
 
     bool ( *receive_lock_entity_response )( struct jdksavb_entity *self,
                                             struct jdksavdecc_aecpdu_aem const *aem,
-                                            jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                            jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                             uint8_t *buf,
                                             uint16_t len );
 
@@ -89,7 +89,7 @@ struct jdksavb_controller
 
     bool ( *receive_read_descriptor_response )( struct jdksavb_entity *self,
                                                 struct jdksavdecc_aecpdu_aem const *aem,
-                                                jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                 uint8_t *buf,
                                                 uint16_t len );
 
@@ -100,7 +100,7 @@ struct jdksavb_controller
 
     bool ( *receive_set_configuration_response )( struct jdksavb_entity *self,
                                                   struct jdksavdecc_aecpdu_aem const *aem,
-                                                  jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                  jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                   uint8_t *buf,
                                                   uint16_t len );
 
@@ -115,7 +115,7 @@ struct jdksavb_controller
 
     bool ( *receive_set_name_response )( struct jdksavb_entity *self,
                                          struct jdksavdecc_aecpdu_aem const *aem,
-                                         jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                         jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                          uint8_t *buf,
                                          uint16_t len );
 
@@ -130,7 +130,7 @@ struct jdksavb_controller
 
     bool ( *receive_get_name_response )( struct jdksavb_entity *self,
                                          struct jdksavdecc_aecpdu_aem const *aem,
-                                         jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                         jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                          uint8_t *buf,
                                          uint16_t len );
 
@@ -144,7 +144,7 @@ struct jdksavb_controller
 
     bool ( *receive_set_control_response )( struct jdksavb_entity *self,
                                             struct jdksavdecc_aecpdu_aem const *aem,
-                                            jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                            jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                             uint8_t *buf,
                                             uint16_t len );
 
@@ -154,7 +154,7 @@ struct jdksavb_controller
 
     bool ( *receive_register_unsolicited_notification_response )( struct jdksavb_entity *self,
                                                                   struct jdksavdecc_aecpdu_aem const *aem,
-                                                                  jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                                  jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                                   uint8_t *buf,
                                                                   uint16_t len );
 
@@ -164,7 +164,7 @@ struct jdksavb_controller
 
     bool ( *receive_deregister_unsolicited_notification_response )( struct jdksavb_entity *self,
                                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                                     uint8_t *buf,
                                                                     uint16_t len );
 
@@ -175,7 +175,7 @@ struct jdksavb_controller
 
     bool ( *receive_get_control_response )( struct jdksavb_entity *self,
                                             struct jdksavdecc_aecpdu_aem const *aem,
-                                            jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                            jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                             uint8_t *buf,
                                             uint16_t len );
 };
@@ -195,13 +195,13 @@ void jdksavb_controller_terminate( struct jdksavb_entity *self );
 
 bool jdksavb_controller_received_aa_response( struct jdksavb_entity *self,
                                               struct jdksavdecc_aecp_aa const *aa,
-                                              jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                              jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                               uint8_t *buf,
                                               uint16_t len );
 
 bool jdksavb_controller_received_aem_response( struct jdksavb_entity *self,
                                                struct jdksavdecc_aecpdu_aem const *aem,
-                                               jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                               jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                uint8_t *buf,
                                                uint16_t len );
 
@@ -212,13 +212,13 @@ void jdksavb_controller_send_acquire_entity( struct jdksavb_entity *self,
 
 bool jdkavdecc_controller_receive_acquire_entity_response( struct jdksavb_entity *self,
                                                            struct jdksavdecc_aecpdu_aem const *aem,
-                                                           jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                           jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                            uint8_t *buf,
                                                            uint16_t len );
 
 bool jdksavb_controller_receive( struct jdksavb_entity *self,
                                  void *context,
-                                 jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
+                                 jdksavdecc_timestamp_in_microseconds time_in_microseconds,
                                  uint8_t *buf,
                                  uint16_t len );
 

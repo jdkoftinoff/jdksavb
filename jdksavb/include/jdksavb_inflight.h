@@ -46,9 +46,9 @@ extern "C" {
 struct jdksavb_inflight_command_info
 {
     /// This is the timestamp of the last command that we sent to another entity
-    jdksavdecc_timestamp_in_milliseconds sent_time;
+    jdksavdecc_timestamp_in_microseconds sent_time;
 
-    /// This is the number of milliseconds before the message times out
+    /// This is the number of microseconds before the message times out
     uint16_t time_out_in_ms;
 
     /// This is the entity id that was the target of the last command that we sent
@@ -87,7 +87,7 @@ int jdksavb_inflight_commands_find( struct jdksavb_inflight_commands *self,
                                     uint16_t sequence_id );
 
 void jdksavb_inflight_commands_tick( struct jdksavb_inflight_commands *self,
-                                     jdksavdecc_timestamp_in_milliseconds cur_time,
+                                     jdksavdecc_timestamp_in_microseconds cur_time,
                                      void *context );
 
 void jdksavb_inflight_commands_remove( struct jdksavb_inflight_commands *self, int num );

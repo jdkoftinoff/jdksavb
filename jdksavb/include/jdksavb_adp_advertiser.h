@@ -63,8 +63,8 @@ struct jdksavb_adp_advertiser
     /// The current ADPDU that is sent
     struct jdksavdecc_adpdu adpdu;
 
-    /// The system time in milliseconds that the last ADPDU was sent
-    jdksavdecc_timestamp_in_milliseconds last_time_in_ms;
+    /// The system time in microseconds that the last ADPDU was sent
+    jdksavdecc_timestamp_in_microseconds last_time_in_ms;
 
     /// A flag used to notify the state machine to trigger the sending of a discover message immediately
     bool do_send_entity_discover;
@@ -101,14 +101,14 @@ void jdksavb_adp_advertiser_terminate( struct jdksavb_adp_advertiser *self );
 
 /// Receive an ADPU and process it
 bool jdksavb_adp_receive( struct jdksavb_adp_advertiser *self,
-                          jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
+                          jdksavdecc_timestamp_in_microseconds time_in_microseconds,
                           void const *source_address,
                           int source_address_len,
                           uint8_t const *buf,
                           uint16_t len );
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_adp_tick( struct jdksavb_adp_advertiser *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms );
+void jdksavb_adp_tick( struct jdksavb_adp_advertiser *self, jdksavdecc_timestamp_in_microseconds cur_time_in_micros );
 
 /// Request the state machine to send an entity discover message on the next tick.
 void jdksavb_adp_trigger_send_discover( struct jdksavb_adp_advertiser *self );

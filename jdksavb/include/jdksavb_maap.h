@@ -51,8 +51,8 @@ struct jdksavb_maap
     struct jdksavb_maap_slots slots;
     struct jdksavb_maap_signals *signals;
 
-    /// The system time in milliseconds that the last message was sent
-    jdksavdecc_timestamp_in_milliseconds last_time_in_ms;
+    /// The system time in microseconds that the last message was sent
+    jdksavdecc_timestamp_in_microseconds last_time_in_ms;
 };
 
 /// Initialize an jdksavdecc_adp_manager with the specified context and frame_send function and
@@ -64,14 +64,14 @@ void jdksavb_maap_terminate( struct jdksavb_maap *self );
 
 /// Receive a MAAPDU and process it
 bool jdksavb_maap_receive( struct jdksavb_maap *self,
-                           jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
+                           jdksavdecc_timestamp_in_microseconds time_in_microseconds,
                            void const *source_address,
                            int source_address_len,
                            uint8_t const *buf,
                            uint16_t len );
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_maap_tick( void *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms );
+void jdksavb_maap_tick( void *self, jdksavdecc_timestamp_in_microseconds cur_time_in_micros );
 
 /*@}*/
 

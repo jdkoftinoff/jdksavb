@@ -70,7 +70,7 @@ int jdksavb_inflight_commands_find( struct jdksavb_inflight_commands *self,
 }
 
 void jdksavb_inflight_commands_tick( struct jdksavb_inflight_commands *self,
-                                     jdksavdecc_timestamp_in_milliseconds cur_time,
+                                     jdksavdecc_timestamp_in_microseconds cur_time,
                                      void *context )
 {
 }

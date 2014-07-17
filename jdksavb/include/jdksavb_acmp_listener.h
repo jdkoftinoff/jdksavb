@@ -83,7 +83,7 @@ void jdksavb_acmp_listener_terminate( struct jdksavb_acmp_listener *self );
 void ( *start )( void *self, uint16_t listener_stream_sinks );
 void ( *stop )( void *self );
 void ( *handle_acmpdu )( void *self, const struct jdksavb_frame *acmpdu );
-void ( *tick )( void *self, jdksavdecc_timestamp_in_milliseconds current_time );
+void ( *tick )( void *self, jdksavdecc_timestamp_in_microseconds current_time );
 void ( *srp_talker_info_received )( void *self, const struct jdksavb_srp_info_talker *stream_info );
 
 /// Receive an ACMPDU and process it

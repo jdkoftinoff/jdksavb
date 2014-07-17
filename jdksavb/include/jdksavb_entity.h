@@ -52,14 +52,14 @@ struct jdksavb_symbol_dispatch
     uint32_t symbol;
 
     /// Notify the item that time has passed.
-    void ( *tick )( struct jdksavb_entity *self, uint32_t symbol, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms );
+    void ( *tick )( struct jdksavb_entity *self, uint32_t symbol, jdksavdecc_timestamp_in_microseconds cur_time_in_micros );
 
     /// The pdu contains a valid Read Descriptor Command
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_read_descriptor_command )( struct jdksavb_entity *entity_manager,
                                                   uint32_t symbol,
                                                   struct jdksavdecc_aecpdu_aem const *aem,
-                                                  jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                  jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                   uint8_t *buf,
                                                   uint16_t len );
 
@@ -70,7 +70,7 @@ struct jdksavb_symbol_dispatch
     uint8_t ( *receive_set_command )( struct jdksavb_entity *entity_manager,
                                       uint32_t symbol,
                                       struct jdksavdecc_aecpdu_aem const *aem,
-                                      jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                      jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                       uint8_t *buf,
                                       uint16_t len );
 
@@ -80,7 +80,7 @@ struct jdksavb_symbol_dispatch
     uint8_t ( *receive_get_command )( struct jdksavb_entity *entity_manager,
                                       uint32_t symbol,
                                       struct jdksavdecc_aecpdu_aem const *aem,
-                                      jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                      jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                       uint8_t *buf,
                                       uint16_t len );
 };
@@ -141,7 +141,7 @@ struct jdksavb_entity
 
     /// If we are currently interrogating a controller with a controller available, then
     /// this is the timestamp of when we started the controller available negotiation mechanism
-    jdksavdecc_timestamp_in_milliseconds acquire_in_progress_time;
+    jdksavdecc_timestamp_in_microseconds acquire_in_progress_time;
 
     /// If we are locked by a controller, then this contains the controller's entity id which
     /// locked us
@@ -149,7 +149,7 @@ struct jdksavb_entity
 
     /// If we are locked by a controller, then this contains the timestamp of when the lock first
     /// ocurred
-    jdksavdecc_timestamp_in_milliseconds locked_time;
+    jdksavdecc_timestamp_in_microseconds locked_time;
 
     /// This contains the unordered list of controller entity id's that are currently registered
     /// via the register for unsolicited notifications command. The entity id is FF:FF:FF:FF:FF:FF:FF:FF
@@ -174,7 +174,7 @@ struct jdksavb_entity
     /// The received pdu contains a valid ACMP message
     uint8_t ( *received_acmpdu )( struct jdksavb_entity *self,
                                   struct jdksavdecc_acmpdu const *acmp,
-                                  jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                  jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                   uint8_t *buf,
                                   uint16_t len );
 
@@ -182,7 +182,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *received_aem_command )( struct jdksavb_entity *self,
                                        struct jdksavdecc_aecpdu_aem const *aem,
-                                       jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                       jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                        uint8_t *buf,
                                        uint16_t len );
 
@@ -190,7 +190,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AA status code
     uint8_t ( *received_aa_command )( struct jdksavb_entity *self,
                                       struct jdksavdecc_aecp_aa const *aa,
-                                      jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                      jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                       uint8_t *buf,
                                       uint16_t len );
 
@@ -233,7 +233,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_acquire_entity_command )( struct jdksavb_entity *self,
                                                  struct jdksavdecc_aecpdu_aem const *aem,
-                                                 jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                 jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                  uint8_t *buf,
                                                  uint16_t len );
 
@@ -241,7 +241,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_lock_entity_command )( struct jdksavb_entity *self,
                                               struct jdksavdecc_aecpdu_aem const *aem,
-                                              jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                              jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                               uint8_t *buf,
                                               uint16_t len );
 
@@ -249,7 +249,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_entity_available_command )( struct jdksavb_entity *self,
                                                    struct jdksavdecc_aecpdu_aem const *aem,
-                                                   jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                   jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                    uint8_t *buf,
                                                    uint16_t len );
 
@@ -262,7 +262,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_controller_available_command )( struct jdksavb_entity *self,
                                                        struct jdksavdecc_aecpdu_aem const *aem,
-                                                       jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                       jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                        uint8_t *buf,
                                                        uint16_t len );
 
@@ -270,7 +270,7 @@ struct jdksavb_entity
     /// return true if the response is handled
     bool ( *receive_controller_available_response )( struct jdksavb_entity *self,
                                                      struct jdksavdecc_aecpdu_aem const *aem,
-                                                     jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                     jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                      uint8_t *buf,
                                                      uint16_t len );
 
@@ -278,7 +278,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_read_descriptor_command )( struct jdksavb_entity *self,
                                                   struct jdksavdecc_aecpdu_aem const *aem,
-                                                  jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                  jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                   uint8_t *buf,
                                                   uint16_t len );
 
@@ -286,7 +286,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_set_configuration_command )( struct jdksavb_entity *self,
                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                     uint8_t *buf,
                                                     uint16_t len );
 
@@ -294,7 +294,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_get_configuration_command )( struct jdksavb_entity *self,
                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                     uint8_t *buf,
                                                     uint16_t len );
 
@@ -302,7 +302,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_set_name_command )( struct jdksavb_entity *self,
                                            struct jdksavdecc_aecpdu_aem const *aem,
-                                           jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                           jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                            uint8_t *buf,
                                            uint16_t len );
 
@@ -310,7 +310,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_get_name_command )( struct jdksavb_entity *self,
                                            struct jdksavdecc_aecpdu_aem const *aem,
-                                           jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                           jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                            uint8_t *buf,
                                            uint16_t len );
 
@@ -324,7 +324,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_set_control_command )( struct jdksavb_entity *self,
                                               struct jdksavdecc_aecpdu_aem const *aem,
-                                              jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                              jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                               uint8_t *buf,
                                               uint16_t len );
 
@@ -332,7 +332,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_get_control_command )( struct jdksavb_entity *self,
                                               struct jdksavdecc_aecpdu_aem const *aem,
-                                              jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                              jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                               uint8_t *buf,
                                               uint16_t len );
 
@@ -340,7 +340,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_increment_control_command )( struct jdksavb_entity *self,
                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                     uint8_t *buf,
                                                     uint16_t len );
 
@@ -348,7 +348,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_decrement_control_command )( struct jdksavb_entity *self,
                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                     uint8_t *buf,
                                                     uint16_t len );
 
@@ -356,7 +356,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_set_mixer_command )( struct jdksavb_entity *self,
                                             struct jdksavdecc_aecpdu_aem const *aem,
-                                            jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                            jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                             uint8_t *buf,
                                             uint16_t len );
 
@@ -364,7 +364,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_get_mixer_command )( struct jdksavb_entity *self,
                                             struct jdksavdecc_aecpdu_aem const *aem,
-                                            jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                            jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                             uint8_t *buf,
                                             uint16_t len );
 
@@ -372,7 +372,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_set_signal_selector_command )( struct jdksavb_entity *self,
                                                       struct jdksavdecc_aecpdu_aem const *aem,
-                                                      jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                      jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                       uint8_t *buf,
                                                       uint16_t len );
 
@@ -380,7 +380,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_get_signal_selector_command )( struct jdksavb_entity *self,
                                                       struct jdksavdecc_aecpdu_aem const *aem,
-                                                      jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                      jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                       uint8_t *buf,
                                                       uint16_t len );
 
@@ -388,7 +388,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_register_unsolicited_notification_command )( struct jdksavb_entity *self,
                                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                                     uint8_t *buf,
                                                                     uint16_t len );
 
@@ -396,7 +396,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *receive_deregister_unsolicited_notification_command )( struct jdksavb_entity *self,
                                                                       struct jdksavdecc_aecpdu_aem const *aem,
-                                                                      jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                                      jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                                       uint8_t *buf,
                                                                       uint16_t len );
 
@@ -404,7 +404,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *read_descriptor_entity )( struct jdksavb_entity *self,
                                          struct jdksavdecc_aecpdu_aem const *aem,
-                                         jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                         jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                          uint8_t *buf,
                                          uint16_t len );
 
@@ -412,7 +412,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *read_descriptor_configuration )( struct jdksavb_entity *self,
                                                 struct jdksavdecc_aecpdu_aem const *aem,
-                                                jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                 uint8_t *buf,
                                                 uint16_t len );
 
@@ -420,7 +420,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *read_descriptor_control )( struct jdksavb_entity *self,
                                           struct jdksavdecc_aecpdu_aem const *aem,
-                                          jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                          jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                           uint8_t *buf,
                                           uint16_t len );
 
@@ -428,7 +428,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *read_descriptor_locale )( struct jdksavb_entity *self,
                                          struct jdksavdecc_aecpdu_aem const *aem,
-                                         jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                         jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                          uint8_t *buf,
                                          uint16_t len );
 
@@ -436,7 +436,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *read_descriptor_strings )( struct jdksavb_entity *self,
                                           struct jdksavdecc_aecpdu_aem const *aem,
-                                          jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                          jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                           uint8_t *buf,
                                           uint16_t len );
 
@@ -444,7 +444,7 @@ struct jdksavb_entity
     /// Fill in the response in place in the pdu and return an AECP AEM status code
     uint8_t ( *read_descriptor_memory )( struct jdksavb_entity *self,
                                          struct jdksavdecc_aecpdu_aem const *aem,
-                                         jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                         jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                          uint8_t *buf,
                                          uint16_t len );
 
@@ -490,7 +490,7 @@ struct jdksavb_symbol_dispatch *
 uint8_t jdksavb_entity_dispatch_symbol_receive_read_descriptor_command( struct jdksavb_entity *self,
                                                                         uint32_t symbol,
                                                                         struct jdksavdecc_aecpdu_aem const *aem,
-                                                                        jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                                        jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                                         uint8_t *buf,
                                                                         uint16_t len );
 
@@ -501,7 +501,7 @@ uint8_t jdksavb_entity_dispatch_symbol_receive_read_descriptor_command( struct j
 uint8_t jdksavb_entity_dispatch_symbol_set_command( struct jdksavb_entity *self,
                                                     uint32_t symbol,
                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                     uint8_t *buf,
                                                     uint16_t len );
 
@@ -511,19 +511,19 @@ uint8_t jdksavb_entity_dispatch_symbol_set_command( struct jdksavb_entity *self,
 uint8_t jdksavb_entity_dispatch_symbol_receive_get_command( struct jdksavb_entity *self,
                                                             uint32_t symbol,
                                                             struct jdksavdecc_aecpdu_aem const *aem,
-                                                            jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                            jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                             uint8_t *buf,
                                                             uint16_t len );
 
 /// Receive an ADPU and process it
 bool jdksavb_entity_receive( struct jdksavb_entity *self,
                              void *context,
-                             jdksavdecc_timestamp_in_milliseconds time_in_milliseconds,
+                             jdksavdecc_timestamp_in_microseconds time_in_microseconds,
                              uint8_t *buf,
                              uint16_t len );
 
 /// Notify the state machine that time has passed. Call asap if early_tick is true.
-void jdksavb_entity_tick( struct jdksavb_entity *self, jdksavdecc_timestamp_in_milliseconds cur_time_in_ms );
+void jdksavb_entity_tick( struct jdksavb_entity *self, jdksavdecc_timestamp_in_microseconds cur_time_in_micros );
 
 /// Notification that a command to a target entity timed out
 void jdksavb_entity_command_timed_out( struct jdksavb_entity *self,
@@ -538,7 +538,7 @@ uint8_t jdksavb_entity_validate_permissions( struct jdksavb_entity *self, struct
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_received_aem_command( struct jdksavb_entity *self,
                                              struct jdksavdecc_aecpdu_aem const *aem,
-                                             jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                             jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                              uint8_t *buf,
                                              uint16_t len );
 
@@ -546,7 +546,7 @@ uint8_t jdksavb_entity_received_aem_command( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AA status code
 uint8_t jdksavb_entity_received_aa_command( struct jdksavb_entity *self,
                                             struct jdksavdecc_aecp_aa const *aa,
-                                            jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                            jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                             uint8_t *buf,
                                             uint16_t len );
 
@@ -588,7 +588,7 @@ void jdksavb_entity_send_unsolicited_responses( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_acquire_entity_command( struct jdksavb_entity *self,
                                                        struct jdksavdecc_aecpdu_aem const *aem,
-                                                       jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                       jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                        uint8_t *buf,
                                                        uint16_t len );
 
@@ -596,7 +596,7 @@ uint8_t jdksavb_entity_receive_acquire_entity_command( struct jdksavb_entity *se
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_lock_entity_command( struct jdksavb_entity *self,
                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                     uint8_t *buf,
                                                     uint16_t len );
 
@@ -604,7 +604,7 @@ uint8_t jdksavb_entity_receive_lock_entity_command( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_entity_available_command( struct jdksavb_entity *self,
                                                          struct jdksavdecc_aecpdu_aem const *aem,
-                                                         jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                         jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                          uint8_t *buf,
                                                          uint16_t len );
 
@@ -617,7 +617,7 @@ void jdksavb_entity_send_controller_available( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_controller_available_command( struct jdksavb_entity *self,
                                                              struct jdksavdecc_aecpdu_aem const *aem,
-                                                             jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                             jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                              uint8_t *buf,
                                                              uint16_t len );
 
@@ -625,7 +625,7 @@ uint8_t jdksavb_entity_receive_controller_available_command( struct jdksavb_enti
 /// return true if the response is handled
 bool jdksavb_entity_receive_controller_available_response( struct jdksavb_entity *self,
                                                            struct jdksavdecc_aecpdu_aem const *aem,
-                                                           jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                           jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                            uint8_t *buf,
                                                            uint16_t len );
 
@@ -633,7 +633,7 @@ bool jdksavb_entity_receive_controller_available_response( struct jdksavb_entity
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_read_descriptor_command( struct jdksavb_entity *self,
                                                         struct jdksavdecc_aecpdu_aem const *aem,
-                                                        jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                        jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                         uint8_t *buf,
                                                         uint16_t len );
 
@@ -641,7 +641,7 @@ uint8_t jdksavb_entity_receive_read_descriptor_command( struct jdksavb_entity *s
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_set_configuration_command( struct jdksavb_entity *self,
                                                           struct jdksavdecc_aecpdu_aem const *aem,
-                                                          jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                          jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                           uint8_t *buf,
                                                           uint16_t len );
 
@@ -649,7 +649,7 @@ uint8_t jdksavb_entity_receive_set_configuration_command( struct jdksavb_entity 
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_get_configuration_command( struct jdksavb_entity *self,
                                                           struct jdksavdecc_aecpdu_aem const *aem,
-                                                          jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                          jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                           uint8_t *buf,
                                                           uint16_t len );
 
@@ -657,7 +657,7 @@ uint8_t jdksavb_entity_receive_get_configuration_command( struct jdksavb_entity 
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_set_name_command( struct jdksavb_entity *self,
                                                  struct jdksavdecc_aecpdu_aem const *aem,
-                                                 jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                 jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                  uint8_t *buf,
                                                  uint16_t len );
 
@@ -665,7 +665,7 @@ uint8_t jdksavb_entity_receive_set_name_command( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_get_name_command( struct jdksavb_entity *self,
                                                  struct jdksavdecc_aecpdu_aem const *aem,
-                                                 jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                 jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                  uint8_t *buf,
                                                  uint16_t len );
 
@@ -679,7 +679,7 @@ void jdksavb_entity_send_set_control_unsolicited_response( struct jdksavb_entity
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_set_control_command( struct jdksavb_entity *self,
                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                     uint8_t *buf,
                                                     uint16_t len );
 
@@ -687,7 +687,7 @@ uint8_t jdksavb_entity_receive_set_control_command( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_get_control_command( struct jdksavb_entity *self,
                                                     struct jdksavdecc_aecpdu_aem const *aem,
-                                                    jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                    jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                     uint8_t *buf,
                                                     uint16_t len );
 
@@ -695,7 +695,7 @@ uint8_t jdksavb_entity_receive_get_control_command( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_register_unsolicited_notification_command( struct jdksavb_entity *self,
                                                                           struct jdksavdecc_aecpdu_aem const *aem,
-                                                                          jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                                          jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                                           uint8_t *buf,
                                                                           uint16_t len );
 
@@ -703,7 +703,7 @@ uint8_t jdksavb_entity_receive_register_unsolicited_notification_command( struct
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_receive_deregister_unsolicited_notification_command( struct jdksavb_entity *self,
                                                                             struct jdksavdecc_aecpdu_aem const *aem,
-                                                                            jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                                            jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                                             uint8_t *buf,
                                                                             uint16_t len );
 
@@ -711,7 +711,7 @@ uint8_t jdksavb_entity_receive_deregister_unsolicited_notification_command( stru
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_read_descriptor_entity( struct jdksavb_entity *self,
                                                struct jdksavdecc_aecpdu_aem const *aem,
-                                               jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                               jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                uint8_t *buf,
                                                uint16_t len );
 
@@ -719,7 +719,7 @@ uint8_t jdksavb_entity_read_descriptor_entity( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_read_descriptor_configuration( struct jdksavb_entity *self,
                                                       struct jdksavdecc_aecpdu_aem const *aem,
-                                                      jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                      jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                       uint8_t *buf,
                                                       uint16_t len );
 
@@ -727,7 +727,7 @@ uint8_t jdksavb_entity_read_descriptor_configuration( struct jdksavb_entity *sel
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_read_descriptor_control( struct jdksavb_entity *self,
                                                 struct jdksavdecc_aecpdu_aem const *aem,
-                                                jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                 uint8_t *buf,
                                                 uint16_t len );
 
@@ -735,7 +735,7 @@ uint8_t jdksavb_entity_read_descriptor_control( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_read_descriptor_locale( struct jdksavb_entity *self,
                                                struct jdksavdecc_aecpdu_aem const *aem,
-                                               jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                               jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                uint8_t *buf,
                                                uint16_t len );
 
@@ -743,7 +743,7 @@ uint8_t jdksavb_entity_read_descriptor_locale( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_read_descriptor_strings( struct jdksavb_entity *self,
                                                 struct jdksavdecc_aecpdu_aem const *aem,
-                                                jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                                jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                 uint8_t *buf,
                                                 uint16_t len );
 
@@ -751,7 +751,7 @@ uint8_t jdksavb_entity_read_descriptor_strings( struct jdksavb_entity *self,
 /// Fill in the response in place in the pdu and return an AECP AEM status code
 uint8_t jdksavb_entity_read_descriptor_memory( struct jdksavb_entity *self,
                                                struct jdksavdecc_aecpdu_aem const *aem,
-                                               jdksavdecc_timestamp_in_milliseconds cur_time_in_ms,
+                                               jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
                                                uint8_t *buf,
                                                uint16_t len );
 
