@@ -1,0 +1,1 @@
+clang-format -i jdksavb/*/*.h jdksavb/*/*.c
