@@ -80,14 +80,14 @@ struct jdksavb_apc
      *
      * The effective "Base Class" for receiving network events from a TCP socket
      */
-    struct jdksavb_netevent m_base;
+    struct jdksavb_net_signals m_base;
 
     /**
      * @brief m_net TCP network socket
      *
      * The object which manages socket requests
      */
-    struct jdksavb_netrequest *m_net;
+    struct jdksavb_net_slots *m_net;
 
     /**
      * The Current State
@@ -121,7 +121,7 @@ struct jdksavb_apc
     /**
      * See IEEE 1722.1 Annex C.5.3.1.6
      */
-    jdksavdecc_timestamp_in_milliseconds m_currentTime;
+    jdksavdecc_timestamp_in_microseconds m_currentTime;
 
     /**
      * See IEEE 1722.1 Annex C.5.3.1.7
@@ -234,7 +234,7 @@ struct jdksavb_apc
     void ( *notifyNewEntityId )( struct jdksavb_apc *self, struct jdksavdecc_eui64 entity_id );
 };
 
-void jdksavb_apc_init( struct jdksavb_apc *self, struct jdksavb_netrequest *net );
+void jdksavb_apc_init( struct jdksavb_apc *self, struct jdksavb_net_slots *net );
 
 void jdksavb_apc_terminate( struct jdksavb_apc *self );
 
@@ -247,15 +247,15 @@ void jdksavb_apc_execute_state( struct jdksavb_apc *self );
 
 void jdksavb_apc_finish( struct jdksavb_apc *self );
 
-void jdksavb_apc_NetEventSocketReadable( struct jdksavb_netevent *self, void const *data, ssize_t data_len );
+void jdksavb_apc_socket_readable( struct jdksavb_net_signals *self, void const *data, ssize_t data_len );
 
-void jdksavb_apc_NetEventSocketConnected( struct jdksavb_netevent *self );
+void jdksavb_apc_socket_connected( struct jdksavb_net_signals *self );
 
-void jdksavb_apc_NetEventSocketWritable( struct jdksavb_netevent *self );
+void jdksavb_apc_socket_writable( struct jdksavb_net_signals *self );
 
-void jdksavb_apc_NetEventSocketClosed( struct jdksavb_netevent *self );
+void jdksavb_apc_socket_closed( struct jdksavb_net_signals *self );
 
-void jdksavb_apc_NetEventSocketTimePassed( struct jdksavb_netevent *self, jdksavdecc_timestamp_in_milliseconds timestamp );
+void jdksavb_apc_socket_tick( struct jdksavb_net_signals *self, jdksavdecc_timestamp_in_microseconds timestamp );
 
 void jdksavb_apc_goto_state_BEGIN( struct jdksavb_apc *self );
 

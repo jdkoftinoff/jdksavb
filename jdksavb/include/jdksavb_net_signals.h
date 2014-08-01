@@ -31,40 +31,36 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
 
-#include "jdksavb_net_raw_signals.h"
-#include "jdksavb_net_udp_signals.h"
-#include "jdksavb_net_tcp_signals.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-struct jdksavb_netevent
+struct jdksavb_net_signals
 {
     /**
      * External Networking Event: The socket was readable and some data was read
      */
-    void ( *netEventSocketReadable )( struct jdksavb_netevent *self, void const *data, ssize_t data_len );
+    void ( *readable )( struct jdksavb_net_signals *self, void const *data, ssize_t data_len );
 
     /**
      * External Networking Event: The socket was connected
      */
-    void ( *netEventSocketConnected )( struct jdksavb_netevent *self );
+    void ( *connected )( struct jdksavb_net_signals *self );
 
     /**
      * External Networking Event: The socket is writable now
      */
-    void ( *netEventSocketWritable )( struct jdksavb_netevent *self );
+    void ( *writable )( struct jdksavb_net_signals *self );
 
     /**
      * External Networking Event: The socket was closed
      */
-    void ( *netEventSocketClosed )( struct jdksavb_netevent *self );
+    void ( *closed )( struct jdksavb_net_signals *self );
 
     /**
      * External Networking Event: Some time passed
      */
-    void ( *netEventSocketTimePassed )( struct jdksavb_netevent *self, jdksavdecc_timestamp_in_milliseconds timestamp );
+    void ( *tick )( struct jdksavb_net_signals *self, jdksavdecc_timestamp_in_microseconds timestamp );
 };
 
 #ifdef __cplusplus

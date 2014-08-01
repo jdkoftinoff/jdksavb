@@ -31,14 +31,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_world.h"
 #include "jdksavb_apc.h"
 
-void jdksavb_apc_init( struct jdksavb_apc *self, struct jdksavb_netrequest *net )
+void jdksavb_apc_init( struct jdksavb_apc *self, struct jdksavb_net_slots *net )
 {
     self->m_net = net;
-    self->m_base.netEventSocketReadable = jdksavb_apc_NetEventSocketReadable;
-    self->m_base.netEventSocketConnected = jdksavb_apc_NetEventSocketConnected;
-    self->m_base.netEventSocketWritable = jdksavb_apc_NetEventSocketWritable;
-    self->m_base.netEventSocketClosed = jdksavb_apc_NetEventSocketClosed;
-    self->m_base.netEventSocketTimePassed = jdksavb_apc_NetEventSocketTimePassed;
+    self->m_base.readable = jdksavb_apc_socket_readable;
+    self->m_base.connected = jdksavb_apc_socket_connected;
+    self->m_base.writable = jdksavb_apc_socket_writable;
+    self->m_base.closed = jdksavb_apc_socket_closed;
+    self->m_base.tick = jdksavb_apc_socket_tick;
     self->closeTcpConnection = jdksavb_apc_CloseTcpConnection;
     self->connectToProxy = jdksavb_apc_ConnectToProxy;
     self->getHttpResponse = jdksavb_apc_GetHttpResponse;
@@ -73,27 +73,27 @@ void jdksavb_apc_finish( struct jdksavb_apc *self )
     self->m_finished = true;
 }
 
-void jdksavb_apc_NetEventSocketReadable( struct jdksavb_netevent *self, void const *data, ssize_t data_len )
+void jdksavb_apc_socket_readable( struct jdksavb_net_signals *self, void const *data, ssize_t data_len )
 {
     /* TODO */
 }
 
-void jdksavb_apc_NetEventSocketConnected( struct jdksavb_netevent *self )
+void jdksavb_apc_socket_connected( struct jdksavb_net_signals *self )
 {
     /* TODO */
 }
 
-void jdksavb_apc_NetEventSocketWritable( struct jdksavb_netevent *self )
+void jdksavb_apc_socket_writable( struct jdksavb_net_signals *self )
 {
     /* TODO */
 }
 
-void jdksavb_apc_NetEventSocketClosed( struct jdksavb_netevent *self )
+void jdksavb_apc_socket_closed( struct jdksavb_net_signals *self )
 {
     /* TODO */
 }
 
-void jdksavb_apc_NetEventSocketTimePassed( struct jdksavb_netevent *self, jdksavdecc_timestamp_in_milliseconds timestamp )
+void jdksavb_apc_socket_tick( struct jdksavb_net_signals *self, jdksavdecc_timestamp_in_microseconds timestamp )
 {
     /* TODO */
 }

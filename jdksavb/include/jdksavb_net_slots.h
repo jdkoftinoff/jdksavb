@@ -31,48 +31,52 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
 
-#include "jdksavb_net_signals.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-struct jdksavb_netrequest
+struct jdksavb_net_slots
 {
+    void ( *terminate )( struct jdksavb_acmp_controller_slots *self );
+
+    void ( *connect_signals )( struct jdksavb_acmp_controller_slots *self,
+                               struct jdksavb_acmp_controller_signals *destination_signals );
+
+    void ( *disconnect_signals )( struct jdksavb_acmp_controller_slots *self,
+                                  struct jdksavb_acmp_controller_signals *destination_signals );
+
     /**
      * External Networking Request: The state machine wants to wake up when the socket is writable
      */
-    void ( *netRequestWakeOnWritable )( struct jdksavb_netrequest *self,
-                                        struct jdksavb_netevent *netEventHandler,
-                                        bool enable );
+    void ( *wake_on_writable )( struct jdksavb_net_slots *self, struct jdksavb_net_signals *netEventHandler, bool enable );
 
     /**
      * External Networking Request: The state machine wants to connect to a destination
      */
-    void ( *netRequestConnect )( struct jdksavb_netrequest *self,
-                                 struct jdksavb_netevent *netEventHandler,
-                                 struct sockaddr const *addr,
-                                 socklen_t addr_len );
+    void ( *connect )( struct jdksavb_net_slots *self,
+                       struct jdksavb_net_signals *netEventHandler,
+                       struct sockaddr const *addr,
+                       socklen_t addr_len );
 
     /**
      * External Networking Request: The state machine wants to close the socket
      */
-    void ( *netRequestClose )( struct jdksavb_netrequest *self, struct jdksavb_netevent *netEventHandler );
+    void ( *close )( struct jdksavb_net_slots *self, struct jdksavb_net_signals *netEventHandler );
 
     /**
      * External Networking Request: The state machine wants to send some data
      */
-    ssize_t ( *netRequestSend )( struct jdksavb_netrequest *self,
-                                 struct jdksavb_netevent *netEventHandler,
-                                 void const *data,
-                                 size_t data_len );
+    ssize_t ( *send )( struct jdksavb_net_slots *self,
+                       struct jdksavb_net_signals *netEventHandler,
+                       void const *data,
+                       size_t data_len );
 
     /**
      * External Networking Request: The state machine wants to be woken up in the future
      */
-    void ( *netRequestWakeUp )( struct jdksavb_netrequest *self,
-                                struct jdksavb_netevent *netEventHandler,
-                                uint32_t delta_time_in_milliseconds );
+    void ( *wake_up )( struct jdksavb_net_slots *self,
+                       struct jdksavb_net_signals *netEventHandler,
+                       uint32_t delta_time_in_milliseconds );
 };
 
 #ifdef __cplusplus
