@@ -32,6 +32,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "jdksavdecc.h"
 
+#include "jdksavdecc_ms.h"
+#include "jdksavdecc_msinttypes.h"
+#include "jdksavdecc_msstdint.h"
+
+#if defined( __APPLE__ ) || defined( __unix__ )
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netdb.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#elif defined( _WIN32 )
+#include <windows.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <iphlpapi.h>
+#pragma comment( lib, "ws2_32.lib" )
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

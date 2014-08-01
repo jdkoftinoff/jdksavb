@@ -31,9 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
 
-#include "jdksavb_net_raw_slots.h"
-#include "jdksavb_net_udp_slots.h"
-#include "jdksavb_net_tcp_slots.h"
+#include "jdksavb_net_signals.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,27 +43,27 @@ struct jdksavb_netrequest
      * External Networking Request: The state machine wants to wake up when the socket is writable
      */
     void ( *netRequestWakeOnWritable )( struct jdksavb_netrequest *self,
-                                        struct JDKSAvdeccProxy_NetEvent *netEventHandler,
+                                        struct jdksavb_netevent *netEventHandler,
                                         bool enable );
 
     /**
      * External Networking Request: The state machine wants to connect to a destination
      */
     void ( *netRequestConnect )( struct jdksavb_netrequest *self,
-                                 struct JDKSAvdeccProxy_NetEvent *netEventHandler,
+                                 struct jdksavb_netevent *netEventHandler,
                                  struct sockaddr const *addr,
                                  socklen_t addr_len );
 
     /**
      * External Networking Request: The state machine wants to close the socket
      */
-    void ( *netRequestClose )( struct jdksavb_netrequest *self, struct JDKSAvdeccProxy_NetEvent *netEventHandler );
+    void ( *netRequestClose )( struct jdksavb_netrequest *self, struct jdksavb_netevent *netEventHandler );
 
     /**
      * External Networking Request: The state machine wants to send some data
      */
     ssize_t ( *netRequestSend )( struct jdksavb_netrequest *self,
-                                 struct JDKSAvdeccProxy_NetEvent *netEventHandler,
+                                 struct jdksavb_netevent *netEventHandler,
                                  void const *data,
                                  size_t data_len );
 
@@ -73,7 +71,7 @@ struct jdksavb_netrequest
      * External Networking Request: The state machine wants to be woken up in the future
      */
     void ( *netRequestWakeUp )( struct jdksavb_netrequest *self,
-                                struct JDKSAvdeccProxy_NetEvent *netEventHandler,
+                                struct jdksavb_netevent *netEventHandler,
                                 uint32_t delta_time_in_milliseconds );
 };
 
