@@ -177,7 +177,7 @@ struct jdksavb_srp_info_listener
 
 struct jdksavb_srp_info_domain
 {
-    struct jdksavb_srp_domain;
+    struct jdksavb_srp_domain first_value;
     uint16_t number_of_values;
 };
 
