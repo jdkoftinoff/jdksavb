@@ -657,7 +657,7 @@
 		BFD56469191EEB1C00B0D326 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "J.D. Koftinoff Software, Ltd.";
 			};
 			buildConfigurationList = BFD5646C191EEB1C00B0D326 /* Build configuration list for PBXProject "jdksavb" */;
@@ -807,6 +807,7 @@
 		BFD56476191EEB1C00B0D326 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "../../jdksavdecc-c/include ../include";
@@ -816,6 +817,7 @@
 		BFD56477191EEB1C00B0D326 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "../../jdksavdecc-c/include ../include";
