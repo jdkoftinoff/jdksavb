@@ -1,5 +1,3 @@
-#pragma once
-
 /*
 Copyright (c) 2014, Jeff Koftinoff
 All rights reserved.
@@ -29,16 +27,10 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
 #include "jdksavb_world.h"
+#include "jdksavb_net.h"
 
-#include "jdksavb_manager_signals.h"
-#include "jdksavb_manager_slots.h"
-#include "jdksavb_manager_attributes.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#ifdef __cplusplus
-}
+#ifndef TODO
+const char *jdksavb_net_file = "jdksavb_net.c";
 #endif

@@ -39,7 +39,6 @@ struct jdksavb_net_tcp_signals
 {
 };
 
-
 #ifdef __cplusplus
 }
 #endif

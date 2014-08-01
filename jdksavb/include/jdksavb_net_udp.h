@@ -34,7 +34,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "jdksavb_net_udp_signals.h"
 #include "jdksavb_net_udp_slots.h"
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif

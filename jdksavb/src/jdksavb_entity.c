@@ -531,11 +531,12 @@ uint8_t jdksavb_entity_receive_get_control_command( struct jdksavb_entity *self,
 
 /// The pdu contains a valid Register for Unsolicited Notifications Command
 /// Fill in the response in place in the pdu and return an AECP AEM status code
-uint8_t jdksavb_entity_receive_register_unsolicited_notification_command( struct jdksavb_entity *self,
-                                                                          struct jdksavdecc_aecpdu_aem const *aem,
-                                                                          jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
-                                                                          uint8_t *buf,
-                                                                          uint16_t len )
+uint8_t
+    jdksavb_entity_receive_register_unsolicited_notification_command( struct jdksavb_entity *self,
+                                                                      struct jdksavdecc_aecpdu_aem const *aem,
+                                                                      jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
+                                                                      uint8_t *buf,
+                                                                      uint16_t len )
 {
     // TODO
     (void)self;
@@ -548,11 +549,12 @@ uint8_t jdksavb_entity_receive_register_unsolicited_notification_command( struct
 
 /// The pdu contains a valid De-Register for Unsolicited Notifications Command
 /// Fill in the response in place in the pdu and return an AECP AEM status code
-uint8_t jdksavb_entity_receive_deregister_unsolicited_notification_command( struct jdksavb_entity *self,
-                                                                            struct jdksavdecc_aecpdu_aem const *aem,
-                                                                            jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
-                                                                            uint8_t *buf,
-                                                                            uint16_t len )
+uint8_t
+    jdksavb_entity_receive_deregister_unsolicited_notification_command( struct jdksavb_entity *self,
+                                                                        struct jdksavdecc_aecpdu_aem const *aem,
+                                                                        jdksavdecc_timestamp_in_microseconds cur_time_in_micros,
+                                                                        uint8_t *buf,
+                                                                        uint16_t len )
 {
     // TODO
     (void)self;

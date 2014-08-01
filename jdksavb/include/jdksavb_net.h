@@ -31,9 +31,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "jdksavb_world.h"
 
-#include "jdksavb_manager_signals.h"
-#include "jdksavb_manager_slots.h"
-#include "jdksavb_manager_attributes.h"
+#include "jdksavb_net_signals.h"
+#include "jdksavb_net_slots.h"
 
 #ifdef __cplusplus
 extern "C" {

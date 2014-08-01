@@ -38,55 +38,31 @@ extern "C" {
 
 struct jdksavb_adp_advertiser_slots
 {
-    void ( *terminate )( 
-        struct jdksavb_adp_advertiser_slots *self 
-    );
-    
-    void ( *connect_signals )( 
-        struct jdksavb_adp_advertiser_slots *self,
-        struct jdksavb_adp_advertiser_signals *destination_signals 
-    );
+    void ( *terminate )( struct jdksavb_adp_advertiser_slots *self );
 
-    void ( *disconnect_signals )( 
-        struct jdksavb_adp_advertiser_slots *self,
-        struct jdksavb_adp_advertiser_signals *destination_signals 
-    );
+    void ( *connect_signals )( struct jdksavb_adp_advertiser_slots *self,
+                               struct jdksavb_adp_advertiser_signals *destination_signals );
 
-    void ( *set_adpdu )(
-        struct jdksavb_adp_advertiser_slots *self, 
-        struct jdksavdecc_adpdu adpdu_params
-    );
-                
-    void ( *gptp_gm_changed )(
-        struct jdksavb_adp_advertiser_slots *self, 
-        struct jdksavdecc_eui64 new_gtp_gm_id,
-        uint8_t new_gptp_domain_id
-    );
-    
-    void ( *network_port_link_status_changed )( 
-        struct jdksavb_adp_advertiser_slots *self, 
-        struct jdksavdecc_eui48 mac_addr, 
-        bool up 
-        );     
+    void ( *disconnect_signals )( struct jdksavb_adp_advertiser_slots *self,
+                                  struct jdksavb_adp_advertiser_signals *destination_signals );
 
-    void ( *start )( 
-        struct jdksavb_adp_advertiser_slots *self 
-    );
+    void ( *set_adpdu )( struct jdksavb_adp_advertiser_slots *self, struct jdksavdecc_adpdu adpdu_params );
 
-    void ( *stop )( 
-        struct jdksavb_adp_advertiser_slots *self 
-    );
+    void ( *gptp_gm_changed )( struct jdksavb_adp_advertiser_slots *self,
+                               struct jdksavdecc_eui64 new_gtp_gm_id,
+                               uint8_t new_gptp_domain_id );
 
-    void ( *handle_pdu )( 
-        struct jdksavb_adp_advertiser_slots *self, 
-        struct jdksavb_frame *frame 
-    );
+    void ( *network_port_link_status_changed )( struct jdksavb_adp_advertiser_slots *self,
+                                                struct jdksavdecc_eui48 mac_addr,
+                                                bool up );
 
-    void ( *tick )( 
-        struct jdksavb_adp_advertiser_slots *self, 
-        jdksavdecc_timestamp_in_microseconds current_time 
-    );
-                
+    void ( *start )( struct jdksavb_adp_advertiser_slots *self );
+
+    void ( *stop )( struct jdksavb_adp_advertiser_slots *self );
+
+    void ( *handle_pdu )( struct jdksavb_adp_advertiser_slots *self, struct jdksavb_frame *frame );
+
+    void ( *tick )( struct jdksavb_adp_advertiser_slots *self, jdksavdecc_timestamp_in_microseconds current_time );
 };
 
 #ifdef __cplusplus

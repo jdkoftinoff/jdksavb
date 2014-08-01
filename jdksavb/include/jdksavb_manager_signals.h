@@ -47,7 +47,6 @@ struct jdksavdecc_manager_signals
     struct jdksavb_acmp_listener_slots acmp_listener;
     struct jdksavb_acmp_talker_slots acmp_talker;
     struct jdksavb_acmp_controller_slots acmp_controller;
-
 };
 
 #ifdef __cplusplus
