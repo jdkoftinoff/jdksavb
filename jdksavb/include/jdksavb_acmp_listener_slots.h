@@ -37,19 +37,37 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
+struct jdksavb_acmp_listener_signals;
+
 /** These are the the messages that an acmp listener state machine can receive */
 struct jdksavb_acmp_listener_slots
 {
+    /** Ask the object to to terminate */
+    void ( *terminate )( struct jdksavb_acmp_listener_slots *self );
 
-    void ( *start )( void *self, uint16_t listener_stream_sinks );
+    /** Ask the object to send its signals to destination_signals */
+    void ( *connect_signals )( struct jdksavb_acmp_listener_slots *self,
+                               struct jdksavb_acmp_listener_signals *destination_signals );
 
-    void ( *stop )( void *self );
+    /** Ask the object to disconnect the destination_signals */
+    void ( *disconnect_signals )( struct jdksavb_acmp_listener_slots *self,
+                                  struct jdksavb_acmp_listener_signals *destination_signals );
 
-    void ( *handle_pdu )( void *self, struct jdksavb_frame *pdu );
+    /** Ask the object to start processing */
+    void ( *start )( struct jdksavb_acmp_listener_slots *self );
 
-    void ( *tick )( void *self, jdksavdecc_timestamp_in_microseconds current_time );
+    /** Ask the object to stop processing */
+    void ( *stop )( struct jdksavb_acmp_listener_slots *self );
 
-    void ( *srp_talker_info_received )( void *self, const struct jdksavb_srp_info_talker *stream_info );
+    /** Ask the object to handle the specified ethernet frame */
+    void ( *handle_pdu )( struct jdksavb_acmp_listener_slots *self, struct jdksavb_frame *frame );
+
+    /** Ask the object to process any periodic timers */
+    void ( *tick )( struct jdksavb_acmp_listener_slots *self, jdksavdecc_timestamp_in_microseconds current_time );
+
+    /** Notify the ACMP listener that some talker stream info was received via SRP */
+    void ( *srp_talker_info_received )( struct jdksavb_acmp_listener_slots *self,
+                                        const struct jdksavb_srp_info_talker *stream_info );
 };
 
 #ifdef __cplusplus

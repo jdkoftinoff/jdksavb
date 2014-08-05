@@ -43,24 +43,38 @@ struct jdksavb_acmp_listener_slots;
 struct jdksavb_acmp_listener_signals
 {
 
+    /** The signals were connected */
+    void ( *acmp_listener_connected )( struct jdksavb_acmp_listener_signals *self,
+                                       struct jdksavb_acmp_listener_slots *acmp_controller_slots );
+
+    /** The signals were disconnected */
+    void ( *acmp_listener_disconnected )( struct jdksavb_acmp_listener_signals *self );
+
+    /** The object was started */
     void ( *acmp_listener_started )( struct jdksavb_acmp_listener_signals *self, struct jdksavb_acmp_listener_slots *source );
 
+    /** The object was stopped */
     void ( *acmp_listener_stopped )( struct jdksavb_acmp_listener_signals *self, struct jdksavb_acmp_listener_slots *source );
 
+    /** The object is asking to send an ethernet frame */
+    void ( *acmp_listener_send_pdu )( void *self, struct jdksavb_frame *acmpdu );
+
+    /** The object is asking to be notified about the specified talker stream id  */
     void ( *acmp_listener_srp_info_request )( struct jdksavb_acmp_listener_signals *self,
                                               struct jdksavb_acmp_listener_slots *source,
                                               struct jdksavdecc_eui64 talker_stream_id );
 
+    /** The object is listening to a talker */
     void ( *acmp_listener_talker_added )( struct jdksavb_acmp_listener_signals *self,
                                           struct jdksavb_acmp_listener_slots *source,
                                           struct jdksavdecc_eui64 talker_stream_id,
                                           struct jdksavdecc_eui48 talker_mac,
                                           uint16_t talker_vid );
 
+    /** The object is no longer listening to a talker */
     void ( *acmp_listener_talker_removed )( struct jdksavb_acmp_listener_signals *self,
-                                            struct jdksavb_acmp_listener_slots *source );
-
-    void ( *acmp_listener_send_pdu )( void *self, struct jdksavb_frame *acmpdu );
+                                            struct jdksavb_acmp_listener_slots *source,
+                                            struct jdksavdecc_eui64 talker_stream_id );
 };
 
 #ifdef __cplusplus

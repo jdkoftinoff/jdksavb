@@ -38,22 +38,30 @@ extern "C" {
 
 struct jdksavb_acmp_controller_signals;
 
+/** The actions that an ACMP Controller can be asked to perform */
 struct jdksavb_acmp_controller_slots
 {
+    /** Ask the object to to terminate */
     void ( *terminate )( struct jdksavb_acmp_controller_slots *self );
 
+    /** Ask the object to send its signals to destination_signals */
     void ( *connect_signals )( struct jdksavb_acmp_controller_slots *self,
                                struct jdksavb_acmp_controller_signals *destination_signals );
 
+    /** Ask the object to disconnect the destination_signals */
     void ( *disconnect_signals )( struct jdksavb_acmp_controller_slots *self,
                                   struct jdksavb_acmp_controller_signals *destination_signals );
 
+    /** Ask the object to start processing */
     void ( *start )( struct jdksavb_acmp_controller_slots *self );
 
+    /** Ask the object to stop processing */
     void ( *stop )( struct jdksavb_acmp_controller_slots *self );
 
+    /** Ask the object to handle the specified ethernet frame */
     void ( *handle_pdu )( struct jdksavb_acmp_controller_slots *self, struct jdksavb_frame *frame );
 
+    /** Ask the object to process any periodic timers */
     void ( *tick )( struct jdksavb_acmp_controller_slots *self, jdksavdecc_timestamp_in_microseconds current_time );
 };
 

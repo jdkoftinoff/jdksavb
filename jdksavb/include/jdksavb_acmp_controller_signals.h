@@ -36,21 +36,83 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
+struct jdksavb_acmp_controller_stream_source;
+
+struct jdksavb_acmp_controller_stream_source
+{
+    struct jdksavdecc_eui64 talker_entity_id;
+    uint16_t talker_unique_id;
+    struct jdksavdecc_eui48 destination_mac_address;
+    struct jdksavdecc_eui64 stream_id;
+    uint16_t flags;
+    uint8_t status;
+    uint16_t connection_count;
+    uint16_t stream_vlan_id;
+};
+
+struct jdksavb_acmp_controller_stream_sink
+{
+    struct jdksavdecc_eui64 listener_entity_id;
+    uint16_t listener_unique_id;
+    uint16_t flags;
+    uint8_t status;
+};
+
+struct jdksavb_acmp_controller_connection
+{
+    enum
+    {
+        JDKSAVB_ACMP_CONTROLLER_CONNECTION_DISABLED = 0,
+        JDKSAVB_ACMP_CONTROLLER_CONNECTION_DISCONNECTED,
+        JDKSAVB_ACMP_CONTROLLER_CONNECTION_SCONNECTING,
+        JDKSAVB_ACMP_CONTROLLER_CONNECTION_CONNECTED,
+        JDKSAVB_ACMP_CONTROLLER_CONNECTION_DISCONNECTING,
+        JDKSAVB_ACMP_CONTROLLER_CONNECTION_ERROR
+    } state;
+    struct jdksavdecc_eui64 talker_entity_id;
+    uint16_t talker_unique_id;
+    struct jdksavdecc_eui64 listener_entity_id;
+    uint16_t listener_unique_id;
+    jdksavdecc_timestamp_in_microseconds last_talker_refresh_time;
+    struct jdksavb_acmp_controller_stream_source last_talker_info;
+    jdksavdecc_timestamp_in_microseconds last_listener_refresh_time;
+    struct jdksavb_acmp_controller_stream_sink last_listener_info;
+};
+
+void jdksavb_acmp_controller_connection_init( struct jdksavb_acmp_controller_connection *self );
+
 struct jdksavb_acmp_controller_slots;
 
+/** The signals that an ACMP Controller can send to another object */
 struct jdksavb_acmp_controller_signals
 {
-
+    /** The signals were connected */
     void ( *acmp_controller_connected )( struct jdksavb_acmp_controller_signals *self,
                                          struct jdksavb_acmp_controller_slots *acmp_controller_slots );
 
+    /** The signals were disconnected */
     void ( *acmp_controller_disconnected )( struct jdksavb_acmp_controller_signals *self );
 
+    /** The object was started */
     void ( *acmp_controller_started )( struct jdksavb_acmp_controller_signals *self );
 
+    /** The object was stopped */
     void ( *acmp_controller_stopped )( struct jdksavb_acmp_controller_signals *self );
 
+    /** The object is asking to send an ethernet frame */
     void ( *acmp_controller_send_pdu )( struct jdksavb_acmp_controller_signals *self, struct jdksavb_frame *acmpdu );
+
+    /** The object is notifying that a stream source has been discovered or updated */
+    void ( *acmp_controller_stream_source_found )( struct jdksavb_acmp_controller_signals *self,
+                                                   struct jdksavb_acmp_controller_stream_source *info );
+
+    /** The object is notifying that a stream sink has been discovered or updated */
+    void ( *acmp_controller_stream_sink_found )( struct jdksavb_acmp_controller_signals *self,
+                                                 struct jdksavb_acmp_controller_stream_sink *info );
+
+    /** The object is notifying that a stream connection state changed */
+    void ( *acmp_controller_connection_changed )( struct jdksavb_acmp_controller_signals *self,
+                                                  struct jdksavb_acmp_controller_connection *info );
 };
 
 #ifdef __cplusplus
