@@ -44,10 +44,16 @@ extern "C" {
 struct jdksavb_acmp_controller
 {
     /** The list of messages that the controller can receive */
-    struct jdksavb_acmp_controller_slots *slots;
+    struct jdksavb_acmp_controller_slots slots;
 
     /** The list of signals that the controller can send */
     struct jdksavb_acmp_controller_signals *signals;
+
+    enum
+    {
+        JDKSAVB_ACMP_CONTROLLER_STOPPED,
+        JDKSAVB_ACMP_CONTROLLER_STARTED
+    } state;
 
     /** The maximum number of stream sources that the stream_sources parameter can hold */
     int max_stream_sources;
@@ -109,6 +115,26 @@ void jdksavb_acmp_controller_handle_pdu( struct jdksavb_acmp_controller_slots *s
 /** Ask the object to process any periodic timers */
 void jdksavb_acmp_controller_tick( struct jdksavb_acmp_controller_slots *self,
                                    jdksavdecc_timestamp_in_microseconds current_time );
+
+/** Ask the object to track a specific stream sink */
+void jdksavb_acmp_controller_track_stream_sink( struct jdksavb_acmp_controller_slots *self,
+                                                struct jdksavdecc_eui64 listener_entity_id,
+                                                uint16_t listener_unique_id,
+                                                bool enable );
+
+/** Ask the object to track a specific stream source */
+void jdksavb_acmp_controller_track_stream_source( struct jdksavb_acmp_controller_slots *self,
+                                                  struct jdksavdecc_eui64 talker_entity_id,
+                                                  uint16_t talker_unique_id,
+                                                  bool enable );
+
+/** Ask the object to connect a stream source to a stream sink */
+void jdksavb_acmp_controller_connect_stream( struct jdksavb_acmp_controller_slots *self,
+                                             struct jdksavdecc_eui64 talker_entity_id,
+                                             uint16_t talker_unique_id,
+                                             struct jdksavdecc_eui64 listener_entity_id,
+                                             uint16_t listener_unique_id,
+                                             bool enable );
 
 /*@}*/
 
